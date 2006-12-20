@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:expression="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl">
+  <owl:Ontology rdf:about="">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Norm">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualifies"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Normatively_Qualified"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Qualification"/>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Declaration"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Belief_In_Violation">
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Belief"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Belief"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Disallowed"/>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#expresses"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Permission">
+    <rdfs:subClassOf rdf:resource="#Norm"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Allowed"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="allows"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom>
+              <owl:Class rdf:about="#Allowed"/>
+            </owl:allValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#allows"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Permission allows thing(s), to which therefore the predication Allowed applies. The thing(s) allowed is/are a subset of the thing(s) qualified by the permission. If S then P(A) means that S is qualified and S and A is allowed.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Obliged">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Disallowed"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:TransitiveProperty rdf:ID="normatively_strictly_worse"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Obligation"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="allowed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Is allowed by an Obligation, i.e. the alternative is strictly_worse according to the Obligation. Alternative labels: directed, commanded.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Allowed"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Normatively_Qualified">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Some thing which is qualified (allowed, disallowed) by a norm, i.e. a norm applies to the thing. Taking the principle of deontic choice to mean that the utterer of a normative statement intends to influence choices made by the addressee of the statement, the qualified thing should is comparable to some alternative. Note that Qualified does not partition into Allowed and Disallowed. Firstly, things can be Allowed by one Norm and Disallowed by another one. Secondly, the logical complement of the thing allowed by a permission is qualified (as worse or equal than the thing allowed), but neither allowed nor disallowed.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Qualified"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Norm"/>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualified_by"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="normatively_comparable"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Normatively_Qualified"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Disallowed_Intention">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The propositional intent of the intention is disallowed. Interesting concept for establishing mens rea (guilty mind), although 'disallowed' is a weaker qualification than criminal. Note the distinction between purposely committing a crime and knowingly committing a crime. The crime committed does not have to match the crime intended for establishing intent!</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Intention"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#expresses"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Disallowed"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Strictly_Allowed">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Allowed"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Loose end.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Allowed_And_Disallowed">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Disallowed"/>
+          <owl:Class rdf:about="#Allowed"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Prohibition">
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#Obligation"/>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prohibition obliges/allows thing(s), to which therefore the predication Obliged applies, and disallows thing(s), to which therefore the predication Disallowed applies. The union of the thing(s) allowed and the thing(s) disallowed is qualified by the prohibition. The things allowed and disallowed by the prohibition are disjoint (and completely partition the space of things qualified). If S then O(A) means that S is qualified, S and A is obliged/allowed, and S and not A is disallowed. If S then F(A) means that S is qualified, S and A is disallowed, and S and not A is obliged/allowed. The difference between Obligation and Prohibition is in which part of the partition of the qualified space is explicitly described by the normative statement. Alternative label: directive</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="#Obliged"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#allows"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Obliged"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#allows"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:allValuesFrom>
+              <owl:Class rdf:about="#Disallowed"/>
+            </owl:allValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="disallows"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Disallowed"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#disallows"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Permission"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Disallowed">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Allowed"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:TransitiveProperty rdf:ID="normatively_strictly_better"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Prohibition"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="disallowed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See Qualified. Alternative labels: violation, prohibited, forbidden</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Normatively_Qualified"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Observation_of_Violation">
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Problem"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An observation of a violation, i.e. of something that is Disallowed.</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Observation"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Disallowed"/>
+            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#expresses"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Allowed">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="normatively_equivalent_or_worse"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Normatively_Qualified"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Permission"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#allowed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See Qualified. Alternative labels: permitted, sanctioned, let, licensed.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Normatively_Qualified"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Obligation">
+    <owl:equivalentClass rdf:resource="#Prohibition"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf rdf:resource="#Permission"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Strictly_Disallowed">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Loose end.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Disallowed"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#normatively_comparable">
+    <rdfs:range rdf:resource="#Normatively_Qualified"/>
+    <rdfs:domain rdf:resource="#Normatively_Qualified"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#allows">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#allowed_by"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualifies"/>
+    <rdfs:range rdf:resource="#Allowed"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="commands">
+    <rdfs:subPropertyOf rdf:resource="#allows"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="commanded_by"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Obliged"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#normatively_equivalent_or_worse">
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="normatively_equivalent_or_better"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#normatively_comparable"/>
+    <rdfs:domain rdf:resource="#Allowed"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#commanded_by">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#allowed_by"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#Obliged"/>
+    <owl:inverseOf rdf:resource="#commands"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#disallowed_by">
+    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualified_by"/>
+    <rdfs:domain rdf:resource="#Disallowed"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#disallows"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#allowed_by">
+    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualified_by"/>
+    <rdfs:domain rdf:resource="#Allowed"/>
+    <owl:inverseOf rdf:resource="#allows"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#disallows">
+    <owl:inverseOf rdf:resource="#disallowed_by"/>
+    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualifies"/>
+    <rdfs:range rdf:resource="#Disallowed"/>
+  </owl:ObjectProperty>
+  <owl:TransitiveProperty rdf:about="#normatively_strictly_better">
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:ID="normatively_not_equivalent"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="#normatively_strictly_worse"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Obliged"/>
+    <rdfs:domain rdf:resource="#Disallowed"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#normatively_equivalent_or_better"/>
+    </rdfs:subPropertyOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#normatively_equivalent_or_better">
+    <rdfs:subPropertyOf rdf:resource="#normatively_comparable"/>
+    <rdfs:range rdf:resource="#Allowed"/>
+    <owl:inverseOf rdf:resource="#normatively_equivalent_or_worse"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#normatively_strictly_worse">
+    <owl:inverseOf rdf:resource="#normatively_strictly_better"/>
+    <rdfs:domain rdf:resource="#Obliged"/>
+    <rdfs:range rdf:resource="#Disallowed"/>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#normatively_not_equivalent"/>
+    </rdfs:subPropertyOf>
+    <rdfs:subPropertyOf rdf:resource="#normatively_equivalent_or_worse"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:SymmetricProperty rdf:about="#normatively_not_equivalent">
+    <owl:inverseOf rdf:resource="#normatively_not_equivalent"/>
+    <rdfs:subPropertyOf rdf:resource="#normatively_comparable"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:SymmetricProperty>
+  <owl:SymmetricProperty rdf:ID="strictly_equivalent">
+    <rdfs:subPropertyOf rdf:resource="#normatively_equivalent_or_worse"/>
+    <rdfs:subPropertyOf rdf:resource="#normatively_equivalent_or_better"/>
+    <rdfs:domain rdf:resource="#Allowed"/>
+    <owl:inverseOf rdf:resource="#strictly_equivalent"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#Allowed"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </owl:SymmetricProperty>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer 1.1.6 -->

@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:expression="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#"
+    xmlns:process="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Trade">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Trade: the thing which is traded is the OBJECT i.e. the PATIENT or THEME of the action.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Transaction"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Need to have some notion of time: actions are not instantaneous, they change the world in some way.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >How to express the fact that ownership of the thing being traded switches between actor and recipient? (and vice versa)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Transaction">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Action"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Transaction: an exchange or interaction between at least two agents</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="actor"/>
+        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >2</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#actor"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="Agent"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Organisation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Agent"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Person"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An organisation is a group of other organisations or persons which acts 'as one'. An organisation can be both formal (i.e. created by law or decree) or informal.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Reaction">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Action"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NOTE: question remains whether this observation is also a *requirement* of the reaction.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A reaction is an action that is (at least) performed by an agent that has observed some other action (this is an intensional view): Action &lt;-> Reaction</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#actor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Agent"/>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#observes"/>
+                <owl:someValuesFrom>
+                  <owl:Class rdf:about="#Action"/>
+                </owl:someValuesFrom>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Person">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Artifact"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Agent"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Organisation"/>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#Physical_Object"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A person is an individual agent. Usually associated with 'human being'.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Artifact">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#Role"/>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#Function"/>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#Person"/>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#Physical_Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Creation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Action"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An act which results in the creation of some entity/individual</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Agent">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Action"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An agent is any owl:Thing which can act, i.e. play the 'actor' role wrt. an action</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >It is a medium for expressions</rdfs:comment>
+    <owl:equivalentClass rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Agent"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Action">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Agent"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#actor"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#actor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Agent"/>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
+                <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#Role"/>
+              </owl:Restriction>
+              <owl:Restriction>
+                <owl:onProperty>
+                  <owl:ObjectProperty rdf:ID="intends"/>
+                </owl:onProperty>
+                <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Intention"/>
+              </owl:Restriction>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#believes"/>
+                <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Expectation"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An action is a change which is brought about by some agent, playing a role. The agent is the medium of some indended outcome of the action: an action is always intentional. The intention of the agent usually expects the intended outcome to be brought about: the agent believes in some expectation. Note that the intention might not correspond with the *actual* outcome of the action.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NOTE (OWL 1.1) the action may actually be 'part of' the intention of the agent, that is: intends some (expression:Intention and Self)</rdfs:comment>
+    <owl:disjointWith rdf:resource="#Agent"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="actor_in">
+    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#participant_in"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#actor"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="condition"/>
+  <owl:ObjectProperty rdf:about="#intends">
+    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#inverse_of_medium"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Added because a suitable property was not available from the expression namespace.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#actor">
+    <owl:inverseOf rdf:resource="#actor_in"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >actor: the agent who initiates the action</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#participant"/>
+  </owl:ObjectProperty>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer 1.2.0 -->

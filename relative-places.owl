@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/relative-places.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/relative-places.owl">
+  <owl:Ontology rdf:about="">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Based on the paper "Relative Places" by Maureen Donnelly, apeared in "Applied Ontology", volume 1, 1 november 2005.  http://iospress.metapress.com/link.asp?id=a8q2mlkcf5frcgah</rdfs:comment>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Location-Complex">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Place"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Place"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:InverseFunctionalProperty rdf:ID="is-location-complex-of"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Absolute-Place">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Place"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Relative-Place"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Comprehensive">
+    <rdfs:subClassOf rdf:resource="#Location-Complex"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Place">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Location-Complex"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="location-complex"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="#Absolute-Place"/>
+      <owl:Class rdf:about="#Relative-Place"/>
+    </owl:unionOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Relative-Place">
+    <owl:disjointWith rdf:resource="#Absolute-Place"/>
+    <rdfs:subClassOf rdf:resource="#Place"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Place"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="reference"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="in"/>
+  <owl:ObjectProperty rdf:ID="overlap"/>
+  <owl:ObjectProperty rdf:ID="externally-connect"/>
+  <owl:ObjectProperty rdf:ID="spatial-relation"/>
+  <owl:ObjectProperty rdf:ID="part-of"/>
+  <owl:ObjectProperty rdf:ID="connect"/>
+  <owl:TransitiveProperty rdf:ID="cover">
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:ID="partially-coincide"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Note: this cover-relation is the inverse of the COV relation described by Maureen Donnelly</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition cover:  cover(a, b) iff forall x:( meet(x, b) implies meet(x, a) )</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >To add in OWL 1.1: 'cover' is reflexive, 'cover' is transitive</rdfs:comment>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:domain rdf:resource="#Place"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="covered-by"/>
+    </owl:inverseOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="relatively-fixed">
+    <owl:inverseOf rdf:resource="#relatively-fixed"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#covered-by">
+    <owl:inverseOf rdf:resource="#cover"/>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#partially-coincide"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >To add in OWL 1.1: 'covered-by' is reflexive, 'covered-by' is transitive</rdfs:comment>
+    <rdfs:domain rdf:resource="#Place"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="exactly-coincide">
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition exactly-coincide: exactly-coincide(a, b) iff forall x:( meet(x, a) iff meet(x, b) )</rdfs:comment>
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:subPropertyOf rdf:resource="#cover"/>
+    <owl:inverseOf rdf:resource="#exactly-coincide"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >To add in OWL 1.1: 'exactly-coincide' is reflexive, 'exactly-coincide' is symetric, 'exactly-coincide' is transitive</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#covered-by"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+  </owl:TransitiveProperty>
+  <owl:SymmetricProperty rdf:ID="meet">
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >To add in OWL 1.1: 'meet' is equivalent with ('abut' union 'partially-coincide')</rdfs:comment>
+    <owl:inverseOf rdf:resource="#meet"/>
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >meet is reflexive</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#spatial-relation"/>
+  </owl:SymmetricProperty>
+  <owl:SymmetricProperty rdf:about="#partially-coincide">
+    <rdfs:subPropertyOf rdf:resource="#meet"/>
+    <owl:inverseOf rdf:resource="#partially-coincide"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >To add in OWL 1.1: 'partially-coincide' is reflexive, 'partially-coincide' is disjoint with 'abut'</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition partially-coincide: partially-coincide(a, b) iff exists x :( cover(a, x) and cover(b, x) )</rdfs:comment>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:domain rdf:resource="#Place"/>
+  </owl:SymmetricProperty>
+  <owl:SymmetricProperty rdf:ID="abut">
+    <rdfs:subPropertyOf rdf:resource="#meet"/>
+    <owl:inverseOf rdf:resource="#abut"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >To add in OWL 1.1: 'abut' is irreflexive, 'abut' is disjoint with of 'partially-coincide'</rdfs:comment>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:domain rdf:resource="#Place"/>
+  </owl:SymmetricProperty>
+  <owl:FunctionalProperty rdf:about="#location-complex">
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:about="#is-location-complex-of"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:InverseFunctionalProperty rdf:about="#is-location-complex-of">
+    <owl:inverseOf rdf:resource="#location-complex"/>
+  </owl:InverseFunctionalProperty>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer 1.2.0 -->

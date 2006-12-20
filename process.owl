@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:place="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/relative-places.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:role="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:spacetime="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/spacetime.owl#"
+  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl"/>
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/spacetime.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Process">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#Time_Period"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="resource"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#actor"/>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >0</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TODO(1): Better description of Process needed</owl:versionInfo>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A process is a 'causal' change</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Change">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="result"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="requirement"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Transition</rdfs:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Change</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#part"/>
+        <owl:allValuesFrom rdf:resource="#Change"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A change is a difference between the situation before and after the change occurs (the event of the change).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Physical_Object">
+    <owl:disjointWith>
+      <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#Role">
+        <owl:disjointWith rdf:resource="#Physical_Object"/>
+        <owl:disjointWith rdf:resource="#Change"/>
+      </rdf:Description>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:disjointWith rdf:resource="#Process"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="participant">
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="participant_in"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >participant: someone or something that participates in an action, i.e. is involved in an action</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#result">
+    <rdfs:subPropertyOf rdf:resource="#participant"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="result_of"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >result: some outcome of the action</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#participant_in">
+    <owl:inverseOf rdf:resource="#participant"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#resource">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >resource: some quantity of something used to perform the action: i.e. time, energy</rdfs:comment>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="resource_for"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#participant"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#requirement">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="requirement_of"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#participant"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#resource_for">
+    <owl:inverseOf rdf:resource="#resource"/>
+    <rdfs:subPropertyOf rdf:resource="#participant_in"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#requirement_of">
+    <owl:inverseOf rdf:resource="#requirement"/>
+    <rdfs:subPropertyOf rdf:resource="#participant_in"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#result_of">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An 'inanimate' goal of an act (Sowa)</rdfs:comment>
+    <owl:inverseOf rdf:resource="#result"/>
+    <rdfs:subPropertyOf rdf:resource="#participant_in"/>
+  </owl:ObjectProperty>
+  <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Action">
+    <rdfs:subClassOf rdf:resource="#Process"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:disjointWith rdf:resource="#Physical_Object"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Agent">
+    <owl:disjointWith rdf:resource="#Process"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#participant_in"/>
+        <owl:allValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Action"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </rdf:Description>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer 1.2.0 -->

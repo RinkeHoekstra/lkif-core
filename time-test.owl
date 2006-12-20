@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:timerule="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time-rules.owl#"
+    xmlns:mereo="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#"
+    xmlns:time="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time-test.owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time-test.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time-rules.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Test_4">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Test"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >SELECT ?subject ?object
+WHERE { { ?subject time:after ?object.
+			FILTER ( (str(?subject) = str(:t4--period1)) &amp;&amp; (str(?object )) = str(:t4--period3))}
+	UNION
+		{?subject time:before ?object.
+			FILTER ( (str(?subject) = str(:t4--period3)) &amp;&amp; (str(?object) = str(:t4--period1)) )} }</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tests whether the transitivity is inferred correctly.  Expected result: t4--period1 time:after t4--period3 and t4--period3 time:before t4--period1.  Actual result: test succeeded</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Test_6">
+    <rdfs:subClassOf rdf:resource="#Test"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Can the reasonner use the rule of during in the other direction?</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Test_5">
+    <rdfs:subClassOf rdf:resource="#Test"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >SELECT ?subject ?object
+WHERE { { ?subject time:after ?object. 
+			FILTER ( (str(?subject) = str(:t5--period1)) &amp;&amp; (str(?object ) = str(:t5--period3)) )}
+	UNION
+		{?subject time:before ?object. 
+			FILTER ( (str(?subject) = str(:t5--period3)) &amp;&amp; (str(?object) = str(:t5--period1)) )} }</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tests whether the transitivity is inferred correctly from the sub-property 'next'.  Expected result: t5--period1 time:after t5--period3 and t5--period3 time:before t5--period1.  Actual result: test succeeded</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Test_7">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Can a rule refer to itself?</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Test"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Test_8">
+    <rdfs:subClassOf rdf:resource="#Test"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Is a thing with a Time_Period before it and a Time_Period after it inferred as being a Time_Period?  Expected result: yes (query returns: t8-thing-expected-being-time-period).  Actual result: as expected.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >SELECT ?subject
+WHERE { ?subject rdf:type time:Time_Period 
+FILTER (str(?subject) = str(:t8--thing-expected-being-time-period)) }</rdfs:comment>
+  </owl:Class>
+  <Test_8 rdf:ID="t8--thing-expected-being-time-period">
+    <time:after>
+      <time:Time_Period rdf:ID="t8--period-after">
+        <rdf:type rdf:resource="#Test_8"/>
+      </time:Time_Period>
+    </time:after>
+    <time:before>
+      <time:Time_Period rdf:ID="t8--period-before">
+        <rdf:type rdf:resource="#Test_8"/>
+      </time:Time_Period>
+    </time:before>
+  </Test_8>
+  <time:Time_Period rdf:ID="t6_period3">
+    <rdf:type rdf:resource="#Test_6"/>
+  </time:Time_Period>
+  <Test_6 rdf:ID="t6_period2">
+    <rdf:type rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#Time_Period"/>
+  </Test_6>
+  <Test_4 rdf:ID="t4--period3">
+    <rdf:type rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#Time_Period"/>
+  </Test_4>
+  <time:Time_Period rdf:ID="t5--period1">
+    <time:immediatly_after>
+      <Test_5 rdf:ID="t5--period2">
+        <time:immediatly_after>
+          <time:Time_Period rdf:ID="t5--period3">
+            <rdf:type rdf:resource="#Test_5"/>
+          </time:Time_Period>
+        </time:immediatly_after>
+        <rdf:type rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#Time_Period"/>
+      </Test_5>
+    </time:immediatly_after>
+    <rdf:type rdf:resource="#Test_5"/>
+  </time:Time_Period>
+  <time:Time_Period rdf:ID="t4--period2">
+    <time:immediatly_after rdf:resource="#t4--period3"/>
+    <time:after rdf:resource="#t4--period3"/>
+    <rdf:type rdf:resource="#Test_4"/>
+  </time:Time_Period>
+  <time:Time_Period rdf:ID="test1-c--rule-components-meet">
+    <rdf:type rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#Composition"/>
+  </time:Time_Period>
+  <time:Time_Period rdf:ID="t3--period1"/>
+  <time:Time_Period rdf:ID="t6_period1">
+    <time:before rdf:resource="#t6_period3"/>
+    <time:after rdf:resource="#t6_period2"/>
+    <rdf:type rdf:resource="#Test_6"/>
+  </time:Time_Period>
+  <time:Pair_Of_Periods rdf:ID="t6_pair">
+    <mereo:component rdf:resource="#t6_period3"/>
+    <mereo:component rdf:resource="#t6_period2"/>
+    <rdf:type rdf:resource="#Test_6"/>
+  </time:Pair_Of_Periods>
+  <time:Time_Period rdf:ID="t4--period1">
+    <time:immediatly_after rdf:resource="#t4--period2"/>
+    <time:after rdf:resource="#t4--period2"/>
+    <rdf:type rdf:resource="#Test_4"/>
+  </time:Time_Period>
+  <time:Time_Period rdf:ID="t3--period3"/>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer 1.2.0 -->

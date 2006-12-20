@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl">
+  <owl:Ontology rdf:about="">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This file defines a number of types of what is commonly called a propositional attitude (PA). These relate propositional content to the proposition expressing the content. A subdivision of the propositional attitudes are the mental attitudes (see e.g. Cugola, 1996), types of propositions in the mind. Another category is the PA of an act of communication.</rdfs:comment>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Agent">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Medium"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Assertion">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="asserts"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Statement"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The assertion is subject to a fit between words and world, in Searle's terms. It's propositional content can be true of false. If it is inconsistent with other assertions, beliefs, observations, it may come to be considered false.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Qualified">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="qualified_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Qualification"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Some thing which is qualified, i.e. a qualification applies to the thing.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Expectation">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Observation"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Belief"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An expectation is a predictive belief held on purely logical grounds, i.e. not based on direct external evidence, like an observation or a statement by another agent. It is also often characterized as a "belief about the future", but this isn't very helphul since one may also hold expectations about the (yet unknown) past. The theory of evolution is for instance a fertile ground for predictions about the existence of past species, and therefore at the same a predictor of future observations.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Problem">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Observation"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >(?) A problem is an observation that deviates from an Intention.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Assumption">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Belief"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >proposes something that usually is the case, although there is no specific evidence that it is true in this particular case</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Medium">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="inverse_of_medium"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Expression"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Observation">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Agent"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="observer"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Expression"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Expression">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Medium"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="medium"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="expresses"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Expression is the most generic type of proposition. Distinguishing a proposition from the propositional content expressed by it is necessary when properties relating to the thing expressed and properties of the expression itself must be distinguished. For LKIF the distinction between Belief, Intention, Qualification, and Observation is relevant. A norm is a kind of Qualification. The distinction between belief/expectation, intention, and observation is relevant for i.a. establishing mens rea (guilty mind). The distinction between beliefs (expressing the content of the mind of an agent) and statements (expressing the content of an act of communication by an agent) is classical.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Declaration">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="declares"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Statement"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Searle: the successful performance of a declaration is sufficient to bring about the fit between words and world, to make the propositional content true. In other words, if there is an inconsistency between the declaration and assertions, beliefs, or observations, it is not the declaration that is false. True of definitions and norms, and several other performative statements by legislators.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Intention">
+    <rdfs:subClassOf rdf:resource="#Expression"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Intention is where the agent expects certain consequences of his or her actions and desires those consequences to occur. This concept must be related to qualification and preference in some way.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Lie">
+    <rdfs:subClassOf rdf:resource="#Assertion"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An assertion that is inconsistent with the beliefs of the speaker. It is *intentionally* false.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Statement">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="states"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Agent"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="utterer"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Expression"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A statement is an expression involved in an act of communication.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Qualification">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Qualified"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="qualifies"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Expression"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A qualification is an evaluative expression, a judgment. The thing qualified by the Qualification is comparable to something else.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Evidence">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Observation and statement, used as a backing for a belief. Cannot classify this.
+</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Fact">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Is problematic because it has no medium.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Belief">
+    <rdfs:subClassOf rdf:resource="#Expression"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Loose end.</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Agent"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="believed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Surprise">
+    <rdfs:subClassOf rdf:resource="#Observation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A surprise is an observation that deviates from an expectation.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Statement_In_Writing">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Statement"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Agent"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="author"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Statement"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Not to be confused with the actual writing/document itself, which is the medium of the statement.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Document">
+    <rdfs:subClassOf rdf:resource="#Medium"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A statement in writing has both an author (agent) and a(nother) medium, the document.</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="utters">
+    <rdfs:domain rdf:resource="#Agent"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#utterer"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Statement"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#inverse_of_medium"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="stated_by">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="expressed_by"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Statement"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#states"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#states">
+    <owl:inverseOf rdf:resource="#stated_by"/>
+    <rdfs:domain rdf:resource="#Statement"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#expresses"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="addressee">
+    <rdfs:range rdf:resource="#Agent"/>
+    <rdfs:domain rdf:resource="#Statement"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="observes">
+    <rdfs:domain rdf:resource="#Agent"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#inverse_of_medium"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#observer"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Observation"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#expresses">
+    <rdfs:domain rdf:resource="#Expression"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#expressed_by"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#asserts">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="asserted_by"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Assertion"/>
+    <rdfs:subPropertyOf rdf:resource="#states"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#observer">
+    <rdfs:range rdf:resource="#Agent"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#medium"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#Observation"/>
+    <owl:inverseOf rdf:resource="#observes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#expressed_by">
+    <owl:inverseOf rdf:resource="#expresses"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#asserted_by">
+    <rdfs:subPropertyOf rdf:resource="#stated_by"/>
+    <owl:inverseOf rdf:resource="#asserts"/>
+    <rdfs:range rdf:resource="#Assertion"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#author">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#utterer"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#inverse_of_medium">
+    <rdfs:domain rdf:resource="#Medium"/>
+    <rdfs:range rdf:resource="#Expression"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >For some vague reason one has to give a name to the inverse of medium to refer to it in a constraint.</rdfs:comment>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#medium"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="believes">
+    <rdfs:domain rdf:resource="#Agent"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#believed_by"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#inverse_of_medium"/>
+    <rdfs:range rdf:resource="#Belief"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="declared_by">
+    <rdfs:subPropertyOf rdf:resource="#stated_by"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#declares"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Declaration"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#qualifies">
+    <rdfs:range rdf:resource="#Qualified"/>
+    <rdfs:domain rdf:resource="#Qualification"/>
+    <rdfs:subPropertyOf rdf:resource="#expresses"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#qualified_by"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#medium">
+    <rdfs:range rdf:resource="#Medium"/>
+    <owl:inverseOf rdf:resource="#inverse_of_medium"/>
+    <rdfs:domain rdf:resource="#Expression"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#declares">
+    <rdfs:subPropertyOf rdf:resource="#states"/>
+    <rdfs:domain rdf:resource="#Declaration"/>
+    <owl:inverseOf rdf:resource="#declared_by"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#utterer">
+    <rdfs:range rdf:resource="#Agent"/>
+    <rdfs:subPropertyOf rdf:resource="#medium"/>
+    <rdfs:domain rdf:resource="#Statement"/>
+    <owl:inverseOf rdf:resource="#utters"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#qualified_by">
+    <rdfs:domain rdf:resource="#Qualified"/>
+    <owl:inverseOf rdf:resource="#qualifies"/>
+    <rdfs:subPropertyOf rdf:resource="#expressed_by"/>
+    <rdfs:range rdf:resource="#Qualification"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#believed_by">
+    <rdfs:range rdf:resource="#Agent"/>
+    <owl:inverseOf rdf:resource="#believes"/>
+    <rdfs:domain rdf:resource="#Belief"/>
+    <rdfs:subPropertyOf rdf:resource="#medium"/>
+  </owl:ObjectProperty>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer 1.1.6 -->

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:lrole="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/legal-role.owl#"
+    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/legal-action.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:attitude="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/attitude.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:action="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#"
+    xmlns:norm="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#"
+  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/legal-action.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl"/>
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/legal-role.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Act-of-Law">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Act of law: a public act by a legislative body which creates some 'thing' (e.g. a law/norm/public-body etc.)</rdfs:comment>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TODO: Need to decide on 'what' the Act of Law really creates (or does it do other things as well..)</owl:versionInfo>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Creation"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
+            <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/legal-role.owl#Legislative-Body"/>
+          </owl:Restriction>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#actor"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Public-Act"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Public-Act">
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Action"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TODO(1): Currently these legal action classes depend on action:Power. This should be moved to norm:Permission or sthing</owl:versionInfo>
+  </owl:Class>
+  <owl:Class rdf:ID="Assignment">
+    <rdfs:subClassOf rdf:resource="#Public-Act"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Assignment: A public act that attributes a power to perform a public act to a public body.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Trade"/>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Transaction"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Mandate">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Mandate: give (someone) authority to act in a certain way</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Transaction"/>
+    <rdfs:subClassOf rdf:resource="#Public-Act"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#actor"/>
+        <owl:allValuesFrom>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
+            <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/legal-role.owl#Public-Body"/>
+          </owl:Restriction>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Delegation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Delegate: entrust a task or responsibility to some other person</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Assignment"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#actor"/>
+        <owl:allValuesFrom>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
+            <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/legal-role.owl#Public-Body"/>
+          </owl:Restriction>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Decision">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
+            <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/legal-role.owl#Public-Body"/>
+          </owl:Restriction>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#actor"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Decision: A written decision of a public body to perform a public act using a public power assigned by law</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Action"/>
+  </owl:Class>
+  <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Power">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#permits"/>
+        <owl:someValuesFrom rdf:resource="#Public-Act"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#permits"/>
+        <owl:allValuesFrom rdf:resource="#Public-Act"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </rdf:Description>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer 1.2.0 -->

@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:expression="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:norm="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#"
+    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm-test.owl#"
+  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm-test.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:ID="not_a-not_b">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="not_b"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="a-not_b"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#Disallowed"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#normatively_equivalent_or_better"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#a-not_b"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="not_a-b">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="b"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="a-b"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#Obliged"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#normatively_equivalent_or_better"/>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:complementOf>
+              <owl:Class rdf:about="#a-b"/>
+            </owl:complementOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ExampleThing">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Expresses the following normative system:
+F(B) = not B > B
+not B -> O(A) = A and not B > not A and not B
+B -> F(A) = not A and B > A and B
+This normative system contains two contrary-to-duty structures/two apparent conflicts of disaffirmation.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#a-b">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#b"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#not_a-b"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#normatively_equivalent_or_better"/>
+        <owl:someValuesFrom rdf:resource="#not_a-b"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#not_b">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#b"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#ExampleThing"/>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#Obliged"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#normatively_equivalent_or_better"/>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:complementOf>
+              <owl:Class rdf:about="#b"/>
+            </owl:complementOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#a-not_b">
+    <rdfs:subClassOf rdf:resource="#not_b"/>
+    <owl:disjointWith rdf:resource="#not_a-not_b"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#normatively_equivalent_or_better"/>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:complementOf rdf:resource="#not_a-not_b"/>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#b">
+    <owl:disjointWith rdf:resource="#not_b"/>
+    <rdfs:subClassOf rdf:resource="#ExampleThing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#normatively_equivalent_or_better"/>
+        <owl:someValuesFrom rdf:resource="#not_b"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#Disallowed"/>
+  </owl:Class>
+  <a-b rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#test3">
+    <owl:differentFrom>
+      <not_a-b rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#test1">
+        <owl:differentFrom>
+          <not_a-b rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#test2">
+            <owl:differentFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#test3"/>
+            <owl:differentFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#test1"/>
+          </not_a-b>
+        </owl:differentFrom>
+        <owl:differentFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#test3"/>
+      </not_a-b>
+    </owl:differentFrom>
+    <owl:differentFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#test2"/>
+  </a-b>
+  <a-b rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#test5"/>
+  <not_b rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#test4"/>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer 1.1.6 -->
