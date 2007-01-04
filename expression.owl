@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#"
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl">
+  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl">
   <owl:Ontology rdf:about="">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >This file defines a number of types of what is commonly called a propositional attitude (PA). These relate propositional content to the proposition expressing the content. A subdivision of the propositional attitudes are the mental attitudes (see e.g. Cugola, 1996), types of propositions in the mind. Another category is the PA of an act of communication.</rdfs:comment>

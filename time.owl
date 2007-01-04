@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:mereo="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#"
-    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#"
+    xmlns:mereo="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#"
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl">
+  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl"/>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An ontology of time based on "Actions and Events in Interval Logc" by James F. Allen and George Ferguson, 1994.  This ontology is similar to the W3C best practices OWL-Time ontology draft of 18 May 2006 by Jerry R. Hobbs and Feng Pan (http://www.w3.org/2001/sw/BestPractices/OEP/Time-Ontology).  The difference is that we separated the meta-phisical time concepts from the parts dealing with quantitative time.  We strengthened the relations with more axioms.</rdfs:comment>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -18,13 +18,13 @@
   <owl:Class rdf:ID="Pair_Of_Periods">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#component"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#component"/>
         <owl:allValuesFrom>
           <owl:Class rdf:ID="Time_Period"/>
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#Pair"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Pair"/>
   </owl:Class>
   <owl:Class rdf:ID="Interval">
     <owl:intersectionOf rdf:parseType="Collection">
@@ -35,7 +35,7 @@
         </owl:complementOf>
       </owl:Class>
     </owl:intersectionOf>
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#Composition"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Time_Period"/>
     </rdfs:subClassOf>
@@ -79,7 +79,7 @@
         <owl:complementOf rdf:resource="#Interval"/>
       </owl:Class>
     </owl:intersectionOf>
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#Atom"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
     <rdfs:subClassOf rdf:resource="#Time_Period"/>
   </owl:Class>
   <owl:Class rdf:ID="Occured-Event">

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/relative-places.owl#"
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/relative-places.owl">
+  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl">
   <owl:Ontology rdf:about="">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Based on the paper "Relative Places" by Maureen Donnelly, apeared in "Applied Ontology", volume 1, 1 november 2005.  http://iospress.metapress.com/link.asp?id=a8q2mlkcf5frcgah</rdfs:comment>

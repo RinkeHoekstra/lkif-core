@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:timerule="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time-rules.owl#"
-    xmlns:mereo="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#"
-    xmlns:time="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#"
+    xmlns:timerule="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-rules.owl#"
+    xmlns:mereo="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#"
+    xmlns:time="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time-test.owl#"
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-test.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time-test.owl">
+  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-test.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl"/>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time-rules.owl"/>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-rules.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Test_4">
     <rdfs:subClassOf>
@@ -77,10 +77,10 @@ FILTER (str(?subject) = str(:t8--thing-expected-being-time-period)) }</rdfs:comm
     <rdf:type rdf:resource="#Test_6"/>
   </time:Time_Period>
   <Test_6 rdf:ID="t6_period2">
-    <rdf:type rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#Time_Period"/>
+    <rdf:type rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Time_Period"/>
   </Test_6>
   <Test_4 rdf:ID="t4--period3">
-    <rdf:type rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#Time_Period"/>
+    <rdf:type rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Time_Period"/>
   </Test_4>
   <time:Time_Period rdf:ID="t5--period1">
     <time:immediatly_after>
@@ -90,7 +90,7 @@ FILTER (str(?subject) = str(:t8--thing-expected-being-time-period)) }</rdfs:comm
             <rdf:type rdf:resource="#Test_5"/>
           </time:Time_Period>
         </time:immediatly_after>
-        <rdf:type rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/time.owl#Time_Period"/>
+        <rdf:type rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Time_Period"/>
       </Test_5>
     </time:immediatly_after>
     <rdf:type rdf:resource="#Test_5"/>
@@ -101,7 +101,7 @@ FILTER (str(?subject) = str(:t8--thing-expected-being-time-period)) }</rdfs:comm
     <rdf:type rdf:resource="#Test_4"/>
   </time:Time_Period>
   <time:Time_Period rdf:ID="test1-c--rule-components-meet">
-    <rdf:type rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/mereology.owl#Composition"/>
+    <rdf:type rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition"/>
   </time:Time_Period>
   <time:Time_Period rdf:ID="t3--period1"/>
   <time:Time_Period rdf:ID="t6_period1">

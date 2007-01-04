@@ -1,41 +1,41 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:expression="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#"
+    xmlns:expression="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl#"
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/norm.owl">
+  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl">
   <owl:Ontology rdf:about="">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl"/>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Norm">
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualifies"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#qualifies"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="Normatively_Qualified"/>
         </owl:someValuesFrom>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Qualification"/>
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Declaration"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Qualification"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Declaration"/>
   </owl:Class>
   <owl:Class rdf:ID="Belief_In_Violation">
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Belief"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Belief"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Belief"/>
+          <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Belief"/>
           <owl:Restriction>
             <owl:someValuesFrom>
               <owl:Class rdf:ID="Disallowed"/>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#expresses"/>
+            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#expresses"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -98,11 +98,11 @@
   <owl:Class rdf:about="#Normatively_Qualified">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Some thing which is qualified (allowed, disallowed) by a norm, i.e. a norm applies to the thing. Taking the principle of deontic choice to mean that the utterer of a normative statement intends to influence choices made by the addressee of the statement, the qualified thing should is comparable to some alternative. Note that Qualified does not partition into Allowed and Disallowed. Firstly, things can be Allowed by one Norm and Disallowed by another one. Secondly, the logical complement of the thing allowed by a permission is qualified (as worse or equal than the thing allowed), but neither allowed nor disallowed.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Qualified"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Qualified"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Norm"/>
-        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualified_by"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#qualified_by"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <owl:equivalentClass>
@@ -121,9 +121,9 @@
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Intention"/>
+          <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Intention"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#expresses"/>
+            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#expresses"/>
             <owl:someValuesFrom>
               <owl:Class rdf:about="#Disallowed"/>
             </owl:someValuesFrom>
@@ -216,16 +216,16 @@
     <rdfs:subClassOf rdf:resource="#Normatively_Qualified"/>
   </owl:Class>
   <owl:Class rdf:ID="Observation_of_Violation">
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Problem"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Problem"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An observation of a violation, i.e. of something that is Disallowed.</rdfs:comment>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Observation"/>
+          <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Observation"/>
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="#Disallowed"/>
-            <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#expresses"/>
+            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#expresses"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -270,7 +270,7 @@
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#allowed_by"/>
     </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualifies"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#qualifies"/>
     <rdfs:range rdf:resource="#Allowed"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="commands">
@@ -295,20 +295,20 @@
     <owl:inverseOf rdf:resource="#commands"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#disallowed_by">
-    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualified_by"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#qualified_by"/>
     <rdfs:domain rdf:resource="#Disallowed"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#disallows"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#allowed_by">
-    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualified_by"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#qualified_by"/>
     <rdfs:domain rdf:resource="#Allowed"/>
     <owl:inverseOf rdf:resource="#allows"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#disallows">
     <owl:inverseOf rdf:resource="#disallowed_by"/>
-    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#qualifies"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#qualifies"/>
     <rdfs:range rdf:resource="#Disallowed"/>
   </owl:ObjectProperty>
   <owl:TransitiveProperty rdf:about="#normatively_strictly_better">

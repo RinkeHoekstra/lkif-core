@@ -2,15 +2,15 @@
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#"
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:action="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#"
-  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl">
+    xmlns:action="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
+  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl">
   <owl:Ontology rdf:about="">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl"/>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Role">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -38,7 +38,7 @@
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#played_by"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Organisation"/>
+        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Organisation"/>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
@@ -48,7 +48,7 @@
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#played_by"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Person"/>
+        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="#Role"/>
@@ -66,10 +66,10 @@
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#Physical_Object"/>
+              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
               <owl:Class>
                 <owl:complementOf>
-                  <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Agent">
+                  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent">
                     <owl:disjointWith rdf:resource="#Role"/>
                     <rdfs:subClassOf>
                       <owl:Restriction>
@@ -105,7 +105,7 @@
     <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:domain rdf:resource="#Role"/>
   </owl:ObjectProperty>
-  <rdf:Description rdf:about="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#Action">
+  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action">
     <owl:disjointWith rdf:resource="#Role"/>
   </rdf:Description>
 </rdf:RDF>

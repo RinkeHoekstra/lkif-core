@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:expression="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#"
-    xmlns:process="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#"
+    xmlns:expression="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#"
+    xmlns:process="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl#"
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xml:base="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/action.owl">
+  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl"/>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl"/>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Trade">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -80,7 +80,7 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="#Agent"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#observes"/>
+                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#observes"/>
                 <owl:someValuesFrom>
                   <owl:Class rdf:about="#Action"/>
                 </owl:someValuesFrom>
@@ -99,25 +99,25 @@
       <owl:Class rdf:about="#Agent"/>
     </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="#Organisation"/>
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#Physical_Object"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A person is an individual agent. Usually associated with 'human being'.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Artifact">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#Role"/>
-        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
+        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#Function"/>
-        <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
+        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Function"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <owl:disjointWith rdf:resource="#Person"/>
-    <rdfs:subClassOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#Physical_Object"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
   </owl:Class>
   <owl:Class rdf:ID="Creation">
     <rdfs:subClassOf>
@@ -135,7 +135,7 @@
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >It is a medium for expressions</rdfs:comment>
-    <owl:equivalentClass rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Agent"/>
+    <owl:equivalentClass rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Agent"/>
   </owl:Class>
   <owl:Class rdf:about="#Action">
     <rdfs:subClassOf>
@@ -156,18 +156,18 @@
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="#Agent"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#plays"/>
-                <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/role.owl#Role"/>
+                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+                <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
               </owl:Restriction>
               <owl:Restriction>
                 <owl:onProperty>
                   <owl:ObjectProperty rdf:ID="intends"/>
                 </owl:onProperty>
-                <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Intention"/>
+                <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Intention"/>
               </owl:Restriction>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#believes"/>
-                <owl:someValuesFrom rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#Expectation"/>
+                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#believes"/>
+                <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expectation"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -181,14 +181,14 @@
     <owl:disjointWith rdf:resource="#Agent"/>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="actor_in">
-    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#participant_in"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#participant_in"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#actor"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="condition"/>
   <owl:ObjectProperty rdf:about="#intends">
-    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/expression.owl#inverse_of_medium"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#inverse_of_medium"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Added because a suitable property was not available from the expression namespace.</rdfs:comment>
   </owl:ObjectProperty>
@@ -196,7 +196,7 @@
     <owl:inverseOf rdf:resource="#actor_in"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >actor: the agent who initiates the action</rdfs:comment>
-    <rdfs:subPropertyOf rdf:resource="http://darius.lri.jur.uva.nl/svn/LRICore/branches/lricore-2.0/process.owl#participant"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#participant"/>
   </owl:ObjectProperty>
 </rdf:RDF>
 
