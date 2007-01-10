@@ -5,114 +5,135 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl">
   <owl:Ontology rdf:about="">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
   </owl:Ontology>
-  <owl:Class rdf:ID="Whole">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom>
-          <owl:Class rdf:ID="Part"/>
-        </owl:allValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="part"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Composition">
+  <owl:Class rdf:ID="Atom">
     <owl:equivalentClass>
       <owl:Class>
         <owl:complementOf>
-          <owl:Class rdf:ID="Atom"/>
+          <owl:Class rdf:ID="Composition"/>
         </owl:complementOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="component"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Add restriction: second-component = first-component.meet</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Part">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Whole"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="part_of"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#Whole"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#part_of"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Pair">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >2</owl:cardinality>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#component"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#Composition"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Atom">
     <owl:equivalentClass>
       <owl:Class>
         <owl:complementOf>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
             <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#part"/>
+              <owl:TransitiveProperty rdf:ID="part"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
           </owl:Restriction>
         </owl:complementOf>
       </owl:Class>
     </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Composition">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Add restriction: second-component = first-component.meet</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="component"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
     <owl:equivalentClass>
       <owl:Class>
-        <owl:complementOf rdf:resource="#Composition"/>
+        <owl:complementOf rdf:resource="#Atom"/>
       </owl:Class>
     </owl:equivalentClass>
   </owl:Class>
-  <owl:ObjectProperty rdf:ID="component_of">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="#component"/>
-    </owl:inverseOf>
+  <owl:Class rdf:ID="Part">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:TransitiveProperty rdf:ID="part_of"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="Whole"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:TransitiveProperty rdf:about="#part_of"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Whole"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Whole">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:TransitiveProperty rdf:about="#part"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Part"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Pair">
+    <rdfs:subClassOf rdf:resource="#Composition"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#component"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >2</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="direct_part_of">
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#part_of"/>
+      <owl:TransitiveProperty rdf:about="#part_of"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#part">
+  <owl:ObjectProperty rdf:ID="composed_of">
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#part"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="direct_part">
+    <owl:inverseOf rdf:resource="#direct_part_of"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#part"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#component">
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#part"/>
+    </rdfs:subPropertyOf>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="#part_of"/>
+      <owl:ObjectProperty rdf:ID="component_of"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#part_of">
-    <owl:inverseOf rdf:resource="#part"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="contain"/>
-  <owl:ObjectProperty rdf:about="#component">
-    <owl:inverseOf rdf:resource="#component_of"/>
-    <rdfs:subPropertyOf rdf:resource="#part"/>
+  <owl:ObjectProperty rdf:about="#component_of">
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#part_of"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="#component"/>
   </owl:ObjectProperty>
+  <owl:TransitiveProperty rdf:about="#part_of">
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="#part"/>
+    </owl:inverseOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#part">
+    <owl:inverseOf rdf:resource="#part_of"/>
+  </owl:TransitiveProperty>
 </rdf:RDF>
 
-<!-- Created with TopBraid Composer 1.2.0 -->
+<!-- Created with TopBraid Composer -->
