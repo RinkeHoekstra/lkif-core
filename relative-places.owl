@@ -4,10 +4,12 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:top="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
     xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl">
   <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -22,10 +24,15 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Place">
-    <owl:unionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="#Absolute-Place"/>
-      <owl:Class rdf:about="#Relative-Place"/>
-    </owl:unionOf>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Absolute-Place"/>
+          <owl:Class rdf:about="#Relative-Place"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>

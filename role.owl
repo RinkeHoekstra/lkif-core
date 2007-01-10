@@ -1,68 +1,72 @@
 <?xml version="1.0"?>
 <rdf:RDF
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#"
+    xmlns:action="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:action="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl">
   <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="Role">
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >TODO(1): Need to decide on Roles vs. Agents (Public-Body: role or agent?)</owl:versionInfo>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="played_by"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Organisation-Role">
-    <rdfs:subClassOf rdf:resource="#Role"/>
+  <owl:Class rdf:ID="Organisation_Role">
     <owl:disjointWith>
-      <owl:Class rdf:ID="Person-Role"/>
+      <owl:Class rdf:ID="Person_Role"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Role"/>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="Function"/>
     </owl:disjointWith>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#played_by"/>
-        </owl:onProperty>
         <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Organisation"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="played_by"/>
+        </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
-  <owl:Class rdf:about="#Person-Role">
+  <owl:Class rdf:about="#Person_Role">
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#played_by"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Role"/>
-    <owl:disjointWith rdf:resource="#Organisation-Role"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Role"/>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:about="#Function"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Organisation_Role"/>
   </owl:Class>
-  <owl:Class rdf:about="#Function">
+  <owl:Class rdf:about="#Role">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Concept"/>
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#played_by"/>
         </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TODO(1): Need to decide on Roles vs. Agents (Public-Body: role or agent?)</owl:versionInfo>
+  </owl:Class>
+  <owl:Class rdf:about="#Function">
+    <owl:disjointWith rdf:resource="#Person_Role"/>
+    <owl:disjointWith rdf:resource="#Organisation_Role"/>
+    <rdfs:subClassOf rdf:resource="#Role"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -70,44 +74,55 @@
               <owl:Class>
                 <owl:complementOf>
                   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent">
-                    <owl:disjointWith rdf:resource="#Role"/>
                     <rdfs:subClassOf>
                       <owl:Restriction>
+                        <owl:allValuesFrom rdf:resource="#Role"/>
                         <owl:onProperty>
                           <owl:ObjectProperty rdf:ID="plays"/>
                         </owl:onProperty>
-                        <owl:allValuesFrom rdf:resource="#Role"/>
                       </owl:Restriction>
                     </rdfs:subClassOf>
+                    <owl:disjointWith rdf:resource="#Role"/>
                   </rdf:Description>
                 </owl:complementOf>
               </owl:Class>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#played_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Epistemic_Role">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#played_by"/>
+        </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="#Role"/>
-    <owl:disjointWith rdf:resource="#Person-Role"/>
-    <owl:disjointWith rdf:resource="#Organisation-Role"/>
   </owl:Class>
   <owl:ObjectProperty rdf:about="#plays">
-    <rdfs:range rdf:resource="#Role"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Agents play roles, roles enable certain specific actions</rdfs:comment>
-    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#played_by"/>
     </owl:inverseOf>
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Agents play roles, roles enable certain specific actions</rdfs:comment>
+    <rdfs:range rdf:resource="#Role"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#played_by">
-    <owl:inverseOf rdf:resource="#plays"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:domain rdf:resource="#Role"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:inverseOf rdf:resource="#plays"/>
   </owl:ObjectProperty>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action">
     <owl:disjointWith rdf:resource="#Role"/>
   </rdf:Description>
 </rdf:RDF>
 
-<!-- Created with TopBraid Composer 1.2.0 -->
+<!-- Created with TopBraid Composer -->

@@ -1,149 +1,159 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:place="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:role="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#"
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:spacetime="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/spacetime.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:top="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-    xmlns:spacetime="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/spacetime.owl#"
+    xmlns:place="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl"/>
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/spacetime.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Process">
-    <owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A process is a 'causal' change</rdfs:comment>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TODO(1): Better description of Process needed</owl:versionInfo>
+    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Time_Period"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="resource"/>
-        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >0</owl:minCardinality>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
       </owl:Restriction>
-    </owl:equivalentClass>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Change"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
+    <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >0</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="resource"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Time_Period"/>
       </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >TODO(1): Better description of Process needed</owl:versionInfo>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A process is a 'causal' change</rdfs:comment>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Physical_Object">
+    <owl:disjointWith rdf:resource="#Process"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Physical_Concept"/>
+    <owl:disjointWith>
+      <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role">
+        <owl:disjointWith rdf:resource="#Physical_Object"/>
+        <owl:disjointWith>
+          <owl:Class rdf:about="#Change"/>
+        </owl:disjointWith>
+      </rdf:Description>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Change">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A change is a difference between the situation before and after the change occurs (the event of the change).</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Change"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Change</rdfs:label>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Transition</rdfs:label>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:ID="result"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:ID="requirement"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Transition</rdfs:label>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Change</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part"/>
-        <owl:allValuesFrom rdf:resource="#Change"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A change is a difference between the situation before and after the change occurs (the event of the change).</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Physical_Object">
-    <owl:disjointWith>
-      <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role">
-        <owl:disjointWith rdf:resource="#Physical_Object"/>
-        <owl:disjointWith rdf:resource="#Change"/>
-      </rdf:Description>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <owl:disjointWith rdf:resource="#Process"/>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="participant">
-    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >participant: someone or something that participates in an action, i.e. is involved in an action</rdfs:comment>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="participant_in"/>
     </owl:inverseOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >participant: someone or something that participates in an action, i.e. is involved in an action</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="resource_for">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#participant_in"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#resource"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#requirement">
+    <rdfs:subPropertyOf rdf:resource="#participant"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="requirement_of"/>
+    </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#result">
-    <rdfs:subPropertyOf rdf:resource="#participant"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >result: some outcome of the action</rdfs:comment>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="result_of"/>
     </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#participant"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#requirement_of">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#participant_in"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="#requirement"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#result_of">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#participant_in"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="#result"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >result: some outcome of the action</rdfs:comment>
+    >An 'inanimate' goal of an act (Sowa)</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#participant_in">
     <owl:inverseOf rdf:resource="#participant"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#resource">
+    <rdfs:subPropertyOf rdf:resource="#participant"/>
+    <owl:inverseOf rdf:resource="#resource_for"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >resource: some quantity of something used to perform the action: i.e. time, energy</rdfs:comment>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="resource_for"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="#participant"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#requirement">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="requirement_of"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="#participant"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#resource_for">
-    <owl:inverseOf rdf:resource="#resource"/>
-    <rdfs:subPropertyOf rdf:resource="#participant_in"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#requirement_of">
-    <owl:inverseOf rdf:resource="#requirement"/>
-    <rdfs:subPropertyOf rdf:resource="#participant_in"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#result_of">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An 'inanimate' goal of an act (Sowa)</rdfs:comment>
-    <owl:inverseOf rdf:resource="#result"/>
-    <rdfs:subPropertyOf rdf:resource="#participant_in"/>
-  </owl:ObjectProperty>
-  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action">
-    <rdfs:subClassOf rdf:resource="#Process"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <owl:disjointWith rdf:resource="#Physical_Object"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent">
-    <owl:disjointWith rdf:resource="#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:allValuesFrom>
+          <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action">
+            <owl:disjointWith rdf:resource="#Physical_Object"/>
+            <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+            <rdfs:subClassOf rdf:resource="#Process"/>
+          </rdf:Description>
+        </owl:allValuesFrom>
         <owl:onProperty rdf:resource="#participant_in"/>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Process"/>
   </rdf:Description>
 </rdf:RDF>
 
-<!-- Created with TopBraid Composer 1.2.0 -->
+<!-- Created with TopBraid Composer -->

@@ -15,18 +15,26 @@
     >Created with TopBraid Composer</owl:versionInfo>
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl"/>
   </owl:Ontology>
+  <owl:Class rdf:ID="Personal_Plan">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A personal plan is a plan which is held (and can be executed) by at most one agent.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Plan"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="Agent">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Action"/>
-    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >It is a holder for expressions</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An agent is any owl:Thing which can act, i.e. play the 'actor' role wrt. an action</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >It is a medium for expressions</rdfs:comment>
-    <owl:equivalentClass rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Agent"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Action"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Physical_Concept"/>
   </owl:Class>
-  <owl:Class rdf:ID="Plan">
+  <owl:Class rdf:about="#Plan">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -179,12 +187,7 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Artifact">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Function"/>
@@ -194,7 +197,12 @@
     <owl:disjointWith>
       <owl:Class rdf:ID="Person"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Trade">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -202,12 +210,12 @@
     <rdfs:subClassOf rdf:resource="#Transaction"/>
   </owl:Class>
   <owl:Class rdf:about="#Person">
-    <owl:disjointWith rdf:resource="#Artifact"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
     <rdfs:subClassOf rdf:resource="#Agent"/>
     <owl:disjointWith>
       <owl:Class rdf:ID="Organisation"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
+    <owl:disjointWith rdf:resource="#Artifact"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A person is an individual agent. Usually associated with 'human being'.</rdfs:comment>
   </owl:Class>
@@ -249,7 +257,7 @@
   </owl:Class>
   <owl:Class rdf:about="#Collaborative_Plan">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A collaborative plan is a plan which is shared between at least two agents a and b.</rdfs:comment>
+    >A collaborative plan is a plan which is shared (and executed) between at least two agents a and b.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Plan"/>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="actor_in">
@@ -266,7 +274,7 @@
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="condition"/>
   <owl:ObjectProperty rdf:about="#intends">
-    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#inverse_of_medium"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#holds"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Added because a suitable property was not available from the expression namespace.</rdfs:comment>
   </owl:ObjectProperty>
