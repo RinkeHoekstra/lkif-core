@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:expression="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#"
     xmlns:process="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#"
+    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:expression="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl">
   <owl:Ontology rdf:about="">
@@ -15,120 +15,9 @@
     >Created with TopBraid Composer</owl:versionInfo>
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="Trade">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Trade: the thing which is traded is the OBJECT i.e. the PATIENT or THEME of the action.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Transaction"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Need to have some notion of time: actions are not instantaneous, they change the world in some way.</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >How to express the fact that ownership of the thing being traded switches between actor and recipient? (and vice versa)</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Transaction">
-    <rdfs:subClassOf>
+  <owl:Class rdf:ID="Agent">
+    <owl:disjointWith>
       <owl:Class rdf:ID="Action"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Transaction: an exchange or interaction between at least two agents</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="actor"/>
-        </owl:onProperty>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >2</owl:minCardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#actor"/>
-        </owl:onProperty>
-        <owl:allValuesFrom>
-          <owl:Class rdf:ID="Agent"/>
-        </owl:allValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Organisation">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Agent"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Person"/>
-    </owl:disjointWith>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An organisation is a group of other organisations or persons which acts 'as one'. An organisation can be both formal (i.e. created by law or decree) or informal.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Reaction">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Action"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >NOTE: question remains whether this observation is also a *requirement* of the reaction.</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A reaction is an action that is (at least) performed by an agent that has observed some other action (this is an intensional view): Action &lt;-> Reaction</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#actor"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class rdf:about="#Agent"/>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#observes"/>
-                <owl:someValuesFrom>
-                  <owl:Class rdf:about="#Action"/>
-                </owl:someValuesFrom>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Person">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Artifact"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Agent"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Organisation"/>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A person is an individual agent. Usually associated with 'human being'.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Artifact">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Function"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <owl:disjointWith rdf:resource="#Person"/>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Creation">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Action"/>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An act which results in the creation of some entity/individual</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Agent">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Action"/>
     </owl:disjointWith>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An agent is any owl:Thing which can act, i.e. play the 'actor' role wrt. an action</rdfs:comment>
@@ -137,12 +26,37 @@
     >It is a medium for expressions</rdfs:comment>
     <owl:equivalentClass rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Agent"/>
   </owl:Class>
+  <owl:Class rdf:ID="Plan">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Action"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Action"/>
+              <owl:Class rdf:about="#Plan"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A plan is a structure of multiple other plans or actions. These can be both sequential or concurrent. Usually a plan is referred to in the context of the intention to act of some agent, however when executed the plan itself comes into effect.</rdfs:comment>
+  </owl:Class>
   <owl:Class rdf:about="#Action">
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#Agent"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#actor"/>
+          <owl:ObjectProperty rdf:ID="actor"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -180,17 +94,169 @@
     >NOTE (OWL 1.1) the action may actually be 'part of' the intention of the agent, that is: intends some (expression:Intention and Self)</rdfs:comment>
     <owl:disjointWith rdf:resource="#Agent"/>
   </owl:Class>
+  <owl:Class rdf:ID="Initiation">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Action"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part_of"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Continuation"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#result"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The initation of an action</rdfs:comment>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Continuation"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Termination"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Termination">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Action"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part_of"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Continuation"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#requirement"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Continuation">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Action"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part_of"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Initiation"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#requirement"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Termination"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#result"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#Termination"/>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Transaction">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A transaction is an exchange or interaction between at least two agents a and b. Consists of two actions A and B where a is the actor of action A and the recipient of action B, and vice versa. Usually these actions are performed concurrently, but these may also be done consequently.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Collaborative_Plan"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Action"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >2</owl:cardinality>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Artifact">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Function"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Person"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Trade">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A trade is an exchange of some things between two agents a and b. Consists of two actions A and B where a is the actor of action A and the recipient of action B, and vice versa. Usually these actions are performed concurrently, but these may also be done consequently. The ownership of the things being traded is the requirement/result pair for each action.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Transaction"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Person">
+    <owl:disjointWith rdf:resource="#Artifact"/>
+    <rdfs:subClassOf rdf:resource="#Agent"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Organisation"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A person is an individual agent. Usually associated with 'human being'.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Organisation">
+    <rdfs:subClassOf rdf:resource="#Agent"/>
+    <owl:disjointWith rdf:resource="#Person"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An organisation is a group of other organisations or persons which acts 'as one'. An organisation can be both formal (i.e. created by law or decree) or informal.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Creation">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An act which results in the creation of some entity/individual</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Reaction">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NOTE: question remains whether this observation is also a *requirement* of the reaction.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A reaction is an action that is (at least) performed by an agent that has observed some other action (this is an intensional view): Action &lt;-> Reaction</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#actor"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Agent"/>
+              <owl:Restriction>
+                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#observes"/>
+                <owl:someValuesFrom rdf:resource="#Action"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Collaborative_Plan">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A collaborative plan is a plan which is shared between at least two agents a and b.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Plan"/>
+  </owl:Class>
   <owl:ObjectProperty rdf:ID="actor_in">
     <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#participant_in"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#actor"/>
     </owl:inverseOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="condition"/>
-  <owl:ObjectProperty rdf:about="#intends">
-    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#inverse_of_medium"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Added because a suitable property was not available from the expression namespace.</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#actor">
     <owl:inverseOf rdf:resource="#actor_in"/>
@@ -198,6 +264,12 @@
     >actor: the agent who initiates the action</rdfs:comment>
     <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#participant"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="condition"/>
+  <owl:ObjectProperty rdf:about="#intends">
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#inverse_of_medium"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Added because a suitable property was not available from the expression namespace.</rdfs:comment>
+  </owl:ObjectProperty>
 </rdf:RDF>
 
-<!-- Created with TopBraid Composer 1.2.0 -->
+<!-- Created with TopBraid Composer -->
