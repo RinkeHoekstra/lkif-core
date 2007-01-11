@@ -128,6 +128,10 @@
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Termination">
+    <owl:disjointWith rdf:resource="#Initiation"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Continuation"/>
+    </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Action"/>
@@ -145,6 +149,7 @@
     <rdfs:subClassOf rdf:resource="#Action"/>
   </owl:Class>
   <owl:Class rdf:about="#Continuation">
+    <owl:disjointWith rdf:resource="#Initiation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Action"/>
@@ -231,29 +236,39 @@
     >An act which results in the creation of some entity/individual</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Reaction">
-    <rdfs:subClassOf rdf:resource="#Action"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >NOTE: question remains whether this observation is also a *requirement* of the reaction.</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A reaction is an action that is (at least) performed by an agent that has observed some other action (this is an intensional view): Action &lt;-> Reaction</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#actor"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="#Agent"/>
               <owl:Restriction>
+                <owl:someValuesFrom>
+                  <owl:Class>
+                    <owl:intersectionOf rdf:parseType="Collection">
+                      <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Observation"/>
+                      <owl:Restriction>
+                        <owl:someValuesFrom rdf:resource="#Action"/>
+                        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+                      </owl:Restriction>
+                    </owl:intersectionOf>
+                  </owl:Class>
+                </owl:someValuesFrom>
                 <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#observes"/>
-                <owl:someValuesFrom rdf:resource="#Action"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#actor"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NOTE: question remains whether this observation is also a *requirement* of the reaction.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A reaction is an action that is (at least) performed by an agent that has observed some other action (this is an intensional view): Action &lt;-> Reaction</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
   </owl:Class>
   <owl:Class rdf:about="#Collaborative_Plan">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"

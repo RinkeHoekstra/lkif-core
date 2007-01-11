@@ -93,17 +93,9 @@
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
   </owl:Class>
   <owl:Class rdf:about="#Proposition">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A (non logical) proposition is a proposition qualified by a propositional attitude. NB: The proposition used here does not correspond to a proposition in proposition logics.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Medium"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="medium"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object"/>
   </owl:Class>
   <owl:Class rdf:ID="Fact">
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
@@ -167,6 +159,22 @@
     <rdfs:subClassOf rdf:resource="#Observation"/>
   </owl:Class>
   <owl:Class rdf:about="#Expression">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Medium"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="medium"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Medium"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#medium"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An expression is a proposition in some "communication medium", e.g. a document.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Proposition"/>
