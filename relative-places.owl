@@ -14,150 +14,242 @@
     >Created with TopBraid Composer</owl:versionInfo>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Based on the paper "Relative Places" by Maureen Donnelly, apeared in "Applied Ontology", volume 1, 1 november 2005.  http://iospress.metapress.com/link.asp?id=a8q2mlkcf5frcgah</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Note that most of the definitions of the relations in this ontology are underspecified because of the limitations of OWL DL semantics. Some of these limitations can be lifted after a move to OWL 1.1 semantics.</rdfs:comment>
   </owl:Ontology>
-  <owl:Class rdf:ID="Absolute-Place">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Relative-Place"/>
-    </owl:disjointWith>
+  <owl:Class rdf:ID="Location_Complex">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Place"/>
     </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Place"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:InverseFunctionalProperty rdf:ID="location_complex_for"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A location complex is a relatively stable complex of places referred to as one: it is the maximal collection of places with the same reference object.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A location complex only overlaps its own parts (OWL 1.1)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Absolute_Place">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Place"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Relative_Place"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An absolue place is defined without reference to other places.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Relative_Place">
+    <owl:disjointWith rdf:resource="#Absolute_Place"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Place"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="spatial_reference"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A relative place is defined by some reference to some object/thing</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Place">
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Absolute-Place"/>
-          <owl:Class rdf:about="#Relative-Place"/>
+          <owl:Class rdf:about="#Absolute_Place"/>
+          <owl:Class rdf:about="#Relative_Place"/>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Location_Complex"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="location-complex"/>
+          <owl:FunctionalProperty rdf:ID="location_complex"/>
         </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:ID="Location-Complex"/>
-        </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A place is a spatio-temporal-occurrence</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="#Relative-Place">
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="reference"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Place"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Place"/>
-    <owl:disjointWith rdf:resource="#Absolute-Place"/>
+  <owl:Class rdf:ID="Comprehensive_Place">
+    <rdfs:subClassOf rdf:resource="#Location_Complex"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A place is comprehensive if it always covers every place (and thus also every location-complex) and every object.</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NOTE: definition requires OWL 1.1 semantics</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:ID="Comprehensive">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Location-Complex"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Location-Complex">
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:InverseFunctionalProperty rdf:ID="is-location-complex-of"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Place"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Place"/>
-  </owl:Class>
-  <owl:ObjectProperty rdf:ID="connect"/>
-  <owl:ObjectProperty rdf:about="#location-complex">
-    <owl:inverseOf>
-      <owl:InverseFunctionalProperty rdf:about="#is-location-complex-of"/>
-    </owl:inverseOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="spatial-relation"/>
-  <owl:ObjectProperty rdf:ID="overlap"/>
-  <owl:ObjectProperty rdf:ID="in"/>
-  <owl:ObjectProperty rdf:ID="externally-connect"/>
-  <owl:TransitiveProperty rdf:ID="cover">
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="covered-by"/>
-    </owl:inverseOf>
+  <owl:ObjectProperty rdf:ID="spatial_relation">
+    <rdfs:range rdf:resource="#Place"/>
     <rdfs:domain rdf:resource="#Place"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="connect">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Two places are connected if they are both relatively fixed and when they meet</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:ID="meet"/>
+    </rdfs:subPropertyOf>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="relatively_fixed"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="overlap">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Two places overlap if they are relatively fixed and partially coincide</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:ID="partially_coincide"/>
+    </rdfs:subPropertyOf>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#relatively_fixed"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:domain rdf:resource="#Place"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="externally_connect">
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:ID="abut"/>
+    </rdfs:subPropertyOf>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#relatively_fixed"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Two places are externally connected if they are relatively fixed and abut, but do not overlap (OWL 1.1)</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#connect"/>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#meet"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#spatial_reference">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The reference to an object determines the relative place</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#spatial_relation"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="in">
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part_of"/>
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:subPropertyOf rdf:resource="#spatial_relation"/>
+  </owl:ObjectProperty>
+  <owl:TransitiveProperty rdf:ID="covered_by">
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#partially_coincide"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="cover"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >To add in OWL 1.1: 'covered-by' is reflexive, 'covered-by' is transitive</rdfs:comment>
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#meet"/>
+    </rdfs:subPropertyOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="exactly_coincide">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >To add in OWL 1.1: 'exactly-coincide' is reflexive, 'exactly-coincide' is symetric, 'exactly-coincide' is transitive</rdfs:comment>
+    <owl:inverseOf rdf:resource="#exactly_coincide"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition exactly-coincide: exactly-coincide(a, b) iff forall x:( meet(x, a) iff meet(x, b) )</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#meet"/>
+    </rdfs:subPropertyOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#cover">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#meet"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Note: this cover-relation is the inverse of the COV relation described by Maureen Donnelly</rdfs:comment>
+    <owl:inverseOf rdf:resource="#covered_by"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition cover:  cover(a, b) iff forall x:( meet(x, b) implies meet(x, a) )</rdfs:comment>
     <rdfs:range rdf:resource="#Place"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >To add in OWL 1.1: 'cover' is reflexive, 'cover' is transitive</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Definition cover:  cover(a, b) iff forall x:( meet(x, b) implies meet(x, a) )</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Note: this cover-relation is the inverse of the COV relation described by Maureen Donnelly</rdfs:comment>
-    <rdfs:subPropertyOf>
-      <owl:SymmetricProperty rdf:ID="partially-coincide"/>
-    </rdfs:subPropertyOf>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#covered-by">
-    <rdfs:domain rdf:resource="#Place"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >To add in OWL 1.1: 'covered-by' is reflexive, 'covered-by' is transitive</rdfs:comment>
+  <owl:TransitiveProperty rdf:about="#relatively_fixed">
     <rdfs:range rdf:resource="#Place"/>
-    <rdfs:subPropertyOf>
-      <owl:SymmetricProperty rdf:about="#partially-coincide"/>
-    </rdfs:subPropertyOf>
-    <owl:inverseOf rdf:resource="#cover"/>
+    <rdfs:domain rdf:resource="#Place"/>
+    <owl:inverseOf rdf:resource="#relatively_fixed"/>
+    <rdfs:subPropertyOf rdf:resource="#spatial_relation"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Two places are relatively fixed if and only if either x and y have a common reference object or neither x nor y has a reference object</rdfs:comment>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NOTE: This cannot currently be expressed using OWL DL</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
   </owl:TransitiveProperty>
-  <owl:SymmetricProperty rdf:ID="relatively-fixed">
-    <owl:inverseOf rdf:resource="#relatively-fixed"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:SymmetricProperty>
-  <owl:SymmetricProperty rdf:ID="abut">
+  <owl:SymmetricProperty rdf:about="#abut">
     <rdfs:domain rdf:resource="#Place"/>
     <rdfs:range rdf:resource="#Place"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >To add in OWL 1.1: 'abut' is irreflexive, 'abut' is disjoint with of 'partially-coincide'</rdfs:comment>
     <owl:inverseOf rdf:resource="#abut"/>
     <rdfs:subPropertyOf>
-      <owl:SymmetricProperty rdf:ID="meet"/>
+      <owl:SymmetricProperty rdf:about="#meet"/>
     </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Two places abut if they meet but do not partially coincide</rdfs:comment>
   </owl:SymmetricProperty>
   <owl:SymmetricProperty rdf:about="#meet">
-    <rdfs:subPropertyOf rdf:resource="#spatial-relation"/>
+    <rdfs:range rdf:resource="#Place"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >meet is reflexive</rdfs:comment>
     <rdfs:domain rdf:resource="#Place"/>
     <owl:inverseOf rdf:resource="#meet"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >To add in OWL 1.1: 'meet' is equivalent with ('abut' union 'partially-coincide')</rdfs:comment>
-    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:subPropertyOf rdf:resource="#spatial_relation"/>
   </owl:SymmetricProperty>
-  <owl:SymmetricProperty rdf:ID="exactly-coincide">
-    <rdfs:subPropertyOf rdf:resource="#covered-by"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >To add in OWL 1.1: 'exactly-coincide' is reflexive, 'exactly-coincide' is symetric, 'exactly-coincide' is transitive</rdfs:comment>
-    <owl:inverseOf rdf:resource="#exactly-coincide"/>
-    <rdfs:subPropertyOf rdf:resource="#cover"/>
-    <rdfs:domain rdf:resource="#Place"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Definition exactly-coincide: exactly-coincide(a, b) iff forall x:( meet(x, a) iff meet(x, b) )</rdfs:comment>
-    <rdfs:range rdf:resource="#Place"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:SymmetricProperty>
-  <owl:SymmetricProperty rdf:about="#partially-coincide">
-    <rdfs:domain rdf:resource="#Place"/>
-    <rdfs:range rdf:resource="#Place"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Definition partially-coincide: partially-coincide(a, b) iff exists x :( cover(a, x) and cover(b, x) )</rdfs:comment>
+  <owl:SymmetricProperty rdf:about="#partially_coincide">
+    <rdfs:subPropertyOf rdf:resource="#meet"/>
+    <owl:inverseOf rdf:resource="#partially_coincide"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >To add in OWL 1.1: 'partially-coincide' is reflexive, 'partially-coincide' is disjoint with 'abut'</rdfs:comment>
-    <owl:inverseOf rdf:resource="#partially-coincide"/>
-    <rdfs:subPropertyOf rdf:resource="#meet"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Definition partially-coincide: partially-coincide(a, b) iff exists x :( cover(a, x) and cover(b, x) )</rdfs:comment>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:domain rdf:resource="#Place"/>
   </owl:SymmetricProperty>
-  <owl:InverseFunctionalProperty rdf:about="#is-location-complex-of">
-    <owl:inverseOf rdf:resource="#location-complex"/>
+  <owl:FunctionalProperty rdf:about="#location_complex">
+    <rdfs:subPropertyOf rdf:resource="#spatial_relation"/>
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="#Location_Complex"/>
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:about="#location_complex_for"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:InverseFunctionalProperty rdf:about="#location_complex_for">
+    <rdfs:subPropertyOf rdf:resource="#spatial_relation"/>
+    <owl:inverseOf rdf:resource="#location_complex"/>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:domain rdf:resource="#Location_Complex"/>
   </owl:InverseFunctionalProperty>
+  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition">
+    <owl:disjointWith rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
+  </rdf:Description>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->

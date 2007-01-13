@@ -13,35 +13,26 @@
     >Created with TopBraid Composer</owl:versionInfo>
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="Legal-Role">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >TODO: are legal roles created by some Act-of-Law? Or by some other legal thingy? Or not created, but supported/authorised or sthing.?</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Public-Body">
+  <owl:Class rdf:ID="Professional_Legal_Role">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="Legal-Person"/>
+      <owl:Class rdf:ID="Social_Legal_Role"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Organisation_Role"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Social_Legal_Role">
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Social_Role">
+        <owl:disjointWith rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Function"/>
+      </rdf:Description>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Legal_Role"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Legal_Role">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A public body or body created by an act of law to serve a public interest</rdfs:comment>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >NL: Bestuursorgaan</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:ID="Legislative-Body">
-    <rdfs:subClassOf rdf:resource="#Public-Body"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Natural-Person">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Person_Role"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Legal-Person"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#Legal-Role"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Legal-Person">
-    <owl:disjointWith rdf:resource="#Natural-Person"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >NL: Rechtspersoon</rdfs:label>
-    <rdfs:subClassOf rdf:resource="#Legal-Role"/>
+    >A legal role is a role played in a legal context. Legal role players can be both Agents and other individuals</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
   </owl:Class>
 </rdf:RDF>
 

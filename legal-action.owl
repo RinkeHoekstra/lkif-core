@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:lrole="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-role.owl#"
     xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-action.owl#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:attitude="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/attitude.owl#"
+    xmlns:action="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:lrole="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-role.owl#"
+    xmlns:norm="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:action="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
-    xmlns:norm="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-action.owl">
   <owl:Ontology rdf:about="">
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl"/>
@@ -17,55 +17,122 @@
     >Created with TopBraid Composer</owl:versionInfo>
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-role.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="Act-of-Law">
+  <owl:Class rdf:ID="Mandate">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Act of law: a public act by a legislative body which creates some 'thing' (e.g. a law/norm/public-body etc.)</rdfs:comment>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >TODO: Need to decide on 'what' the Act of Law really creates (or does it do other things as well..)</owl:versionInfo>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Creation"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-            <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-role.owl#Legislative-Body"/>
-          </owl:Restriction>
-        </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    >Mandate: give (someone) authority to act in a certain way</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Transaction"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Public-Act"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
+        <owl:allValuesFrom>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Public-Body"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Public-Act">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action"/>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >TODO(1): Currently these legal action classes depend on action:Power. This should be moved to norm:Permission or sthing</owl:versionInfo>
+  <owl:Class rdf:about="#Public-Body">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A public body or body created by an act of law to serve a public interest</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Legal-Person"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Assignment">
-    <rdfs:subClassOf rdf:resource="#Public-Act"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Public-Act"/>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Assignment: A public act that attributes a power to perform a public act to a public body.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Trade"/>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Transaction"/>
   </owl:Class>
-  <owl:Class rdf:ID="Mandate">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Mandate: give (someone) authority to act in a certain way</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Transaction"/>
-    <rdfs:subClassOf rdf:resource="#Public-Act"/>
+  <owl:Class rdf:ID="Decision">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
         <owl:allValuesFrom>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-            <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-role.owl#Public-Body"/>
+            <owl:someValuesFrom rdf:resource="#Public-Body"/>
           </owl:Restriction>
         </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Decision: A written decision of a public body to perform a public act using a public power assigned by law</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Act-of-Law">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Act of law: a public act by a legislative body which creates an expression with legal status</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="Legislative-Body"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Legislative-Body"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Public-Act"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Speech_Act"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Natural_Person">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
+    <owl:equivalentClass rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Legal-Person"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Public-Act">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A public act is an act by some Person or Organisation which creates (at least) an expression</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#result"/>
+            <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expression"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
+                  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Organisation"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Legislative-Body">
+    <rdfs:subClassOf rdf:resource="#Public-Body"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Legal-Person">
+    <owl:disjointWith rdf:resource="#Natural_Person"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Organisation"/>
   </owl:Class>
   <owl:Class rdf:ID="Delegation">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -77,27 +144,11 @@
         <owl:allValuesFrom>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-            <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-role.owl#Public-Body"/>
+            <owl:someValuesFrom rdf:resource="#Public-Body"/>
           </owl:Restriction>
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Decision">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-            <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-role.owl#Public-Body"/>
-          </owl:Restriction>
-        </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Decision: A written decision of a public body to perform a public act using a public power assigned by law</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action"/>
   </owl:Class>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Power">
     <owl:equivalentClass>
@@ -115,4 +166,4 @@
   </rdf:Description>
 </rdf:RDF>
 
-<!-- Created with TopBraid Composer 1.2.0 -->
+<!-- Created with TopBraid Composer -->

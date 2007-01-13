@@ -27,25 +27,17 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Moment">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Time_Period"/>
-    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Interval"/>
+    </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="#Time_Period"/>
-      <owl:Class>
-        <owl:complementOf>
-          <owl:Class rdf:ID="Interval"/>
-        </owl:complementOf>
-      </owl:Class>
-    </owl:intersectionOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Occured-Event">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="Event"/>
+      <owl:Class rdf:about="#Time_Period"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Event">
+  <owl:Class rdf:ID="Event">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An 'event', not further specified</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
   </owl:Class>
   <owl:Class rdf:about="#Interval">
@@ -53,45 +45,30 @@
       <owl:Class rdf:about="#Time_Period"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition"/>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="#Time_Period"/>
-      <owl:Class>
-        <owl:complementOf rdf:resource="#Moment"/>
-      </owl:Class>
-    </owl:intersectionOf>
+    <owl:disjointWith rdf:resource="#Moment"/>
   </owl:Class>
   <owl:Class rdf:about="#Time_Period">
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="immediatly_after"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Time_Period"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="immediatly_before"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Time_Period"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#immediatly_after"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Time_Period"/>
-      </owl:Restriction>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#immediatly_before"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#Time_Period"/>
-      </owl:Restriction>
-    </owl:intersectionOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Time_Period"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="immediatly_after"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Time_Period"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="immediatly_before"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A period of time</rdfs:comment>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="after">
     <owl:inverseOf>
@@ -107,10 +84,14 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="during">
-    <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#temporal_relation"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="transitionpoint">
-    <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#temporal_relation"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#immediatly_after">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -125,18 +106,26 @@
     <rdfs:subPropertyOf rdf:resource="#after"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="preceeds">
-    <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#temporal_relation"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="span">
-    <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#temporal_relation"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="between">
     <rdfs:range rdf:resource="#Pair_Of_Periods"/>
-    <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#temporal_relation"/>
+    </rdfs:subPropertyOf>
     <rdfs:domain rdf:resource="#Time_Period"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="overlap">
-    <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#temporal_relation"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#immediatly_before">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -153,7 +142,13 @@
     <owl:inverseOf rdf:resource="#immediatly_after"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="start">
-    <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#temporal_relation"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#temporal_relation">
+    <rdfs:range rdf:resource="#Time_Period"/>
+    <rdfs:domain rdf:resource="#Time_Period"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="finish">
     <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
