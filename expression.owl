@@ -12,15 +12,15 @@
     <owl:onProperty rdf:resource="#evaluates"/>
     <owl:someValuesFrom rdf:resource="#Proposition"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A1">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:intersectionOf rdf:nodeID="A2"/>
-  </rdf:Description>
   <rdf:Description rdf:about="#qualified_by">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Proposition"/>
     <rdfs:range rdf:resource="#Propositional_Attitude"/>
     <owl:inverseOf rdf:resource="#qualifies"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="A2"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A3">
     <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
@@ -47,6 +47,7 @@
     <owl:onProperty rdf:resource="#qualifies"/>
   </rdf:Description>
   <rdf:Description rdf:about="#addressee">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Allows for expressing the relation between a communicated attitude and the Agent to which the communication act is addressed</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Communicated_Attitude"/>
     <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
@@ -68,46 +69,54 @@
     <rdfs:subClassOf rdf:resource="#Reason"/>
     <owl:equivalentClass rdf:nodeID="A12"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A13">
+    <owl:someValuesFrom rdf:resource="#Evaluative_Proposition"/>
+    <owl:onProperty rdf:resource="#evaluatively_comparable"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#Expectation">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An expectation is a predictive belief held on purely logical grounds, i.e. not based on direct external evidence, like an observation or a statement by another agent. It is also often characterized as a "belief about the future", but this isn't very helpful since one may also hold expectations about the (yet unknown) past. The theory of evolution is for instance a fertile ground for predictions about the existence of past species, and therefore at the same a predictor of future observations.</rdfs:comment>
-    <owl:equivalentClass rdf:nodeID="A13"/>
+    <owl:equivalentClass rdf:nodeID="A14"/>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <owl:disjointWith rdf:resource="#Observation"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A14">
+  <rdf:Description rdf:nodeID="A15">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:intersectionOf rdf:nodeID="A15"/>
+    <owl:intersectionOf rdf:nodeID="A16"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A16">
+  <rdf:Description rdf:nodeID="A17">
     <owl:someValuesFrom rdf:resource="#Expression"/>
     <owl:onProperty rdf:resource="#states"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A17">
+  <rdf:Description rdf:nodeID="A18">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#bears"/>
-    <owl:someValuesFrom rdf:nodeID="A18"/>
+    <owl:someValuesFrom rdf:nodeID="A19"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A19">
+  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#creation">
+    <owl:inverseOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#created_by"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A20">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:nodeID="A20"/>
+    <rdf:first rdf:nodeID="A21"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Promise">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A promise is a communicated attitude about some future action or state</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Communicated_Attitude"/>
-    <owl:equivalentClass rdf:nodeID="A21"/>
+    <owl:equivalentClass rdf:nodeID="A22"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A22">
+  <rdf:Description rdf:nodeID="A23">
     <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
     <owl:onProperty rdf:resource="#held_by"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A23">
+  <rdf:Description rdf:nodeID="A24">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
-    <owl:someValuesFrom rdf:nodeID="A24"/>
+    <owl:someValuesFrom rdf:nodeID="A25"/>
   </rdf:Description>
   <rdf:Description rdf:about="#qualifies">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -122,39 +131,39 @@
     <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
     <owl:inverseOf rdf:resource="#holds"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A18">
+  <rdf:Description rdf:nodeID="A19">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:intersectionOf rdf:nodeID="A25"/>
+    <owl:intersectionOf rdf:nodeID="A26"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A26">
+  <rdf:Description rdf:nodeID="A27">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:intersectionOf rdf:nodeID="A27"/>
+    <owl:intersectionOf rdf:nodeID="A28"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A28">
-    <rdf:first rdf:nodeID="A29"/>
+  <rdf:Description rdf:nodeID="A29">
+    <rdf:first rdf:nodeID="A30"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="#author">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:subPropertyOf rdf:resource="#utterer"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A30">
-    <rdf:first rdf:nodeID="A31"/>
+  <rdf:Description rdf:nodeID="A31">
+    <rdf:first rdf:nodeID="A32"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A32">
+  <rdf:Description rdf:nodeID="A33">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
     <owl:someValuesFrom rdf:resource="#Observation"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A33">
+  <rdf:Description rdf:nodeID="A34">
     <owl:someValuesFrom rdf:resource="#Belief"/>
     <owl:onProperty rdf:resource="#qualified_by"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A34">
+  <rdf:Description rdf:nodeID="A35">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:nodeID="A35"/>
+    <rdf:first rdf:nodeID="A36"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
@@ -163,36 +172,39 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Searle: the successful performance of a declaration is sufficient to bring about the fit between words and world, to make the propositional content true. In other words, if there is an inconsistency between the declaration and assertions, beliefs, or observations, it is not the declaration that is false. True of definitions and norms, and several other performative statements by legislators.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Communicated_Attitude"/>
-    <owl:equivalentClass rdf:nodeID="A36"/>
+    <owl:equivalentClass rdf:nodeID="A37"/>
   </rdf:Description>
   <rdf:Description rdf:about="#promises">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relates a promise to the expression being promised</rdfs:comment>
+    <rdfs:range rdf:resource="#Expression"/>
+    <rdfs:domain rdf:resource="#Promise"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:subPropertyOf rdf:resource="#states"/>
     <owl:inverseOf rdf:resource="#promised_by"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A37">
+  <rdf:Description rdf:nodeID="A38">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#qualified_by"/>
-    <owl:someValuesFrom rdf:nodeID="A38"/>
+    <owl:someValuesFrom rdf:nodeID="A39"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Expression">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An expression is a proposition beared by some medium, e.g. a document.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Proposition"/>
-    <rdfs:subClassOf rdf:nodeID="A39"/>
-    <owl:equivalentClass rdf:nodeID="A14"/>
+    <rdfs:subClassOf rdf:nodeID="A40"/>
+    <owl:equivalentClass rdf:nodeID="A15"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Belief">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Loose end.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Propositional_Attitude"/>
-    <owl:equivalentClass rdf:nodeID="A40"/>
+    <owl:equivalentClass rdf:nodeID="A41"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Cause">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A41">
+  <rdf:Description rdf:nodeID="A42">
     <owl:someValuesFrom rdf:resource="#Medium"/>
     <owl:onProperty rdf:resource="#medium"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -204,12 +216,12 @@
     <rdfs:subPropertyOf rdf:resource="#held_by"/>
     <owl:inverseOf rdf:resource="#believes"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A38">
+  <rdf:Description rdf:nodeID="A39">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#observer"/>
     <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A42">
+  <rdf:Description rdf:nodeID="A43">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#qualified_by"/>
     <owl:someValuesFrom rdf:resource="#Belief"/>
@@ -220,75 +232,76 @@
     <rdfs:subPropertyOf rdf:resource="#believes"/>
     <owl:inverseOf rdf:resource="#observer"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A43">
+  <rdf:Description rdf:nodeID="A44">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:nodeID="A44"/>
+    <rdf:first rdf:nodeID="A45"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Document">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Document bears some (and only) expression(s) stated by some statement in writing.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Medium"/>
-    <rdfs:subClassOf rdf:nodeID="A45"/>
-    <owl:equivalentClass rdf:nodeID="A17"/>
+    <rdfs:subClassOf rdf:nodeID="A46"/>
+    <owl:equivalentClass rdf:nodeID="A18"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A46">
-    <rdf:first rdf:nodeID="A37"/>
+  <rdf:Description rdf:nodeID="A47">
+    <rdf:first rdf:nodeID="A38"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Evidence">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Observation and/or statement, used as a backing for a belief. Evidence is the role of observation which is qualified by some belief.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
-    <owl:equivalentClass rdf:nodeID="A47"/>
+    <owl:equivalentClass rdf:nodeID="A48"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A48">
+  <rdf:Description rdf:nodeID="A49">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
     <owl:someValuesFrom rdf:resource="#Observation"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A49">
+  <rdf:Description rdf:nodeID="A50">
     <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
     <owl:onProperty rdf:resource="#addressee"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A50">
+  <rdf:Description rdf:nodeID="A51">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
     <owl:someValuesFrom rdf:nodeID="A4"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A51">
-    <rdf:rest rdf:nodeID="A52"/>
+  <rdf:Description rdf:nodeID="A52">
+    <rdf:rest rdf:nodeID="A53"/>
     <rdf:first rdf:resource="#Proposition"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Assertion">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The assertion is subject to a fit between words and world, in Searle's terms. It's propositional content can be true of false. If it is inconsistent with other assertions, beliefs, observations, it may come to be considered false.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Communicated_Attitude"/>
-    <owl:equivalentClass rdf:nodeID="A53"/>
+    <owl:equivalentClass rdf:nodeID="A54"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A54">
-    <rdf:first rdf:nodeID="A42"/>
-    <rdf:rest rdf:nodeID="A55"/>
+  <rdf:Description rdf:nodeID="A55">
+    <rdf:first rdf:nodeID="A43"/>
+    <rdf:rest rdf:nodeID="A56"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Evaluative_Proposition">
+    <owl:equivalentClass rdf:nodeID="A13"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Some thing which is evaluatively qualified, i.e. an evaluation applies to the proposition, the proposition is judged. The proposition is comparable to some other proposition.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Some thing which is qualified, i.e. a qualification applies to the thing.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Proposition"/>
-    <owl:equivalentClass rdf:nodeID="A56"/>
+    <owl:equivalentClass rdf:nodeID="A57"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A57">
-    <rdf:first rdf:nodeID="A58"/>
+  <rdf:Description rdf:nodeID="A58">
+    <rdf:first rdf:nodeID="A59"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A59">
-    <rdf:rest rdf:nodeID="A34"/>
+  <rdf:Description rdf:nodeID="A60">
+    <rdf:rest rdf:nodeID="A35"/>
     <rdf:first rdf:nodeID="A3"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Fact">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A fact is a proposition (about something) which is (commonly) agreed upon to hold as true: it has some backing in evidence</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
-    <owl:equivalentClass rdf:nodeID="A23"/>
+    <owl:equivalentClass rdf:nodeID="A24"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
@@ -299,65 +312,66 @@
     <rdfs:subPropertyOf rdf:resource="#qualifies"/>
     <owl:inverseOf rdf:resource="#stated_by"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A60">
+  <rdf:Description rdf:nodeID="A61">
     <rdf:first rdf:resource="#Proposition"/>
-    <rdf:rest rdf:nodeID="A61"/>
+    <rdf:rest rdf:nodeID="A62"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A62">
-    <owl:intersectionOf rdf:nodeID="A63"/>
+  <rdf:Description rdf:nodeID="A63">
+    <owl:intersectionOf rdf:nodeID="A64"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A64">
+  <rdf:Description rdf:nodeID="A65">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
-    <owl:someValuesFrom rdf:nodeID="A65"/>
+    <owl:someValuesFrom rdf:nodeID="A66"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Desire">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="#Propositional_Attitude"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A66">
+  <rdf:Description rdf:nodeID="A67">
     <owl:complementOf rdf:resource="#Observation"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="#asserts">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relates an assertion to the expression being asserted</rdfs:comment>
+    <rdfs:range rdf:resource="#Expression"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Assertion"/>
     <rdfs:subPropertyOf rdf:resource="#states"/>
     <owl:inverseOf rdf:resource="#asserted_by"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A67">
-    <rdf:rest rdf:nodeID="A19"/>
-    <rdf:first rdf:nodeID="A68"/>
+  <rdf:Description rdf:nodeID="A68">
+    <rdf:rest rdf:nodeID="A20"/>
+    <rdf:first rdf:nodeID="A69"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#comment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A29">
+  <rdf:Description rdf:nodeID="A30">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#qualified_by"/>
     <owl:someValuesFrom rdf:resource="#Belief"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A69">
+  <rdf:Description rdf:nodeID="A70">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:intersectionOf rdf:nodeID="A70"/>
+    <owl:intersectionOf rdf:nodeID="A71"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A36">
+  <rdf:Description rdf:nodeID="A37">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#declares"/>
     <owl:someValuesFrom rdf:resource="#Expression"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A15">
-    <rdf:first rdf:nodeID="A71"/>
+  <rdf:Description rdf:nodeID="A16">
+    <rdf:first rdf:nodeID="A72"/>
     <rdf:rest rdf:nodeID="A6"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A72">
+  <rdf:Description rdf:nodeID="A73">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
     <owl:someValuesFrom rdf:resource="#Observation"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Function">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use or purpose of some object as used in some context.</rdfs:comment>
   </rdf:Description>
   <rdf:Description rdf:about="#utters">
@@ -367,50 +381,50 @@
     <rdfs:subPropertyOf rdf:resource="#holds"/>
     <owl:inverseOf rdf:resource="#utterer"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A61">
-    <rdf:first rdf:nodeID="A73"/>
-    <rdf:rest rdf:nodeID="A74"/>
+  <rdf:Description rdf:nodeID="A62">
+    <rdf:first rdf:nodeID="A74"/>
+    <rdf:rest rdf:nodeID="A75"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A7">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#medium"/>
     <owl:someValuesFrom rdf:resource="#Medium"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A75">
+  <rdf:Description rdf:nodeID="A76">
     <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
     <owl:onProperty rdf:resource="#utterer"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A76">
+  <rdf:Description rdf:nodeID="A77">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
-    <owl:someValuesFrom rdf:nodeID="A26"/>
+    <owl:someValuesFrom rdf:nodeID="A27"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A71">
+  <rdf:Description rdf:nodeID="A72">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#stated_by"/>
     <owl:someValuesFrom rdf:resource="#Communicated_Attitude"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A65">
+  <rdf:Description rdf:nodeID="A66">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:intersectionOf rdf:nodeID="A77"/>
+    <owl:intersectionOf rdf:nodeID="A78"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Reason">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Teleological counterpart of cause</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
-    <owl:equivalentClass rdf:nodeID="A50"/>
+    <owl:equivalentClass rdf:nodeID="A51"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A78">
-    <owl:intersectionOf rdf:nodeID="A67"/>
+  <rdf:Description rdf:nodeID="A79">
+    <owl:intersectionOf rdf:nodeID="A68"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A31">
+  <rdf:Description rdf:nodeID="A32">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#qualified_by"/>
     <owl:someValuesFrom rdf:resource="#Belief"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A68">
+  <rdf:Description rdf:nodeID="A69">
     <owl:someValuesFrom rdf:resource="#Proposition"/>
     <owl:onProperty rdf:resource="#qualifies"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -420,8 +434,8 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A (non logical) proposition is a proposition qualified by a propositional attitude. NB: The proposition used here does not correspond to a proposition in proposition logics.</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NOTE: In previous versions of this ontology, this class was called 'Qualified'. In lieu of the separation between Proposition and Propositional_Attitude, the intended meaning of that class has been moved to 'Evaluative_Proposition'</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object"/>
-    <rdfs:subClassOf rdf:nodeID="A79"/>
-    <owl:equivalentClass rdf:nodeID="A62"/>
+    <rdfs:subClassOf rdf:nodeID="A80"/>
+    <owl:equivalentClass rdf:nodeID="A63"/>
   </rdf:Description>
   <rdf:Description rdf:about="">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
@@ -429,22 +443,22 @@
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl"/>
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A45">
+  <rdf:Description rdf:nodeID="A46">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="A18"/>
+    <owl:allValuesFrom rdf:nodeID="A19"/>
     <owl:onProperty rdf:resource="#bears"/>
   </rdf:Description>
   <rdf:Description rdf:about="#bears">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Medium 'bears' or carries expressions.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Medium 'bears' expressions with it.</rdfs:comment>
     <rdfs:domain rdf:resource="#Medium"/>
     <rdfs:range rdf:resource="#Expression"/>
     <owl:inverseOf rdf:resource="#medium"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A47">
+  <rdf:Description rdf:nodeID="A48">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
-    <owl:someValuesFrom rdf:nodeID="A69"/>
+    <owl:someValuesFrom rdf:nodeID="A70"/>
   </rdf:Description>
   <rdf:Description rdf:about="#utterer">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -453,25 +467,27 @@
     <rdfs:subPropertyOf rdf:resource="#held_by"/>
     <owl:inverseOf rdf:resource="#utters"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A80">
+  <rdf:Description rdf:nodeID="A81">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#qualified_by"/>
     <owl:someValuesFrom rdf:resource="#Belief"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A24">
+  <rdf:Description rdf:nodeID="A25">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:intersectionOf rdf:nodeID="A60"/>
+    <owl:intersectionOf rdf:nodeID="A61"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A81">
+  <rdf:Description rdf:nodeID="A82">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
     <owl:onProperty rdf:resource="#addressee"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A82">
-    <rdf:rest rdf:nodeID="A59"/>
+  <rdf:Description rdf:nodeID="A83">
+    <rdf:rest rdf:nodeID="A60"/>
     <rdf:first rdf:resource="#Communicated_Attitude"/>
   </rdf:Description>
   <rdf:Description rdf:about="#declares">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relates a declaration to the expression being declared</rdfs:comment>
+    <rdfs:range rdf:resource="#Expression"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Declaration"/>
     <rdfs:subPropertyOf rdf:resource="#states"/>
@@ -482,16 +498,16 @@
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
     <owl:someValuesFrom rdf:nodeID="A1"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A83">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:nodeID="A49"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="A84">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:nodeID="A50"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A85">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
     <owl:onProperty rdf:resource="#held_by"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A85">
+  <rdf:Description rdf:nodeID="A86">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#bears"/>
     <owl:someValuesFrom rdf:resource="#Expression"/>
@@ -502,7 +518,7 @@
     <rdfs:range rdf:resource="#Propositional_Attitude"/>
     <owl:inverseOf rdf:resource="#held_by"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A40">
+  <rdf:Description rdf:nodeID="A41">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#believed_by"/>
     <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
@@ -514,7 +530,7 @@
     <rdfs:subPropertyOf rdf:resource="#holds"/>
     <owl:inverseOf rdf:resource="#believed_by"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A20">
+  <rdf:Description rdf:nodeID="A21">
     <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
     <owl:onProperty rdf:resource="#held_by"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -524,14 +540,14 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expression is the most generic type of proposition. Distinguishing a proposition from the propositional content expressed by it is necessary when properties relating to the thing expressed and properties of the expression itself must be distinguished. For LKIF the distinction between Belief, Intention, Qualification, and Observation is relevant. A norm is a kind of Qualification. The distinction between belief/expectation, intention, and observation is relevant for i.a. establishing mens rea (guilty mind). The distinction between beliefs (expressing the content of the mind of an agent) and statements (expressing the content of an act of communication by an agent) is classical.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object"/>
     <rdfs:subClassOf rdf:nodeID="A8"/>
-    <owl:equivalentClass rdf:nodeID="A78"/>
+    <owl:equivalentClass rdf:nodeID="A79"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A53">
+  <rdf:Description rdf:nodeID="A54">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#asserts"/>
     <owl:someValuesFrom rdf:resource="#Expression"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A86">
+  <rdf:Description rdf:nodeID="A87">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:resource="#Expression"/>
     <owl:onProperty rdf:resource="#bears"/>
@@ -542,8 +558,8 @@
     <rdfs:subPropertyOf rdf:resource="#qualified_by"/>
     <owl:inverseOf rdf:resource="#states"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A35">
-    <owl:someValuesFrom rdf:nodeID="A87"/>
+  <rdf:Description rdf:nodeID="A36">
+    <owl:someValuesFrom rdf:nodeID="A88"/>
     <owl:onProperty rdf:resource="#states"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
@@ -553,36 +569,36 @@
     <rdfs:subPropertyOf rdf:resource="#stated_by"/>
     <owl:inverseOf rdf:resource="#declares"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A21">
+  <rdf:Description rdf:nodeID="A22">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#promises"/>
     <owl:someValuesFrom rdf:resource="#Expression"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A39">
+  <rdf:Description rdf:nodeID="A40">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:resource="#Medium"/>
     <owl:onProperty rdf:resource="#medium"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A25">
+  <rdf:Description rdf:nodeID="A26">
     <rdf:first rdf:resource="#Expression"/>
-    <rdf:rest rdf:nodeID="A57"/>
+    <rdf:rest rdf:nodeID="A58"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A9">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <owl:intersectionOf rdf:nodeID="A10"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A77">
+  <rdf:Description rdf:nodeID="A78">
     <rdf:first rdf:resource="#Proposition"/>
-    <rdf:rest rdf:nodeID="A28"/>
+    <rdf:rest rdf:nodeID="A29"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Intention">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Intention is where the agent expects certain consequences of his or her actions and desires those consequences to occur. This concept must be related to qualification and preference in some way.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Propositional_Attitude"/>
-    <owl:equivalentClass rdf:nodeID="A88"/>
+    <owl:equivalentClass rdf:nodeID="A89"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A13">
-    <owl:someValuesFrom rdf:nodeID="A89"/>
+  <rdf:Description rdf:nodeID="A14">
+    <owl:someValuesFrom rdf:nodeID="A90"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
@@ -590,31 +606,35 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A medium is a bearer of expressions, i.e. externalised propositions. Propositions become expressions once they are externalised through some medium.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:subClassOf rdf:nodeID="A86"/>
-    <owl:equivalentClass rdf:nodeID="A85"/>
+    <rdfs:subClassOf rdf:nodeID="A87"/>
+    <owl:equivalentClass rdf:nodeID="A86"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A87">
-    <owl:intersectionOf rdf:nodeID="A90"/>
+  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Process">
+    <owl:disjointWith rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
+    <owl:disjointWith rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A88">
+    <owl:intersectionOf rdf:nodeID="A91"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A52">
-    <rdf:rest rdf:nodeID="A43"/>
-    <rdf:first rdf:nodeID="A33"/>
+  <rdf:Description rdf:nodeID="A53">
+    <rdf:rest rdf:nodeID="A44"/>
+    <rdf:first rdf:nodeID="A34"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:nodeID="A84"/>
+    <rdfs:subClassOf rdf:nodeID="A85"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A63">
-    <rdf:rest rdf:nodeID="A91"/>
-    <rdf:first rdf:nodeID="A41"/>
+  <rdf:Description rdf:nodeID="A64">
+    <rdf:rest rdf:nodeID="A92"/>
+    <rdf:first rdf:nodeID="A42"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A27">
+  <rdf:Description rdf:nodeID="A28">
     <rdf:first rdf:resource="#Proposition"/>
-    <rdf:rest rdf:nodeID="A46"/>
+    <rdf:rest rdf:nodeID="A47"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A55">
-    <rdf:first rdf:nodeID="A48"/>
+  <rdf:Description rdf:nodeID="A56">
+    <rdf:first rdf:nodeID="A49"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Surprise">
@@ -623,48 +643,57 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NOTE: This currently cannot be expressed: OWL DL does not support negation of properties. The definition will be further elaborated once OWL 1.1 is supported by development tools.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Observation"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A88">
+  <rdf:Description rdf:nodeID="A89">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#intended_by"/>
     <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A2">
     <rdf:first rdf:resource="#Expression"/>
-    <rdf:rest rdf:nodeID="A92"/>
+    <rdf:rest rdf:nodeID="A93"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A73">
+  <rdf:Description rdf:nodeID="A74">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#qualified_by"/>
     <owl:someValuesFrom rdf:resource="#Belief"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object">
+    <owl:disjointWith rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A70">
+  <rdf:Description rdf:nodeID="A71">
     <rdf:first rdf:resource="#Proposition"/>
-    <rdf:rest rdf:nodeID="A54"/>
+    <rdf:rest rdf:nodeID="A55"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A44">
-    <owl:allValuesFrom rdf:nodeID="A66"/>
+  <rdf:Description rdf:nodeID="A45">
+    <owl:allValuesFrom rdf:nodeID="A67"/>
     <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A93">
-    <owl:intersectionOf rdf:nodeID="A94"/>
+  <rdf:Description rdf:nodeID="A94">
+    <owl:intersectionOf rdf:nodeID="A95"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Communicated_Attitude">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A communictated attitude is a propositional attitude involved in an act of communication.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Propositional_Attitude"/>
-    <rdfs:subClassOf rdf:nodeID="A81"/>
-    <rdfs:subClassOf rdf:nodeID="A95"/>
-    <owl:equivalentClass rdf:nodeID="A93"/>
+    <rdfs:subClassOf rdf:nodeID="A82"/>
+    <rdfs:subClassOf rdf:nodeID="A96"/>
+    <owl:equivalentClass rdf:nodeID="A94"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A96">
+  <rdf:Description rdf:nodeID="A97">
     <owl:someValuesFrom rdf:resource="#Document"/>
     <owl:onProperty rdf:resource="#medium"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#evaluatively_comparable">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expresses whether some proposition is evaluatively comparable to some other proposition.</rdfs:comment>
+    <rdfs:range rdf:resource="#Evaluative_Proposition"/>
+    <rdfs:domain rdf:resource="#Evaluative_Proposition"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Problem">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -677,10 +706,10 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An observation is the role played by a proposition believed to be true or false through observation of an agent.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
     <owl:disjointWith rdf:resource="#Expectation"/>
-    <owl:equivalentClass rdf:nodeID="A76"/>
+    <owl:equivalentClass rdf:nodeID="A77"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A11">
-    <rdf:first rdf:nodeID="A72"/>
+    <rdf:first rdf:nodeID="A73"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="#evaluated_by">
@@ -690,32 +719,36 @@
     <rdfs:subPropertyOf rdf:resource="#qualified_by"/>
     <owl:inverseOf rdf:resource="#evaluates"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A89">
-    <owl:intersectionOf rdf:nodeID="A51"/>
+  <rdf:Description rdf:nodeID="A90">
+    <owl:intersectionOf rdf:nodeID="A52"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="#promised_by">
+    <rdfs:subPropertyOf rdf:resource="#stated_by"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relates an expression to the promise over the expression</rdfs:comment>
+    <rdfs:domain rdf:resource="#Expression"/>
+    <rdfs:range rdf:resource="#Promise"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#intended_by">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A90">
-    <rdf:rest rdf:nodeID="A97"/>
+  <rdf:Description rdf:nodeID="A91">
+    <rdf:rest rdf:nodeID="A98"/>
     <rdf:first rdf:resource="#Expression"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A94">
-    <rdf:rest rdf:nodeID="A98"/>
-    <rdf:first rdf:nodeID="A75"/>
+  <rdf:Description rdf:nodeID="A95">
+    <rdf:rest rdf:nodeID="A99"/>
+    <rdf:first rdf:nodeID="A76"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Statement_In_Writing">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Not to be confused with the actual writing/document itself, which is the medium of the statement.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Communicated_Attitude"/>
-    <owl:equivalentClass rdf:nodeID="A99"/>
+    <owl:equivalentClass rdf:nodeID="A100"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A99">
-    <owl:intersectionOf rdf:nodeID="A82"/>
+  <rdf:Description rdf:nodeID="A100">
+    <owl:intersectionOf rdf:nodeID="A83"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Lie">
@@ -727,46 +760,49 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">proposes something that usually is the case, although there is no specific evidence that it is true in this particular case</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
-    <owl:equivalentClass rdf:nodeID="A64"/>
+    <owl:equivalentClass rdf:nodeID="A65"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A79">
+  <rdf:Description rdf:nodeID="A80">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:resource="#Propositional_Attitude"/>
     <owl:onProperty rdf:resource="#qualified_by"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A56">
+  <rdf:Description rdf:nodeID="A57">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#evaluated_by"/>
     <owl:someValuesFrom rdf:resource="#Evaluative_Attitude"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A92">
-    <rdf:first rdf:nodeID="A80"/>
+  <rdf:Description rdf:nodeID="A93">
+    <rdf:first rdf:nodeID="A81"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A74">
-    <rdf:first rdf:nodeID="A32"/>
+  <rdf:Description rdf:nodeID="A75">
+    <rdf:first rdf:nodeID="A33"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A95">
+  <rdf:Description rdf:nodeID="A96">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:resource="#Expression"/>
     <owl:onProperty rdf:resource="#states"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A97">
+  <rdf:Description rdf:nodeID="A98">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:nodeID="A96"/>
+    <rdf:first rdf:nodeID="A97"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A58">
+  <rdf:Description rdf:nodeID="A59">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="#stated_by"/>
     <owl:someValuesFrom rdf:resource="#Statement_In_Writing"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A5">
     <rdf:first rdf:resource="#Proposition"/>
-    <rdf:rest rdf:nodeID="A30"/>
+    <rdf:rest rdf:nodeID="A31"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Change">
+    <owl:disjointWith rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Evaluative_Attitude">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -775,31 +811,33 @@
     <rdfs:subClassOf rdf:resource="#Propositional_Attitude"/>
     <owl:equivalentClass rdf:nodeID="A0"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A91">
+  <rdf:Description rdf:nodeID="A92">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:nodeID="A22"/>
+    <rdf:first rdf:nodeID="A23"/>
   </rdf:Description>
   <rdf:Description rdf:about="#medium">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relates an expression to the medium by which it is carried or beared</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relates an expression to its medium</rdfs:comment>
     <rdfs:domain rdf:resource="#Expression"/>
     <rdfs:range rdf:resource="#Medium"/>
     <owl:inverseOf rdf:resource="#bears"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#intends">
+    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:range rdf:resource="#Intention"/>
   </rdf:Description>
   <rdf:Description rdf:about="#evaluates">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relates an evaluative attitude to the proposition being evaluated</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Evaluative_Attitude"/>
     <rdfs:range rdf:resource="#Evaluative_Proposition"/>
     <rdfs:subPropertyOf rdf:resource="#qualifies"/>
     <owl:inverseOf rdf:resource="#evaluated_by"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A98">
-    <rdf:rest rdf:nodeID="A83"/>
-    <rdf:first rdf:nodeID="A16"/>
+  <rdf:Description rdf:nodeID="A99">
+    <rdf:rest rdf:nodeID="A84"/>
+    <rdf:first rdf:nodeID="A17"/>
   </rdf:Description>
 </rdf:RDF>
 
