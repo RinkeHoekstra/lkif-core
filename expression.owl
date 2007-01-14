@@ -36,6 +36,7 @@
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="#asserted_by">
+    <rdfs:domain rdf:resource="#Expression"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:range rdf:resource="#Assertion"/>
     <rdfs:subPropertyOf rdf:resource="#stated_by"/>
@@ -564,6 +565,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
   <rdf:Description rdf:about="#declared_by">
+    <rdfs:domain rdf:resource="#Expression"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:range rdf:resource="#Declaration"/>
     <rdfs:subPropertyOf rdf:resource="#stated_by"/>
