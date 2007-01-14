@@ -9,9 +9,9 @@
     xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An ontology of time based on "Actions and Events in Interval Logc" by James F. Allen and George Ferguson, 1994.  This ontology is similar to the W3C best practices OWL-Time ontology draft of 18 May 2006 by Jerry R. Hobbs and Feng Pan (http://www.w3.org/2001/sw/BestPractices/OEP/Time-Ontology).  The difference is that we separated the meta-phisical time concepts from the parts dealing with quantitative time.  We strengthened the relations with more axioms.</rdfs:comment>
+    >An ontology of time based on "Actions and Events in Interval Logc" by James F. Allen and George Ferguson, 1994.  This ontology is similar to the W3C best practices OWL-Time ontology draft of 18 May 2006 by Jerry R. Hobbs and Feng Pan (http://www.w3.org/2001/sw/BestPractices/OEP/Time-Ontology).  Meta-physical time concepts are separated from parts dealing with quantitative time.  Relations were strengthened with more axioms.</rdfs:comment>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
   </owl:Ontology>

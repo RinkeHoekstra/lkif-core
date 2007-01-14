@@ -10,23 +10,25 @@
     xmlns:time="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl"/>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl"/>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Physical_Concept">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The physical world evolves around two main classes: physical objects and processes.
 
 In lkif-core, the physical world evolves around two main classes: physical objects and processes. Objects are pieces of matter, while matter is typed by substances. Objects have mass, extension, viz. form and aggregation state (which limits form). Objects are the specification of the notion that matter, and in particular solid objects, is what makes the physical world relatively stable and observable. We define (physical) situations in the first place by the arrangement of physical objects (entities).</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   </owl:Class>
   <owl:Class rdf:ID="Occurrence">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A consequence of our clear separation of ontology from models of situations (occurrences), is well exemplified in the two ways we look at time and space. Things happen against the canvas of space and time. This 3D canvas moving in time (or whatever metaphor) allows us to index instances of objects and processes. Time and space provide positions in time and space for objects. Positions are in general modeled in some mereological framework. However, the objects and processes as classes have time and space properties in a different way. Space occupied by an object is its inherent property of size or extension. This property was for Descartes even the critical one that separated mental (not: abstract) objects from physical ones. Processes occupy (consume) time; they take some duration. This time resource is inversely related to the consumption of energy. This distinction between position and extension is also made in various other ontologies. However, this distinction is easily obscured by the fact that the extension of an object can also be used as a reference for location. An object can be in another object. In fact, any physical object can be used as a spatial and even temporal referent. This does not refute our view that locations are occurrences. To be precise: extension is an inherent, necessary property of a physical object or process; its location is an accidental one.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Mental_Object">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Metaphor of physical concepts, i.e. the things we mentally manipulate, either in thought or memory</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Mental_Concept"/>
     </rdfs:subClassOf>
@@ -42,6 +44,8 @@ Whether this notion of intended control over mental processes and actions is an 
 The mental world is not only a reflective one based in our minds eye. We may observe the stream of conscious mental processes, but the role of the mental conceptualizations is of even more important in understanding and communicating with other people. Mental processes and attitudes (sources of intention) are in the first place the building stones for modeling the minds of other people. The intentional stance means in the first place that we attribute to others and to some extent also to many animals intentions and intention directed mental processing and belief.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Spatio_Temporal_Occurrence">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An occurrence in space-time</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Occurrence"/>
   </owl:Class>
   <owl:Class rdf:ID="Abstract_Concept">
