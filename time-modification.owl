@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.owl-ontologies.com/unnamed.owl#"
+  xml:base="http://www.owl-ontologies.com/unnamed.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Terms_modifications">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Meaning_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Coordinated_act">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Information_annex"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Deregulation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="System_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Textual_modifications">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#System_modifications">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Semantic_annotations"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Interpretation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Meaning_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Semantic_annotations">
+    <rdfs:subClassOf rdf:resource="#Modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Inforce_modifications">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Temporal_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ExpressionComponent"/>
+  <owl:Class rdf:about="#Meaning_modifications">
+    <rdfs:subClassOf rdf:resource="#Semantic_annotations"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Renewal">
+    <rdfs:subClassOf rdf:resource="#Inforce_modifications"/>
+  </owl:Class>
+  <owl:Class>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:ID="Annexed_act"/>
+      <owl:Class rdf:ID="Integrated_annex"/>
+      <owl:Class rdf:ID="Main_act"/>
+    </owl:unionOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Instant">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TemporalEntity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Retroactivity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Efficacy_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Temporal_modifications">
+    <rdfs:subClassOf rdf:resource="#Modifications"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Annexed_act">
+    <rdfs:subClassOf rdf:resource="#ExpressionComponent"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Transposition">
+    <rdfs:subClassOf rdf:resource="#System_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Interval_application">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Interval"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Dynamic_TE"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Remaking">
+    <rdfs:subClassOf rdf:resource="#System_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Dynamic_TE">
+    <rdfs:subClassOf rdf:resource="#TemporalEntity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Start_efficacy">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Efficacy_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Other">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Information_annex"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="#Annexed_act"/>
+      <owl:Class rdf:about="#Integrated_annex"/>
+    </owl:unionOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Exepction">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Scope_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Uncertain_TE">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Interval"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Instant"/>
+    <rdfs:subClassOf rdf:resource="#TemporalEntity"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Information_annex">
+    <rdfs:subClassOf rdf:resource="#Annexed_act"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Annulment">
+    <rdfs:subClassOf rdf:resource="#Inforce_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Republication">
+    <rdfs:subClassOf rdf:resource="#Information_annex"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Integration">
+    <rdfs:subClassOf rdf:resource="#Textual_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Updated_act">
+    <rdfs:subClassOf rdf:resource="#Information_annex"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Substitution">
+    <rdfs:subClassOf rdf:resource="#Textual_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Interval_efficacy">
+    <rdfs:subClassOf rdf:resource="#Dynamic_TE"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Interval"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Suspension">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Efficacy_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="#Main_act"/>
+      <owl:Class rdf:about="#Annexed_act"/>
+      <owl:Class rdf:about="#Integrated_annex"/>
+    </owl:unionOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Variation">
+    <rdfs:subClassOf rdf:resource="#Meaning_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Publication_date">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Static_TE"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Instant"/>
+  </owl:Class>
+  <owl:Class rdf:ID="End_efficacy">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Efficacy_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Relocation">
+    <rdfs:subClassOf rdf:resource="#Textual_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Scope_modifications">
+    <rdfs:subClassOf rdf:resource="#Semantic_annotations"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Interval_inforce">
+    <rdfs:subClassOf rdf:resource="#Dynamic_TE"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Interval"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Static_TE">
+    <rdfs:subClassOf rdf:resource="#TemporalEntity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Application">
+    <rdfs:subClassOf rdf:resource="#System_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Date_application">
+    <rdfs:subClassOf rdf:resource="#Instant"/>
+    <rdfs:subClassOf rdf:resource="#Dynamic_TE"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Interval">
+    <rdfs:subClassOf rdf:resource="#TemporalEntity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Prorogation_inforce">
+    <rdfs:subClassOf rdf:resource="#Inforce_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Enter_inforce_date">
+    <rdfs:subClassOf rdf:resource="#Instant"/>
+    <rdfs:subClassOf rdf:resource="#Static_TE"/>
+  </owl:Class>
+  <owl:Class rdf:ID="End_inforce">
+    <rdfs:subClassOf rdf:resource="#Inforce_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Start_inforce">
+    <rdfs:subClassOf rdf:resource="#Inforce_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ultractivity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Efficacy_modifications"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Ratification">
+    <rdfs:subClassOf rdf:resource="#System_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Integrated_annex">
+    <rdfs:subClassOf rdf:resource="#Annexed_act"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Delivery_date">
+    <rdfs:subClassOf rdf:resource="#Instant"/>
+    <rdfs:subClassOf rdf:resource="#Static_TE"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Extension">
+    <rdfs:subClassOf rdf:resource="#Scope_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Main_act">
+    <rdfs:subClassOf rdf:resource="#ExpressionComponent"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Repeal">
+    <rdfs:subClassOf rdf:resource="#Textual_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Efficacy_modifications">
+    <rdfs:subClassOf rdf:resource="#Temporal_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Prorogation_efficacy">
+    <rdfs:subClassOf rdf:resource="#Efficacy_modifications"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Norm_concerning_judgments"/>
+  <owl:ObjectProperty rdf:ID="has_efficacy">
+    <rdfs:range rdf:resource="#Interval_efficacy"/>
+    <rdfs:domain rdf:resource="#Modifications"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="has_duration">
+    <rdfs:domain rdf:resource="#Suspension"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="produce_efficacy_modification">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Repeal"/>
+          <owl:Class rdf:about="#Integration"/>
+          <owl:Class rdf:about="#Substitution"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="has_final_date">
+    <rdfs:domain rdf:resource="#Interval"/>
+    <rdfs:range rdf:resource="#Instant"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="has_application">
+    <rdfs:range rdf:resource="#Date_application"/>
+    <rdfs:domain rdf:resource="#Modifications"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="produce_inforce_modification">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Repeal"/>
+          <owl:Class rdf:about="#Integration"/>
+          <owl:Class rdf:about="#Substitution"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Renewal"/>
+          <owl:Class rdf:about="#Annulment"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="produce_textual_modification">
+    <rdfs:range rdf:resource="#End_inforce"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Annulment"/>
+          <owl:Class rdf:about="#Renewal"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="has_inforce">
+    <rdfs:range rdf:resource="#Interval_inforce"/>
+    <rdfs:domain rdf:resource="#Modifications"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="has_initial_date">
+    <rdfs:range rdf:resource="#Instant"/>
+    <rdfs:domain rdf:resource="#Interval"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="data">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:domain rdf:resource="#Instant"/>
+  </owl:DatatypeProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 2.1, Build 284)  http://protege.stanford.edu -->
