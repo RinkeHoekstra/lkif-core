@@ -10,8 +10,24 @@
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl">
   <owl:Ontology rdf:about="">
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl"/>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Created with TopBraid Composer</owl:versionInfo>
+<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+</owl:versionInfo>
+<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
+</owl:versionInfo>
+<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work. 
+
+</owl:versionInfo>
+<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
+
+Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
+Contributors: Joost Breuker (UvA), Rosella Rubino (UNIBO)
+</owl:versionInfo>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Based on the paper "Relative Places" by Maureen Donnelly, apeared in "Applied Ontology", volume 1, 1 november 2005.  http://iospress.metapress.com/link.asp?id=a8q2mlkcf5frcgah</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
