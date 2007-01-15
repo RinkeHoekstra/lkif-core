@@ -9,41 +9,38 @@
     xmlns:time="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-modification.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-action.owl"/>
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl"/>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-action.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Annulment">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="Inforce_Modification"/>
+      <owl:Class rdf:ID="In_Force_Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Static_Temporal_Entity">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Temporal_Occurrence"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A static temporal entity captures a single moment in the norm's life that is fixed over time.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Time_Period"/>
   </owl:Class>
   <owl:Class rdf:ID="Repeal">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Textual_Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Exepction">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Scope_modifications"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Meaning_modifications">
+  <owl:Class rdf:ID="Modification_of_Meaning">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See ESTRELLA deliverable 3.2</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Semantic_Annotation"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Efficacy_Interval">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The period during which a normative fragment may be either operative or inoperative, by explicit provision of the document itself. The document is said to be in a period of operation, or enforceability or efficacy, when it may or must be applied or enforced.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Dynamic_Temporal_Entity"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The period during which a normative fragment may be either operative or inoperative, by explicit provision of the document itself. The document is said to be in a period of operation, or enforceability or efficacy, when it may or must be applied or enforced.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Integration">
     <rdfs:subClassOf>
@@ -55,83 +52,91 @@
       <owl:Class rdf:about="#Textual_Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Start_efficacy">
+  <owl:Class rdf:ID="End_in_Force">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="Efficacy_Modification"/>
+      <owl:Class rdf:about="#In_Force_Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Ratification">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="System_modifications"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Application_Date">
+  <owl:Class rdf:ID="Modification_of_Scope">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The date when a modification is applied to the destination legislative document. The date can be instantaneous, in the future or in the past. Normally this date coincides with the date of efficacy of the text in which the modification takes place.</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Dynamic_Temporal_Entity"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Transposition">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#System_modifications"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="In_Force_Interval">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The period during which a normative fragment belongs to the normative system. The period of force for each fragment may change over time as a function of the modifications the document goes through.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Dynamic_Temporal_Entity"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Textual_Modification">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Modification"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#System_modifications">
+    >See ESTRELLA deliverable 3.2</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Semantic_Annotation"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Terms_modifications">
-    <rdfs:subClassOf rdf:resource="#Meaning_modifications"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Enter_in_Force_Date">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The date when a dnormative document becomes law and enters the legal system for the first time. This is the moment in the doucment's history starting from which the document can be amended, its applicability assessed, and its manner of producing an effect determined.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#Static_Temporal_Entity"/>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
-  </owl:Class>
-  <owl:Class rdf:ID="End_efficacy">
+  <owl:Class rdf:ID="Ratification">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#Efficacy_Modification"/>
+      <owl:Class rdf:ID="Modification_of_System"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="Application">
-    <rdfs:subClassOf rdf:resource="#System_modifications"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Application_Interval">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >This is the interval during which a normative document, or fragment, produces the consequences that the normative provision establishes.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
+  <owl:Class rdf:ID="Application_Date">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Dynamic_Temporal_Entity"/>
     </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The date when a modification is applied to the destination legislative document. The date can be instantaneous, in the future or in the past. Normally this date coincides with the date of efficacy of the text in which the modification takes place.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Transposition">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Modification_of_System"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="In_Force_Interval">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Dynamic_Temporal_Entity"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The period during which a normative fragment belongs to the normative system. The period of force for each fragment may change over time as a function of the modifications the document goes through.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Textual_Modification">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See ESTRELLA deliverable 3.2</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Modification"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Enter_in_Force_Date">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
+    <rdfs:subClassOf rdf:resource="#Static_Temporal_Entity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The date when a dnormative document becomes law and enters the legal system for the first time. This is the moment in the doucment's history starting from which the document can be amended, its applicability assessed, and its manner of producing an effect determined.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Exception">
+    <rdfs:subClassOf rdf:resource="#Modification_of_Scope"/>
+  </owl:Class>
+  <owl:Class rdf:ID="End_efficacy">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Efficacy_Modification"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Application">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Modification_of_System"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Application_Interval">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Dynamic_Temporal_Entity"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This is the interval during which a normative document, or fragment, produces the consequences that the normative provision establishes.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Existence_Date">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The date when the formal act by which a legislative body freezes the document into its final form, it is the time when the document can be said to have begun its existence.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
   </owl:Class>
   <owl:Class rdf:ID="Remaking">
-    <rdfs:subClassOf rdf:resource="#System_modifications"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Modification_of_System"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Renewal">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#Inforce_Modification"/>
+      <owl:Class rdf:about="#In_Force_Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Suspension">
@@ -139,39 +144,34 @@
       <owl:Class rdf:about="#Efficacy_Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="End_inforce">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Inforce_Modification"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="Deregulation">
-    <rdfs:subClassOf rdf:resource="#System_modifications"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Modification_of_System"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Retroactivity">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Efficacy_Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="Prorogation_in_Force">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#In_Force_Modification"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="Extension">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Scope_modifications"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Prorogation_inforce">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Inforce_Modification"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Scope_modifications">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Semantic_Annotation"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Modification_of_Scope"/>
   </owl:Class>
   <owl:Class rdf:ID="Publication_Date">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
+    <rdfs:subClassOf rdf:resource="#Static_Temporal_Entity"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The date when the normative document is published in the official journal designated as the source for making all such documents public and legal.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#Static_Temporal_Entity"/>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Start_in_Force">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#In_Force_Modification"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Ultractivity">
     <rdfs:subClassOf>
@@ -179,97 +179,149 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Variation">
-    <rdfs:subClassOf rdf:resource="#Meaning_modifications"/>
+    <rdfs:subClassOf rdf:resource="#Modification_of_Meaning"/>
   </owl:Class>
   <owl:Class rdf:ID="Relocation">
     <rdfs:subClassOf rdf:resource="#Textual_Modification"/>
   </owl:Class>
   <owl:Class rdf:about="#Dynamic_Temporal_Entity">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Temporal_Occurrence"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A dynamic temporal entity represents the norm in its evolution over time.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Time_Period"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Modification_of_Term">
+    <rdfs:subClassOf rdf:resource="#Modification_of_Meaning"/>
   </owl:Class>
   <owl:Class rdf:ID="Interpretation">
-    <rdfs:subClassOf rdf:resource="#Meaning_modifications"/>
+    <rdfs:subClassOf rdf:resource="#Modification_of_Meaning"/>
   </owl:Class>
-  <owl:Class rdf:about="#Inforce_Modification">
+  <owl:Class rdf:about="#In_Force_Modification">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Modifies the period of being in force of some norm</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Temporal_Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="Prorogation_Efficacy">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Efficacy_Modification"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="#Temporal_Modification">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Modifies the efficacy or being in force of some norm</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="Start_Efficacy">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Efficacy_Modification"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Delivery_Date">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
+    <rdfs:subClassOf rdf:resource="#Static_Temporal_Entity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The date when the competent authorities finalise the document by affixing their signatures to it (e.g. promulgation by the president, signature by the queen etc.) This is the date shown on the document itself: it is an objective element and clearly identifyable.</rdfs:comment>
+  </owl:Class>
   <owl:Class rdf:about="#Semantic_Annotation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See ESTRELLA deliverable 3.2</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Modification"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Modification">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See ESTRELLA deliverable 3.2</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-action.owl#Public_Act"/>
   </owl:Class>
-  <owl:Class rdf:ID="Delivery_Date">
+  <owl:Class rdf:about="#Modification_of_System">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >The date when the competent authorities finalise the document by affixing their signatures to it (e.g. promulgation by the president, signature by the queen etc.) This is the date shown on the document itself: it is an objective element and clearly identifyable.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#Static_Temporal_Entity"/>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Prorogation_efficacy">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Efficacy_Modification"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="Start_inforce">
-    <rdfs:subClassOf rdf:resource="#Inforce_Modification"/>
+    >See ESTRELLA deliverable 3.2</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Semantic_Annotation"/>
   </owl:Class>
   <owl:Class rdf:about="#Efficacy_Modification">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Modifies the efficacy period of some norm</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Temporal_Modification"/>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="duration">
-    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
     <rdfs:domain rdf:resource="#Suspension"/>
+    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="final_date">
+    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
+    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#temporal_relation"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="final_date_of"/>
     </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#temporal_relation"/>
-    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
-    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="initial_date">
+    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
+    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
+    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#temporal_relation"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="initial_date_of"/>
     </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#temporal_relation"/>
-    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
-    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="produce_inforce_modification">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Repeal"/>
+          <owl:Class rdf:about="#Integration"/>
+          <owl:Class rdf:about="#Substitution"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Renewal"/>
+          <owl:Class rdf:about="#Annulment"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="produce_textual_modification">
+    <rdfs:range rdf:resource="#End_in_Force"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Annulment"/>
+          <owl:Class rdf:about="#Renewal"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#final_date_of">
-    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
-    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
-    <owl:inverseOf rdf:resource="#final_date"/>
     <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#finishes"/>
+    <owl:inverseOf rdf:resource="#final_date"/>
+    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
+    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="application">
-    <rdfs:domain rdf:resource="#Modification"/>
     <rdfs:range rdf:resource="#Application_Date"/>
+    <rdfs:domain rdf:resource="#Modification"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="in_force">
-    <rdfs:domain rdf:resource="#Modification"/>
     <rdfs:range rdf:resource="#In_Force_Interval"/>
+    <rdfs:domain rdf:resource="#Modification"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#initial_date_of">
-    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
-    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
-    <owl:inverseOf rdf:resource="#initial_date"/>
     <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#starts"/>
+    <owl:inverseOf rdf:resource="#initial_date"/>
+    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
+    <rdfs:range rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Interval"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="efficacy">
-    <rdfs:domain rdf:resource="#Modification"/>
     <rdfs:range rdf:resource="#Efficacy_Interval"/>
+    <rdfs:domain rdf:resource="#Modification"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="produce_efficacy_modification">
     <rdfs:domain>
@@ -283,41 +335,9 @@
     </rdfs:domain>
   </owl:ObjectProperty>
   <owl:DatatypeProperty rdf:ID="date">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
     <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Moment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
   </owl:DatatypeProperty>
-  <owl:FunctionalProperty rdf:ID="produce_textual_modification">
-    <rdfs:range rdf:resource="#End_inforce"/>
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Annulment"/>
-          <owl:Class rdf:about="#Renewal"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </owl:FunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:ID="produce_inforce_modification">
-    <rdfs:range>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Renewal"/>
-          <owl:Class rdf:about="#Annulment"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:range>
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Repeal"/>
-          <owl:Class rdf:about="#Integration"/>
-          <owl:Class rdf:about="#Substitution"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </owl:InverseFunctionalProperty>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->

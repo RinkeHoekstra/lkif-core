@@ -12,176 +12,178 @@
     xmlns:place="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl#"
   xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl"/>
-<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
-This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
-</owl:versionInfo>
-<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
-LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
-</owl:versionInfo>
-<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
-The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
-
-The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work. 
-
-</owl:versionInfo>
-<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/spacetime.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
 Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
 Contributors: Joost Breuker (UvA), Rosella Rubino (UNIBO)
 </owl:versionInfo>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/spacetime.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work. 
+
+</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
+</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+</owl:versionInfo>
+    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Process">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A process is a 'causal' change: any change which can be explained through some known or understood causal structure. Every process has some Time_Period as duration.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Change"/>
+    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Time_Period"/>
+        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Temporal_Occurrence"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="resource"/>
         </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Change"/>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A process is a 'causal' change: any change which can be explained through some known or understood causal structure. Every process has some Time_Period as duration.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Physical_Object">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A physical object is a physical concept consisting of matter, it has a spatio-temporal extension.</rdfs:comment>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A physical object is a physical concept consisting of matter, it has a spatio-temporal extension.</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Physical_Concept"/>
     <owl:disjointWith>
       <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role">
+        <owl:disjointWith rdf:resource="#Physical_Object"/>
         <owl:disjointWith>
           <owl:Class rdf:about="#Change"/>
         </owl:disjointWith>
-        <owl:disjointWith rdf:resource="#Physical_Object"/>
       </rdf:Description>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Physical_Concept"/>
     <owl:disjointWith rdf:resource="#Process"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A physical object is a physical concept consisting of matter, it has a spatio-temporal extension.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Change">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A change is a difference between the situation before and after the change occurs (the event of the change). A change can be instantaneous</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part"/>
-        <owl:allValuesFrom rdf:resource="#Change"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:ID="result"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:ID="requirement"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Change"/>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A change is a difference between the situation before and after the change occurs (the event of the change). A change can be instantaneous</rdfs:comment>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="participant">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A participant is someone or something that participates in a change, i.e. is involved in a change</rdfs:comment>
+    <rdfs:range rdf:resource="#Change"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="participant_in"/>
     </owl:inverseOf>
-    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:range rdf:resource="#Change"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A participant is someone or something that participates in a change, i.e. is involved in a change</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="created_by">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that some thing is created (i.e. a result of) by a process, and exists because of the process taking place.</rdfs:comment>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="result_of"/>
-    </rdfs:subPropertyOf>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="creation"/>
     </owl:inverseOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#requirement">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A requirement relation relates the process with a prerequisite for that process: without it the process cannot occur</rdfs:comment>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="requirement_of"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="#participant"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="resource_for">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that some participant is a resource for a process</rdfs:comment>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="#resource"/>
-    </owl:inverseOf>
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#participant_in"/>
+      <owl:ObjectProperty rdf:ID="result_of"/>
     </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#result">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that some participant is the result of the process, it might have existed before the process took place, but is in some way altered</rdfs:comment>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="#result_of"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="#participant"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#requirement_of">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that some participant is a requirement for a process</rdfs:comment>
-    <owl:inverseOf rdf:resource="#requirement"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#participant_in"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#creation">
-    <rdfs:subPropertyOf rdf:resource="#result"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that some thing is created (i.e. a result of) by a process, and exists because of the process taking place.</rdfs:comment>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#requirement">
+    <rdfs:subPropertyOf rdf:resource="#participant"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="requirement_of"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A requirement relation relates the process with a prerequisite for that process: without it the process cannot occur</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="resource_for">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#participant_in"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#resource"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some participant is a resource for a process</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#result">
+    <rdfs:subPropertyOf rdf:resource="#participant"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#result_of"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some participant is the result of the process, it might have existed before the process took place, but is in some way altered</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#requirement_of">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#participant_in"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="#requirement"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some participant is a requirement for a process</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#creation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some thing is created (i.e. a result of) by a process, and exists because of the process taking place.</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#result"/>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#resource">
+    <rdfs:subPropertyOf rdf:resource="#participant"/>
+    <owl:inverseOf rdf:resource="#resource_for"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A resource is some quantity of something used to perform the action: i.e. time, energy</rdfs:comment>
-    <owl:inverseOf rdf:resource="#resource_for"/>
-    <rdfs:subPropertyOf rdf:resource="#participant"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#participant_in">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that some thing participates in a process</rdfs:label>
-    <owl:inverseOf rdf:resource="#participant"/>
-    <rdfs:domain rdf:resource="#Change"/>
     <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:domain rdf:resource="#Change"/>
+    <owl:inverseOf rdf:resource="#participant"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that someone or something participates in a change</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#result_of">
+    <rdfs:subPropertyOf rdf:resource="#participant_in"/>
+    <owl:inverseOf rdf:resource="#result"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that some participant is the result of a process, it might have existed before the process took place, but is in some way altered (an 'inanimate' goal of an act)</rdfs:comment>
-    <owl:inverseOf rdf:resource="#result"/>
-    <rdfs:subPropertyOf rdf:resource="#participant_in"/>
   </owl:ObjectProperty>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action">
-    <rdfs:subClassOf rdf:resource="#Process"/>
     <owl:disjointWith rdf:resource="#Physical_Object"/>
+    <rdfs:subClassOf rdf:resource="#Process"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent">
+    <owl:disjointWith rdf:resource="#Process"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="#Process"/>
         <owl:onProperty rdf:resource="#participant_in"/>
+        <owl:allValuesFrom rdf:resource="#Process"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#Process"/>
   </rdf:Description>
 </rdf:RDF>
 
