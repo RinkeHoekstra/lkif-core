@@ -101,8 +101,6 @@
   <owl:Class rdf:about="#Role">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A role is a specification of default behavior and accompanying expectations of the thing 'playing' the role. Similar to actors in a theater who play roles, but are not the roles. Example: student.</rdfs:comment>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >TODO(1): Need to decide on Roles vs. Agents (Public-Body: role or agent?)</owl:versionInfo>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
