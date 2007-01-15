@@ -23,7 +23,7 @@ The use of this ontology, and the OWL files through which it is distributed, is 
 Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
-Contributors: Joost Breuker (UvA), Rosella Rubino (UNIBO)
+Contributors: Joost Breuker (UvA)
 </owl:versionInfo>
   </owl:Ontology>
   <rdfs:Class rdf:ID="Restriction">

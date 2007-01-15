@@ -440,10 +440,10 @@
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This file defines a number of types of what is commonly called a propositional attitude (PA). These relate propositional content to the proposition expressing the content. A subdivision of the propositional attitudes are the mental attitudes (see e.g. Cugola, 1996), types of propositions in the mind. Another category is the PA of an act of communication.</rdfs:comment>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
-	Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
+	Partner contributions from the University of Amsterdam (UvA) and the Fraunhofer institute (FOKUS).
 
 	Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
-	Contributors: Joost Breuker (UvA), Rosella Rubino (UNIBO)
+	Contributors: Joost Breuker (UvA), Thomas Gordon (FOKUS)
 	</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
 	The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org

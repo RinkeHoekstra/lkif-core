@@ -26,7 +26,7 @@ The use of this ontology, and the OWL files through which it is distributed, is 
 Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
-Contributors: Joost Breuker (UvA), Rosella Rubino (UNIBO)
+Contributors: Joost Breuker (UvA)
 </owl:versionInfo>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Based on the paper "Relative Places" by Maureen Donnelly, apeared in "Applied Ontology", volume 1, 1 november 2005.  http://iospress.metapress.com/link.asp?id=a8q2mlkcf5frcgah</rdfs:comment>
