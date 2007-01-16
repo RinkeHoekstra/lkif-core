@@ -18,7 +18,7 @@
 Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
-Contributors: Joost Breuker (UvA)
+Contributors: Joost Breuker (UvA), Rosella Rubino (UNIBO)
 </owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
@@ -62,6 +62,8 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Private_Legal_Person"/>
     </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A voluntary association (also sometimes called an unincorporated association, or just an association) is a group of individuals who voluntarily enter into an agreement to form a body (or organization) to accomplish a purpose.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Legal_Person">
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Organisation"/>
@@ -101,7 +103,7 @@ A legal entity is not necessarily distinct from the natural persons of which it 
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:ID="Corporated"/>
+          <owl:Class rdf:ID="Unincorporated"/>
           <owl:Class rdf:ID="Foundation"/>
           <owl:Class rdf:ID="Incorporated"/>
         </owl:unionOf>
@@ -109,25 +111,19 @@ A legal entity is not necessarily distinct from the natural persons of which it 
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="#Private_Legal_Person"/>
     <owl:disjointWith rdf:resource="#Public_Body"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A corporation is a legal entity which, while being composed of natural persons, exists completely separately from them. This separation gives the corporation unique powers which other legal entities lack. </rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Foundation">
     <owl:disjointWith>
       <owl:Class rdf:about="#Incorporated"/>
     </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Corporated"/>
-    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A kind of (philanthropic) organization, set up as a legal entity either by individuals or institutions, with the purpose of distributing grants to support causes in line with the goals of the foundation</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Corporation"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Corporated">
-    <owl:disjointWith rdf:resource="#Foundation"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Incorporated"/>
+      <owl:Class rdf:about="#Unincorporated"/>
     </owl:disjointWith>
-    <owl:equivalentClass>
-      <owl:Class rdf:ID="Limited_Company"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Corporation"/>
   </owl:Class>
   <owl:Class rdf:ID="Mandate">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -156,17 +152,25 @@ A legal entity is not necessarily distinct from the natural persons of which it 
   </owl:Class>
   <owl:Class rdf:about="#Incorporated">
     <owl:disjointWith rdf:resource="#Foundation"/>
-    <owl:disjointWith rdf:resource="#Corporated"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An organisation formed into a legal corporation</rdfs:comment>
     <owl:equivalentClass>
       <owl:Class rdf:ID="Public_Limited_Company"/>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="#Corporation"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Unincorporated"/>
+    </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:about="#Limited_Company">
-    <owl:equivalentClass rdf:resource="#Corporated"/>
+  <owl:Class rdf:ID="Limited_Company">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A limited company is a corporation whose liability is limited by law</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Company"/>
     </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#Unincorporated"/>
+    </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="#Public_Act">
     <owl:equivalentClass>
@@ -198,6 +202,12 @@ A legal entity is not necessarily distinct from the natural persons of which it 
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A public act is an act by some Person or Organisation which creates (at least) a communicated attitude (and thereby an expression)</rdfs:comment>
   </owl:Class>
+  <owl:Class rdf:about="#Unincorporated">
+    <rdfs:subClassOf rdf:resource="#Corporation"/>
+    <owl:equivalentClass rdf:resource="#Limited_Company"/>
+    <owl:disjointWith rdf:resource="#Incorporated"/>
+    <owl:disjointWith rdf:resource="#Foundation"/>
+  </owl:Class>
   <owl:Class rdf:about="#Company">
     <owl:equivalentClass>
       <owl:Class>
@@ -208,6 +218,8 @@ A legal entity is not necessarily distinct from the natural persons of which it 
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="#Private_Legal_Person"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A company refers to a legal entity formed which has a separate legal identity from its members, and is ordinarily incorporated to undertake commercial business. Although some jurisdictions refer to unincorporated entities as companies, in most jurisdictions the term refers only to incorporated entities. </rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Assignment">
     <owl:equivalentClass>
@@ -236,8 +248,12 @@ A legal entity is not necessarily distinct from the natural persons of which it 
         </owl:someValuesFrom>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Assignment: A public act that attributes a power to perform a public act to a public body.</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
+        <owl:someValuesFrom rdf:resource="#Public_Body"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="#Public_Act"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Legal_Speech_Act"/>
@@ -248,12 +264,8 @@ A legal entity is not necessarily distinct from the natural persons of which it 
         <owl:allValuesFrom rdf:resource="#Public_Body"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor"/>
-        <owl:someValuesFrom rdf:resource="#Public_Body"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A public act that attributes a power to perform a public act to a public body.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Decision">
     <rdfs:subClassOf>
@@ -267,8 +279,8 @@ A legal entity is not necessarily distinct from the natural persons of which it 
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Promise"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#qualifies"/>
                 <owl:someValuesFrom rdf:resource="#Public_Act"/>
+                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#towards"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -295,8 +307,8 @@ A legal entity is not necessarily distinct from the natural persons of which it 
             <owl:intersectionOf rdf:parseType="Collection">
               <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Statement_In_Writing"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#qualifies"/>
                 <owl:someValuesFrom rdf:resource="#Public_Act"/>
+                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#towards"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -318,6 +330,8 @@ A legal entity is not necessarily distinct from the natural persons of which it 
     >A legislature is a type of (representative) deliberative assembly with the power to adopt laws.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Natural_Person">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A natural person is a human being perceptible through the senses and subject to physical laws, as opposed to an artificial person, i.e., an organization that the law treats for some purposes as if it were a person distinct from its members or owner.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
     <owl:equivalentClass rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
     <owl:disjointWith rdf:resource="#Legal_Person"/>
@@ -327,11 +341,15 @@ A legal entity is not necessarily distinct from the natural persons of which it 
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PLC</rdfs:label>
     <rdfs:subClassOf rdf:resource="#Company"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Similar to the US corporation, offers several advantages over trading as sole trader.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Co-operative">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#Society"/>
     </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An autonomous association of persons united voluntarily to meet their common economic, social, and cultural needs and aspirations through a jointly-owned and democratically-controlled enterprise.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Legal_Speech_Act">
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Speech_Act"/>
@@ -341,11 +359,12 @@ A legal entity is not necessarily distinct from the natural persons of which it 
   <owl:Class rdf:about="#Society">
     <owl:equivalentClass rdf:resource="#Association"/>
     <rdfs:subClassOf rdf:resource="#Private_Legal_Person"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An organized group of people associated together for religious, benevolent, cultural, scientific, political, patriotic, or other purposes.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Act_of_Law">
-    <rdfs:subClassOf rdf:resource="#Public_Act"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Act of law: a public act by a legislative body which creates a work and expression with legal status; the legal status depends on the jurisdiction of the legislative body.</rdfs:comment>
+    >Act of law: a public act by a legislative body which creates an expression with legal status; the legal status depends on the jurisdiction of the legislative body.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Legal_Speech_Act"/>
     <owl:equivalentClass>
       <owl:Restriction>
