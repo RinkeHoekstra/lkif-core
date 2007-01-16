@@ -12,19 +12,23 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An ontology of time based on "Actions and Events in Interval Logc" by James F. Allen and George Ferguson, 1994.  This ontology is similar to the W3C best practices OWL-Time ontology draft of 18 May 2006 by Jerry R. Hobbs and Feng Pan (http://www.w3.org/2001/sw/BestPractices/OEP/Time-Ontology).  Meta-physical time concepts are separated from parts dealing with quantitative time.  Relations were strengthened with more axioms.</rdfs:comment>
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl"/>
-<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
 This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 </owl:versionInfo>
-<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
 LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
 </owl:versionInfo>
-<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
 The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
 
 The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work. 
 
 </owl:versionInfo>
-<owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
 Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
@@ -32,48 +36,40 @@ Contributors: Joost Breuker (UvA)
 </owl:versionInfo>
   </owl:Ontology>
   <owl:Class rdf:ID="Pair_Of_Periods">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A pair of two time periods</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A pair of two time periods</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#component"/>
         <owl:allValuesFrom>
-          <owl:Class rdf:ID="Time_Period"/>
+          <owl:Class rdf:ID="Temporal_Occurrence"/>
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Pair"/>
   </owl:Class>
   <owl:Class rdf:ID="Moment">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A moment is an atomic period of time, i.e. it cannot be divided into other parts</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Time_Period"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A moment is an atomic period of time, i.e. it cannot be divided into other parts</rdfs:comment>
     <owl:disjointWith>
       <owl:Class rdf:ID="Interval"/>
     </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:ID="Event">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Interval">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An interval is a composition of multiple periods of time.</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An interval between two </rdfs:comment>
-    <owl:disjointWith rdf:resource="#Moment"/>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#Time_Period"/>
+      <owl:Class rdf:about="#Temporal_Occurrence"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#Time_Period">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A period of time, has a duration</rdfs:label>
+  <owl:Class rdf:about="#Interval">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A period of time</rdfs:comment>
+    >An interval is a composition of multiple periods of time.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Temporal_Occurrence"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Moment"/>
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Temporal_Occurrence">
+    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -81,29 +77,30 @@ Contributors: Joost Breuker (UvA)
             <owl:onProperty>
               <owl:ObjectProperty rdf:ID="immediatly_after"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="#Time_Period"/>
+            <owl:someValuesFrom rdf:resource="#Temporal_Occurrence"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty>
               <owl:ObjectProperty rdf:ID="immediatly_before"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="#Time_Period"/>
+            <owl:someValuesFrom rdf:resource="#Temporal_Occurrence"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A period of time, has a duration</rdfs:comment>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="during">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period occurs during another period</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period occurs during another period</rdfs:comment>
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:ID="temporal_relation"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#immediatly_after">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period occurs immediately after another period, i.e. it starts where the other period ends</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period occurs immediately after another period, i.e. it starts where the other period ends</rdfs:comment>
     <rdfs:subPropertyOf>
       <owl:TransitiveProperty rdf:ID="after"/>
     </rdfs:subPropertyOf>
@@ -112,33 +109,34 @@ Contributors: Joost Breuker (UvA)
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#immediatly_before"/>
     </owl:inverseOf>
-    <rdfs:range rdf:resource="#Time_Period"/>
-    <rdfs:domain rdf:resource="#Time_Period"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >'is_met_by' is renamed to 'immediatly_after'</rdfs:comment>
+    <rdfs:range rdf:resource="#Temporal_Occurrence"/>
+    <rdfs:domain rdf:resource="#Temporal_Occurrence"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="preceeds">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period preceeds another period, the periods do not overlap</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period preceeds another period, the periods do not overlap</rdfs:comment>
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#temporal_relation"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="between">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period occurs between two other periods</rdfs:label>
-    <rdfs:domain rdf:resource="#Time_Period"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period occurs between two other periods</rdfs:comment>
+    <rdfs:range rdf:resource="#Pair_Of_Periods"/>
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#temporal_relation"/>
     </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="#Pair_Of_Periods"/>
+    <rdfs:domain rdf:resource="#Temporal_Occurrence"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#immediatly_before">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period occurs immediately before another period, i.e. it ends where the other period starts</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period occurs immediately before another period, i.e. it ends where the other period starts</rdfs:comment>
     <owl:inverseOf rdf:resource="#immediatly_after"/>
-    <rdfs:domain rdf:resource="#Time_Period"/>
-    <rdfs:range rdf:resource="#Time_Period"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >'meet' in Allen's paper is replaced by 'immediatly_before'</rdfs:comment>
+    <rdfs:domain rdf:resource="#Temporal_Occurrence"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >t1 previous t2: interval t1 is before t2, but there is no interval between them, i.e., t1 ends where t2 starts</rdfs:comment>
     <rdfs:subPropertyOf>
@@ -146,56 +144,55 @@ Contributors: Joost Breuker (UvA)
     </rdfs:subPropertyOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Add to OWL 1.1: 'immediatly_before' is serial, 'immediatly_before' is irreflexive</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >'meet' in Allen's paper is replaced by 'immediatly_before'</rdfs:comment>
+    <rdfs:range rdf:resource="#Temporal_Occurrence"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="overlap">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period overlaps with another time period (in any way)</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period overlaps with another time period (in any way)</rdfs:comment>
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#temporal_relation"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#before">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period occurs before another period, but might overlap with it.</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period occurs before another period, but might overlap with it.</rdfs:comment>
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#temporal_relation"/>
     </rdfs:subPropertyOf>
-    <rdfs:domain rdf:resource="#Time_Period"/>
-    <rdfs:range rdf:resource="#Time_Period"/>
+    <rdfs:domain rdf:resource="#Temporal_Occurrence"/>
     <owl:inverseOf>
       <owl:TransitiveProperty rdf:about="#after"/>
     </owl:inverseOf>
+    <rdfs:range rdf:resource="#Temporal_Occurrence"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="start">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period starts another period, i.e. the other period starts at the same time, but ends at a later time.</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period starts another period, i.e. the other period starts at the same time, but ends at a later time.</rdfs:comment>
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#temporal_relation"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#temporal_relation">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A relation between two time periods</rdfs:label>
-    <rdfs:domain rdf:resource="#Time_Period"/>
-    <rdfs:range rdf:resource="#Time_Period"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A relation between two time periods</rdfs:comment>
+    <rdfs:domain rdf:resource="#Temporal_Occurrence"/>
+    <rdfs:range rdf:resource="#Temporal_Occurrence"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="finish">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period finishes another period, i.e. the other period starts before, but ends at the same moment </rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period finishes another period, i.e. the other period starts before, but ends at the same moment </rdfs:comment>
     <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
   </owl:ObjectProperty>
   <owl:TransitiveProperty rdf:about="#after">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that a time period occurs after another period, but might overlap with it.</rdfs:label>
-    <rdfs:range rdf:resource="#Time_Period"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that a time period occurs after another period, but might overlap with it.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Temporal_Occurrence"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >'after' is the transitive closure of 'next'; this is defined in time-rules.owl.</rdfs:comment>
     <rdfs:subPropertyOf rdf:resource="#temporal_relation"/>
-    <rdfs:domain rdf:resource="#Time_Period"/>
     <owl:inverseOf rdf:resource="#before"/>
+    <rdfs:range rdf:resource="#Temporal_Occurrence"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </owl:TransitiveProperty>
 </rdf:RDF>
