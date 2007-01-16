@@ -18,7 +18,7 @@
       <owl:Ontology rdf:about="&lkif-top;"/>
     </owl:imports>
     <owl:versionInfo rdf:datatype="&xsd;string">LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium</owl:versionInfo>
-    <owl:versionInfo rdf:datatype="&xsd;string">Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
+    <owl:versionInfo rdf:datatype="&xsd;string">Partner contributions from the University of Amsterdam (UvA)
 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
 Contributors: Joost Breuker (UvA)</owl:versionInfo>

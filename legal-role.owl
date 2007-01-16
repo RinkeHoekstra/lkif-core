@@ -11,9 +11,9 @@
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-action.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
+Partner contributions from the University of Amsterdam (UvA).
 
-Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
+Authors:      Rinke Hoekstra (UvA)
 Contributors: Joost Breuker (UvA)
 </owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"

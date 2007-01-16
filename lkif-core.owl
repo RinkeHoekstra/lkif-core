@@ -23,10 +23,10 @@ The use of this ontology, and the OWL files through which it is distributed, is 
 
 </owl:versionInfo>
 <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
-Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
+Partner contributions from the University of Amsterdam (UvA), the University of Bologna (UNIBO) and the Fraunhofer institute (FOKUS)
 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
-Contributors: Joost Breuker (UvA)
+Contributors: Joost Breuker (UvA), Thomas Gordon (FOKUS), Monica Palmirani (UNIBO), Rosella Rubino (UNIBO)
 </owl:versionInfo>
     <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-action.owl"/>
   </owl:Ontology>
