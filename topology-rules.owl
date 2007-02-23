@@ -2,33 +2,33 @@
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:topology="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl#"
+    xmlns:topology="http://www.estrellaproject.org/lkif-core/topology.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology-rules.owl#"
+    xmlns="http://www.estrellaproject.org/lkif-core/topology-rules.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-    xmlns:meta="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/meta-property.owl#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology-rules.owl">
+    xmlns:meta="http://www.estrellaproject.org/lkif-core/meta-property.owl#"
+  xml:base="http://www.estrellaproject.org/lkif-core/topology-rules.owl">
   <owl:Ontology rdf:about="">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl"/>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/meta-property.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/topology.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/meta-property.owl"/>
   </owl:Ontology>
-  <owl:TransitiveProperty rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl#before">
+  <owl:TransitiveProperty rdf:about="http://www.estrellaproject.org/lkif-core/topology.owl#before">
     <owl:inverseOf>
-      <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl#after">
-        <meta:disjoint_with rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl#before"/>
+      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/topology.owl#after">
+        <meta:disjoint_with rdf:resource="http://www.estrellaproject.org/lkif-core/topology.owl#before"/>
       </rdf:Description>
     </owl:inverseOf>
   </owl:TransitiveProperty>
-  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl#disconnected">
+  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/topology.owl#disconnected">
     <meta:disjoint_with>
-      <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl#reachable">
-        <meta:disjoint_with rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl#disconnected"/>
+      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/topology.owl#reachable">
+        <meta:disjoint_with rdf:resource="http://www.estrellaproject.org/lkif-core/topology.owl#disconnected"/>
         <meta:union_of rdf:parseType="Collection">
-          <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl#indirectly_reachable"/>
-          <meta:Reflexive_Property rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/topology.owl#meet"/>
+          <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/topology.owl#indirectly_reachable"/>
+          <meta:Reflexive_Property rdf:about="http://www.estrellaproject.org/lkif-core/topology.owl#meet"/>
         </meta:union_of>
       </rdf:Description>
     </meta:disjoint_with>

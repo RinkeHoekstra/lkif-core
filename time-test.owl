@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:mereo="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-test.owl#"
+    xmlns:mereo="http://www.estrellaproject.org/lkif-core/mereology.owl#"
+    xmlns="http://www.estrellaproject.org/lkif-core/time-test.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:timerule="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-rules.owl#"
+    xmlns:timerule="http://www.estrellaproject.org/lkif-core/time-rules.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-    xmlns:time="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-test.owl">
+    xmlns:time="http://www.estrellaproject.org/lkif-core/time.owl#"
+  xml:base="http://www.estrellaproject.org/lkif-core/time-test.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-rules.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time-rules.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Test_6">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -72,7 +72,7 @@ WHERE { { ?subject time:after ?object.
         <rdf:type rdf:resource="#Test_6"/>
       </time:Temporal_Occurrence>
     </mereo:component>
-    <rdf:type rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#Pair_Of_Periods"/>
+    <rdf:type rdf:resource="http://www.estrellaproject.org/lkif-core/time.owl#Pair_Of_Periods"/>
   </Test_6>
   <time:Temporal_Occurrence rdf:ID="t4--period2">
     <time:after>
@@ -93,7 +93,7 @@ WHERE { { ?subject time:after ?object.
     <rdf:type rdf:resource="#Test_4"/>
   </time:Temporal_Occurrence>
   <time:Temporal_Occurrence rdf:ID="test1-c--rule-components-meet">
-    <rdf:type rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition"/>
+    <rdf:type rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Composition"/>
   </time:Temporal_Occurrence>
   <time:Temporal_Occurrence rdf:ID="t5--period1">
     <time:immediatly_after>

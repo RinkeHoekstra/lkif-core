@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:laction="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-action.owl#"
-    xmlns:modification="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-modification.owl#"
+    xmlns:laction="http://www.estrellaproject.org/lkif-core/legal-action.owl#"
+    xmlns:modification="http://www.estrellaproject.org/lkif-core/time-modification.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-core.owl#"
+    xmlns="http://www.estrellaproject.org/lkif-core/lkif-core.owl#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:norm="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl#"
+    xmlns:norm="http://www.estrellaproject.org/lkif-core/norm.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-    xmlns:rules="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-rules.owl#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-core.owl">
+    xmlns:rules="http://www.estrellaproject.org/lkif-core/lkif-rules.owl#"
+  xml:base="http://www.estrellaproject.org/lkif-core/lkif-core.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-rules.owl"/>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time-modification.owl"/>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/legal-action.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-rules.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time-modification.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
 Partner contributions from the University of Amsterdam (UvA), the University of Bologna (UNIBO) and the Fraunhofer institute (FOKUS)

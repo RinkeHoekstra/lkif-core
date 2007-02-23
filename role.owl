@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#"
-    xmlns:action="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
+    xmlns="http://www.estrellaproject.org/lkif-core/role.owl#"
+    xmlns:action="http://www.estrellaproject.org/lkif-core/action.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl">
+  xml:base="http://www.estrellaproject.org/lkif-core/role.owl">
   <owl:Ontology rdf:about="">
 <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
 This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
@@ -26,7 +26,7 @@ Partner contributions from the University of Amsterdam (UvA).
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA)
 Contributors: Joost Breuker (UvA)
 </owl:versionInfo>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Organisation_Role">
     <rdfs:subClassOf>
@@ -34,7 +34,7 @@ Contributors: Joost Breuker (UvA)
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent">
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Agent">
                 <owl:disjointWith>
                   <owl:Class rdf:ID="Role"/>
                 </owl:disjointWith>
@@ -50,8 +50,8 @@ Contributors: Joost Breuker (UvA)
                 </rdfs:subClassOf>
               </rdf:Description>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Organisation"/>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part_of"/>
+                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Organisation"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#part_of"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -69,10 +69,10 @@ Contributors: Joost Breuker (UvA)
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Organisation"/>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part_of"/>
+                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Organisation"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#part_of"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -102,7 +102,7 @@ Contributors: Joost Breuker (UvA)
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#played_by"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Person"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf>
@@ -110,7 +110,7 @@ Contributors: Joost Breuker (UvA)
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#played_by"/>
         </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Person"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Person"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -125,7 +125,7 @@ Contributors: Joost Breuker (UvA)
         <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Concept"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Concept"/>
   </owl:Class>
   <owl:Class rdf:about="#Social_Role">
     <rdfs:subClassOf rdf:resource="#Role"/>
@@ -139,7 +139,7 @@ Contributors: Joost Breuker (UvA)
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#played_by"/>
         </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
@@ -147,24 +147,24 @@ Contributors: Joost Breuker (UvA)
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
               <owl:Restriction>
                 <owl:someValuesFrom>
                   <owl:Class>
                     <owl:intersectionOf rdf:parseType="Collection">
-                      <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Action">
+                      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Action">
                         <owl:disjointWith rdf:resource="#Role"/>
                       </rdf:Description>
                       <owl:Restriction>
                         <owl:onProperty>
                           <owl:ObjectProperty rdf:about="#plays"/>
                         </owl:onProperty>
-                        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expectation"/>
+                        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Expectation"/>
                       </owl:Restriction>
                     </owl:intersectionOf>
                   </owl:Class>
                 </owl:someValuesFrom>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#actor_in"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#actor_in"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -187,9 +187,9 @@ Contributors: Joost Breuker (UvA)
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
               <owl:Class>
-                <owl:complementOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
+                <owl:complementOf rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
               </owl:Class>
             </owl:intersectionOf>
           </owl:Class>
@@ -205,9 +205,9 @@ Contributors: Joost Breuker (UvA)
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
               <owl:Class>
-                <owl:complementOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#Agent"/>
+                <owl:complementOf rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
               </owl:Class>
             </owl:intersectionOf>
           </owl:Class>
@@ -220,7 +220,7 @@ Contributors: Joost Breuker (UvA)
     >The role of something used in a reasoning/inference process</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#played_by"/>
         </owl:onProperty>
@@ -232,7 +232,7 @@ Contributors: Joost Breuker (UvA)
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#played_by"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object"/>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>

@@ -3,12 +3,12 @@
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:expression="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#"
+    xmlns:expression="http://www.estrellaproject.org/lkif-core/expression.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-rules.owl#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-rules.owl">
+    xmlns="http://www.estrellaproject.org/lkif-core/lkif-rules.owl#"
+  xml:base="http://www.estrellaproject.org/lkif-core/lkif-rules.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
 	This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
@@ -41,13 +41,13 @@
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Atom"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Exception"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Exception"/>
   </owl:Class>
   <owl:Class rdf:ID="Negated_Atom">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
@@ -55,23 +55,23 @@
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expression"/>
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A negated atom is the negation of some other atom (cf. Deliverable 1.1)</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role"/>
   </owl:Class>
   <owl:Class rdf:about="#Atom">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
@@ -79,28 +79,28 @@
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expression"/>
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An atom is the most basic (undivisible) part of an LKIF rule (cf. Deliverable 1.1)</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role"/>
   </owl:Class>
   <owl:Class rdf:ID="Assumption">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An assumption is some atom held to be true, without proof, in the head of a rule (defeasibly), cf. Deliverable 1.1</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Atom"/>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Assumption"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Assumption"/>
   </owl:Class>
   <owl:Class rdf:ID="Argument">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An argument is some rule used in argumentation (cf. Deliverable 1.1)</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Argument"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Argument"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Rule"/>
     </rdfs:subClassOf>
@@ -110,8 +110,8 @@
     >An LKIF rule, based on swrl:Impl</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
@@ -119,23 +119,23 @@
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expression"/>
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Composition"/>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Epistemic_Role"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role"/>
   </owl:Class>
   <owl:Class rdf:ID="Valid_Rule">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A valid LKIF rule</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
@@ -143,12 +143,12 @@
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expression"/>
-              <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Composition"/>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="#Rule"/>
@@ -159,7 +159,7 @@
     <rdfs:range>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Rule"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
       </owl:Restriction>
     </rdfs:range>
     <rdfs:subPropertyOf>
@@ -172,7 +172,7 @@
     <rdfs:range>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Atom"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
       </owl:Restriction>
     </rdfs:range>
     <rdfs:subPropertyOf>
@@ -183,7 +183,7 @@
     <rdfs:range>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Rule"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
       </owl:Restriction>
     </rdfs:range>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -198,7 +198,7 @@
     <rdfs:range>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Atom"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
       </owl:Restriction>
     </rdfs:range>
     <rdfs:subPropertyOf>
@@ -218,13 +218,13 @@
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
       </owl:Restriction>
     </rdfs:range>
     <rdfs:domain>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Rule"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
       </owl:Restriction>
     </rdfs:domain>
   </owl:ObjectProperty>

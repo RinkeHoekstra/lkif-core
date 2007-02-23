@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:process="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl#"
+    xmlns:process="http://www.estrellaproject.org/lkif-core/process.owl#"
+    xmlns="http://www.estrellaproject.org/lkif-core/action.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:expression="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#"
+    xmlns:expression="http://www.estrellaproject.org/lkif-core/expression.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/action.owl">
+  xml:base="http://www.estrellaproject.org/lkif-core/action.owl">
   <owl:Ontology rdf:about="">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Currently this module does not commit to any particular theory on/framework of thematic roles (i.e. subproperties of participant). This has consequences for the detail in which actions are described in this ontology.</rdfs:comment>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
 Partner contributions from the University of Amsterdam (UvA).
@@ -35,7 +35,7 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
     >
 This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 </owl:versionInfo>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Personal_Plan">
     <rdfs:subClassOf>
@@ -48,7 +48,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="Natural_Object">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
     <owl:disjointWith>
       <owl:Class rdf:ID="Artifact"/>
     </owl:disjointWith>
@@ -66,8 +66,8 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     >An agent is any owl:Thing which can act, i.e. play the 'actor' role wrt. an action</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#holds"/>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Concept"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#holds"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Concept"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -86,7 +86,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     >A plan is a structure of multiple other plans or actions. These can be both sequential or concurrent. Usually a plan is referred to in the context of the intention to act of some agent, however when executed the plan itself comes into effect.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#part"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -99,13 +99,13 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#part"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#Action"/>
         </owl:someValuesFrom>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Mental_Object"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
   </owl:Class>
   <owl:Class rdf:about="#Action">
     <rdfs:subClassOf>
@@ -126,11 +126,11 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="#Agent"/>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
               </owl:Restriction>
               <owl:Restriction>
-                <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Intention"/>
+                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Intention"/>
                 <owl:onProperty>
                   <owl:ObjectProperty rdf:ID="intends"/>
                 </owl:onProperty>
@@ -139,15 +139,15 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
                 <owl:someValuesFrom>
                   <owl:Class>
                     <owl:intersectionOf rdf:parseType="Collection">
-                      <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Belief"/>
+                      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Belief"/>
                       <owl:Restriction>
-                        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expectation"/>
-                        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+                        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Expectation"/>
+                        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
                       </owl:Restriction>
                     </owl:intersectionOf>
                   </owl:Class>
                 </owl:someValuesFrom>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#believes"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#believes"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -172,7 +172,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
   <owl:Class rdf:ID="Initiation">
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#result"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#result"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="Continuation"/>
         </owl:someValuesFrom>
@@ -180,7 +180,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part_of"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#direct_part_of"/>
         <owl:someValuesFrom rdf:resource="#Action"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -194,7 +194,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <rdfs:subClassOf rdf:resource="#Action"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#requirement"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#requirement"/>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#Continuation"/>
         </owl:someValuesFrom>
@@ -202,7 +202,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part_of"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#direct_part_of"/>
         <owl:someValuesFrom rdf:resource="#Action"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -212,8 +212,8 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     >A speech act (or illocutionary act) creates some propositional attitude which qualifies an expression (which by default is mediated through some medium). The actor of the speech act is the utterer of the atitude (NB cannot be expressed in OWL DL).</rdfs:comment>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Communicated_Attitude"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#creation"/>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Communicated_Attitude"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#creation"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf>
@@ -226,19 +226,19 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <rdfs:subClassOf rdf:resource="#Action"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part_of"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#direct_part_of"/>
         <owl:someValuesFrom rdf:resource="#Action"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#result"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#result"/>
         <owl:someValuesFrom rdf:resource="#Termination"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#requirement"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#requirement"/>
         <owl:someValuesFrom rdf:resource="#Initiation"/>
       </owl:Restriction>
     </owl:equivalentClass>
@@ -246,14 +246,14 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
   <owl:Class rdf:ID="Transaction">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#direct_part"/>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >2</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#direct_part"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#direct_part"/>
         <owl:someValuesFrom rdf:resource="#Action"/>
       </owl:Restriction>
     </owl:equivalentClass>
@@ -269,11 +269,11 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-        <owl:allValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Role"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#Physical_Object"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A physical object created by some person to fulfill a particular purpose</rdfs:comment>
     <owl:disjointWith rdf:resource="#Natural_Object"/>
@@ -281,11 +281,11 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-            <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Function"/>
+            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Function"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#result_of"/>
+            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#result_of"/>
             <owl:someValuesFrom>
               <owl:Class rdf:about="#Creation"/>
             </owl:someValuesFrom>
@@ -316,7 +316,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <rdfs:subClassOf rdf:resource="#Agent"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#member"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#member"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -327,8 +327,8 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
                 </owl:unionOf>
               </owl:Class>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
-                <owl:someValuesFrom rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#Organisation_Role"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Organisation_Role"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -337,7 +337,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#member"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#member"/>
         <owl:someValuesFrom rdf:resource="#Person"/>
       </owl:Restriction>
     </owl:equivalentClass>
@@ -346,13 +346,13 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#creation"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#creation"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#creation"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#creation"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -375,24 +375,24 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="#Agent"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#observes"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#observes"/>
                 <owl:someValuesFrom>
                   <owl:Class>
                     <owl:intersectionOf rdf:parseType="Collection">
-                      <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Belief"/>
+                      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Belief"/>
                       <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#qualifies"/>
+                        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#qualifies"/>
                         <owl:someValuesFrom>
                           <owl:Restriction>
-                            <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#plays"/>
+                            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
                             <owl:someValuesFrom>
                               <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Observation">
-                                    <owl:disjointWith rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expectation"/>
+                                  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Observation">
+                                    <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Expectation"/>
                                   </rdf:Description>
                                   <owl:Restriction>
-                                    <owl:onProperty rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/role.owl#played_by"/>
+                                    <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
                                     <owl:someValuesFrom rdf:resource="#Action"/>
                                   </owl:Restriction>
                                 </owl:intersectionOf>
@@ -423,14 +423,14 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#actor"/>
     </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#participant_in"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#participant_in"/>
     <rdfs:domain rdf:resource="#Agent"/>
     <rdfs:range rdf:resource="#Action"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that the participant is an actor in some action.</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#actor">
-    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/process.owl#participant"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#participant"/>
     <rdfs:range rdf:resource="#Agent"/>
     <owl:inverseOf rdf:resource="#actor_in"/>
     <rdfs:domain rdf:resource="#Action"/>
@@ -438,23 +438,23 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     >Specifies that some participant is an actor in the action.</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="intended_by">
-    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#held_by"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#held_by"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#intends"/>
     </owl:inverseOf>
-    <rdfs:domain rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Intention"/>
+    <rdfs:domain rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Intention"/>
     <rdfs:range rdf:resource="#Agent"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that some intention is held by some agent</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#intends">
     <owl:inverseOf rdf:resource="#intended_by"/>
-    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#holds"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#holds"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that the agent holds some intention</rdfs:comment>
   </owl:ObjectProperty>
-  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#promised_by">
-    <owl:inverseOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#promises"/>
+  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#promised_by">
+    <owl:inverseOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#promises"/>
   </rdf:Description>
 </rdf:RDF>
 

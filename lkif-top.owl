@@ -5,10 +5,10 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#"
-    xmlns:places="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl#"
-    xmlns:time="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl">
+    xmlns="http://www.estrellaproject.org/lkif-core/lkif-top.owl#"
+    xmlns:places="http://www.estrellaproject.org/lkif-core/relative-places.owl#"
+    xmlns:time="http://www.estrellaproject.org/lkif-core/time.owl#"
+  xml:base="http://www.estrellaproject.org/lkif-core/lkif-top.owl">
   <owl:Ontology rdf:about="">
 <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
 This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
@@ -28,8 +28,8 @@ Partner contributions from the University of Amsterdam (UvA)
 Authors:      Rinke Hoekstra (UvA)
 Contributors: Joost Breuker (UvA)
 </owl:versionInfo>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl"/>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/time.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/relative-places.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Physical_Concept">
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
@@ -72,7 +72,7 @@ Abstract entities are (proto)mathematical, formal entities, entities which have 
 
 As all concepts are abstractions, one may argue that a separate abstract world is difficult to see. In common-sense, a circle has more properties and is less abstract than in mathematics. Even mathematicians marvel about the fact their pure abstractions enable us to predict very concrete things. However, we are not directly concerned with these mappings. The most important is that common-sense knows about a (small) number of proto-mathematical concepts, such as collections, sequences and count-numbers (positive integers). We know also about geometric simplifications such as line, circle, square, cube, etc. These common sense notions might even be the real roots of our mathematics. However, these kind of semi-formal abstractions do not play a very central role in law, and therefore LRI-Core is thinly populated with abstract classes.</rdfs:comment>
   </owl:Class>
-  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom">
+  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom">
     <rdfs:subClassOf rdf:resource="#Abstract_Concept"/>
   </rdf:Description>
 </rdf:RDF>

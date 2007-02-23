@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm-flc.owl#"
+    xmlns="http://www.estrellaproject.org/lkif-core/norm-flc.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:norm="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl#"
+    xmlns:norm="http://www.estrellaproject.org/lkif-core/norm.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm-flc.owl">
+  xml:base="http://www.estrellaproject.org/lkif-core/norm-flc.owl">
   <owl:Ontology rdf:about="">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Created with TopBraid Composer</owl:versionInfo>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Qualificatory_Proposition">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -20,10 +20,10 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Permissive_Right">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl#Right"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Right"/>
   </owl:Class>
   <owl:Class rdf:about="#Legal_Proposition">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/expression.owl#Expression"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
   </owl:Class>
   <owl:Class rdf:ID="Enabling_Power">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -67,7 +67,7 @@ against using certain kinds of premises for certain purposes, in the interest of
   <owl:Class rdf:ID="Liberty_Right">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >When, for the benefit of a person, this person is both permitted to perform and to omit an action – that is, when the action is facultative – we can say that he or she has a liberty right with regard to that action.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl#Right"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Right"/>
   </owl:Class>
   <owl:Class rdf:ID="Existential_Proposition">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -81,10 +81,10 @@ belong to anybody, then x has the potestative-right to start x’s ownership of 
     <rdfs:subClassOf rdf:resource="#Enabling_Power"/>
   </owl:Class>
   <owl:Class rdf:about="#Obligative_Right">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl#Right"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Right"/>
   </owl:Class>
   <owl:Class rdf:ID="Liability_Right">
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/norm.owl#Right"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Right"/>
   </owl:Class>
 </rdf:RDF>
 

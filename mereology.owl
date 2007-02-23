@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rdf:RDF [
-  <!ENTITY lkif-top "http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl">
-  <!ENTITY mereology "http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl">
+  <!ENTITY lkif-top "http://www.estrellaproject.org/lkif-core/lkif-top.owl">
+  <!ENTITY mereology "http://www.estrellaproject.org/lkif-core/mereology.owl">
   <!ENTITY owl "http://www.w3.org/2002/07/owl#">
   <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">

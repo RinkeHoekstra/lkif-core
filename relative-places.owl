@@ -4,10 +4,10 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:top="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#"
+    xmlns:top="http://www.estrellaproject.org/lkif-core/lkif-top.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/relative-places.owl">
+    xmlns="http://www.estrellaproject.org/lkif-core/relative-places.owl#"
+  xml:base="http://www.estrellaproject.org/lkif-core/relative-places.owl">
   <owl:Ontology rdf:about="">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Partner contributions from the University of Amsterdam (UvA)
@@ -33,7 +33,7 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
     >
 This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 </owl:versionInfo>
-    <owl:imports rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Location_Complex">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -99,7 +99,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
   </owl:Class>
   <owl:Class rdf:ID="Comprehensive_Place">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -172,7 +172,7 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <rdfs:subPropertyOf rdf:resource="#spatial_relation"/>
     <rdfs:range rdf:resource="#Place"/>
     <rdfs:domain rdf:resource="#Place"/>
-    <rdfs:subPropertyOf rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#part_of"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#part_of"/>
   </owl:ObjectProperty>
   <owl:TransitiveProperty rdf:ID="covered_by">
     <rdfs:subPropertyOf>
@@ -263,8 +263,8 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <owl:inverseOf rdf:resource="#location_complex"/>
     <rdfs:subPropertyOf rdf:resource="#spatial_relation"/>
   </owl:InverseFunctionalProperty>
-  <rdf:Description rdf:about="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Composition">
-    <owl:disjointWith rdf:resource="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/mereology.owl#Atom"/>
+  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Composition">
+    <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
   </rdf:Description>
 </rdf:RDF>
 

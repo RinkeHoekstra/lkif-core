@@ -4,8 +4,8 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/meta-property.owl#"
-  xml:base="http://svn.leibnizcenter.org/svn/Estrella/wp1/ontology/lkif-core/meta-property.owl">
+    xmlns="http://www.estrellaproject.org/lkif-core/meta-property.owl#"
+  xml:base="http://www.estrellaproject.org/lkif-core/meta-property.owl">
   <owl:Ontology rdf:about="">
 <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
 This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
