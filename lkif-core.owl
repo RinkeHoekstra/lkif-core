@@ -1,26 +1,25 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:laction="http://www.estrellaproject.org/lkif-core/legal-action.owl#"
     xmlns:modification="http://www.estrellaproject.org/lkif-core/time-modification.owl#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns="http://www.estrellaproject.org/lkif-core/lkif-core.owl#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:norm="http://www.estrellaproject.org/lkif-core/norm.owl#"
+    xmlns:laction="http://www.estrellaproject.org/lkif-core/legal-action.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns="http://www.estrellaproject.org/lkif-core/lkif-core.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
     xmlns:rules="http://www.estrellaproject.org/lkif-core/lkif-rules.owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
   xml:base="http://www.estrellaproject.org/lkif-core/lkif-core.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-rules.owl"/>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time-modification.owl"/>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-Partner contributions from the University of Amsterdam (UvA), the University of Bologna (UNIBO) and the Fraunhofer institute (FOKUS)
-
-Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
-Contributors: Joost Breuker (UvA), Thomas Gordon (FOKUS), Monica Palmirani (UNIBO), Rosella Rubino (UNIBO)
+This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
 </owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
@@ -31,12 +30,14 @@ The use of this ontology, and the OWL files through which it is distributed, is 
 </owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
+Partner contributions from the University of Amsterdam (UvA), the University of Bologna (UNIBO) and the Fraunhofer institute (FOKUS)
+
+Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
+Contributors: Joost Breuker (UvA), Thomas Gordon (FOKUS), Monica Palmirani (UNIBO), Rosella Rubino (UNIBO)
 </owl:versionInfo>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >
-This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
-</owl:versionInfo>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time-modification.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-rules.owl"/>
   </owl:Ontology>
 </rdf:RDF>
 

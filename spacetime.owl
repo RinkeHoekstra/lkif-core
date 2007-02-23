@@ -1,25 +1,19 @@
 <?xml version="1.0"?>
 <rdf:RDF
+    xmlns="http://www.estrellaproject.org/lkif-core/spacetime.owl#"
+    xmlns:time="http://www.estrellaproject.org/lkif-core/time.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns="http://www.estrellaproject.org/lkif-core/spacetime.owl#"
     xmlns:place="http://www.estrellaproject.org/lkif-core/relative-places.owl#"
-    xmlns:time="http://www.estrellaproject.org/lkif-core/time.owl#"
   xml:base="http://www.estrellaproject.org/lkif-core/spacetime.owl">
   <owl:Ontology rdf:about="">
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Partner contributions from the University of Amsterdam (UvA)
-
-Authors:      Kasper van den Berg (UvA)</owl:versionInfo>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/relative-places.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
-
-The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work. 
-
+This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 </owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
@@ -27,9 +21,16 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
 </owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work. 
+
 </owl:versionInfo>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/relative-places.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Partner contributions from the University of Amsterdam (UvA)
+
+Authors:      Kasper van den Berg (UvA)</owl:versionInfo>
   </owl:Ontology>
 </rdf:RDF>
 

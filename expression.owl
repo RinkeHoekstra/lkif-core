@@ -325,17 +325,13 @@
     <rdf:first rdf:nodeID="A11"/>
     <rdf:rest rdf:nodeID="A22"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#comment">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-  </rdf:Description>
+
   <rdf:Description rdf:nodeID="A47">
     <owl:someValuesFrom rdf:resource="#Medium"/>
     <owl:onProperty rdf:resource="#medium"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Function">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use or purpose of some object as used in some context.</rdfs:comment>
-  </rdf:Description>
+
   <rdf:Description rdf:about="#utters">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relates an agent to its utterance(s)</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>

@@ -1,21 +1,22 @@
 <?xml version="1.0"?>
 <rdf:RDF
+    xmlns:expression="http://www.estrellaproject.org/lkif-core/expression.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:expression="http://www.estrellaproject.org/lkif-core/expression.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns="http://www.estrellaproject.org/lkif-core/lkif-rules.owl#"
   xml:base="http://www.estrellaproject.org/lkif-core/lkif-rules.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+	This ontology describes the classes and properties used in the LKIF rules language, as specified in Deliverable 1.1. Please note that the definition of SWRL rules is not imported into this ontology. This extension will be realised through an argumentation rules framework.
+	</rdfs:comment>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-	This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
-	</owl:versionInfo>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >
-	LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
+	Partner contributions from the University of Amsterdam (UvA) and the Fraunhofer institute (FOKUS).
+
+	Authors:      Rinke Hoekstra (UvA), Thomas Gordon (FOKUS)
 	</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
@@ -26,96 +27,53 @@
 	</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-	Partner contributions from the University of Amsterdam (UvA) and the Fraunhofer institute (FOKUS).
-
-	Authors:      Rinke Hoekstra (UvA), Thomas Gordon (FOKUS)
+	LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
 	</owl:versionInfo>
-    <owl:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-	This ontology describes the classes and properties used in the LKIF rules language, as specified in Deliverable 1.1. Please note that the definition of SWRL rules is not imported into this ontology. This extension will be realised through an argumentation rules framework.
-	</owl:comment>
+	This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+	</owl:versionInfo>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="Exception">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An exception states an exception to the head of the rule (defeasibly), cf. Deliverable 1.1</rdfs:comment>
+  <owl:Class rdf:ID="Assumption">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Assumption"/>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Atom"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Exception"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Negated_Atom">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
-              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A negated atom is the negation of some other atom (cf. Deliverable 1.1)</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Atom">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
-              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An atom is the most basic (undivisible) part of an LKIF rule (cf. Deliverable 1.1)</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Assumption">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An assumption is some atom held to be true, without proof, in the head of a rule (defeasibly), cf. Deliverable 1.1</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="#Atom"/>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Assumption"/>
   </owl:Class>
-  <owl:Class rdf:ID="Argument">
+  <owl:Class rdf:about="#Atom">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An argument is some rule used in argumentation (cf. Deliverable 1.1)</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Argument"/>
+    >An atom is the most basic (undivisible) part of an LKIF rule (cf. Deliverable 1.1)</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Valid_Rule">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Rule"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#Rule">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An LKIF rule, based on swrl:Impl</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -124,22 +82,22 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Valid_Rule">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A valid LKIF rule</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Rule">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role"/>
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
@@ -148,68 +106,63 @@
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Rule"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An LKIF rule, based on swrl:Impl</rdfs:comment>
   </owl:Class>
-  <owl:ObjectProperty rdf:ID="rebuts">
+  <owl:Class rdf:ID="Exception">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Exception"/>
+    <rdfs:subClassOf rdf:resource="#Atom"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies whether some rule abuts another rule</rdfs:comment>
-    <rdfs:range>
+    >An exception states an exception to the head of the rule (defeasibly), cf. Deliverable 1.1</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Argument">
+    <rdfs:subClassOf rdf:resource="#Rule"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Argument"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An argument is some rule used in argumentation (cf. Deliverable 1.1)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Negated_Atom">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A negated atom is the negation of some other atom (cf. Deliverable 1.1)</rdfs:comment>
+    <owl:equivalentClass>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="rule_predicate">
+    <rdfs:domain>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
         <owl:someValuesFrom rdf:resource="#Rule"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
       </owl:Restriction>
-    </rdfs:range>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="rule_predicate"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="excluded">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies an exclusion relation between a rule and an atom</rdfs:comment>
+    </rdfs:domain>
     <rdfs:range>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Atom"/>
         <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-      </owl:Restriction>
-    </rdfs:range>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#rule_predicate"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="prior">
-    <rdfs:range>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Rule"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-      </owl:Restriction>
-    </rdfs:range>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies a prior relation between two rules</rdfs:comment>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#rule_predicate"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="applies">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies whether some rule applies to some atom</rdfs:comment>
-    <rdfs:range>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Atom"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-      </owl:Restriction>
-    </rdfs:range>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#rule_predicate"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#rule_predicate">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Some predicate in or over some rule</rdfs:comment>
-    <rdfs:range>
-      <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -218,15 +171,54 @@
             </owl:unionOf>
           </owl:Class>
         </owl:someValuesFrom>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
       </owl:Restriction>
     </rdfs:range>
-    <rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Some predicate in or over some rule</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="prior">
+    <rdfs:subPropertyOf rdf:resource="#rule_predicate"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies a prior relation between two rules</rdfs:comment>
+    <rdfs:range>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Rule"/>
         <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+        <owl:someValuesFrom rdf:resource="#Rule"/>
       </owl:Restriction>
-    </rdfs:domain>
+    </rdfs:range>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="excluded">
+    <rdfs:subPropertyOf rdf:resource="#rule_predicate"/>
+    <rdfs:range>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+        <owl:someValuesFrom rdf:resource="#Atom"/>
+      </owl:Restriction>
+    </rdfs:range>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies an exclusion relation between a rule and an atom</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="applies">
+    <rdfs:subPropertyOf rdf:resource="#rule_predicate"/>
+    <rdfs:range>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+        <owl:someValuesFrom rdf:resource="#Atom"/>
+      </owl:Restriction>
+    </rdfs:range>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies whether some rule applies to some atom</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="rebuts">
+    <rdfs:subPropertyOf rdf:resource="#rule_predicate"/>
+    <rdfs:range>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+        <owl:someValuesFrom rdf:resource="#Rule"/>
+      </owl:Restriction>
+    </rdfs:range>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies whether some rule abuts another rule</rdfs:comment>
   </owl:ObjectProperty>
 </rdf:RDF>
 
