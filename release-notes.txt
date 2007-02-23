@@ -1,0 +1,33 @@
+Release notes for LKIF-Core
+See also http://www.estrellaproject.org/lkif-core
+
+
+Version 1.0.1 - 20070223 - Bugfix Release
+-----------------------------------------
+
+* Moved base namespace to http://www.estrellaproject.org/lkif-core/[module-name].owl 
+* Modules are now directly available online. This facilitates loading of files in various editors/viewers.
+* Fixed a number of bugs causing the ontology to become OWL-Full (Reported by the OWL Validator at http://phoebus.cs.man.ac.uk:9999/OWL/Validator):
+	* Structure Sharing of: http://www.estrellaproject.org/lkif-core/expression.owl#genid-A17	
+	  FIX: Fresh save of file...
+	* http://www.estrellaproject.org/lkif-core/time-modification.owl#initial_date_of rdfs:subPropertyOf http://www.estrellaproject.org/lkif-core/time.owl#starts. Only allowed between two DatatypeProperties or ObjectProperties.
+	  FIX: Renamed http://www.estrellaproject.org/lkif-core/time.owl#start to  http://www.estrellaproject.org/lkif-core/time.owl#starts
+	* http://www.estrellaproject.org/lkif-core/time-modification.owl#final_date_of rdfs:subPropertyOf http://www.estrellaproject.org/lkif-core/time.owl#finishes. Only allowed between two DatatypeProperties or ObjectProperties.
+	  FIX: Renamed http://www.estrellaproject.org/lkif-core/time.owl#finish to  http://www.estrellaproject.org/lkif-core/time.owl#finishes
+	* Untyped Object Property: http://www.estrellaproject.org/lkif-core/action.owl#permits
+	  FIX: Removed stray description of Power
+	* Untyped Data Property: http://www.w3.org/2002/07/owl#comment
+	  FIX: Removed redefinition of rdfs:comment 
+	* Untyped Class: http://www.estrellaproject.org/lkif-core/action.owl#Power
+	  FIX: Removed stray class definition
+	* Untyped Individual: http://www.estrellaproject.org/lkif-core/role.owl#Function
+	  FIX: Moved description/comment of Function class from expression.owl to role.owl 
+	* Untyped Individual: http://www.estrellaproject.org/lkif-core/lkif-rules.owl
+	  FIX: Removed 
+	* http://www.w3.org/2002/07/owl#comment in OWL Namespace (2x)
+	  FIX: lkif-rules.owl contained owl:comment elements, changed to rdfs:comment
+
+
+
+Version 1.0   - 20070202 - Initial Release
+------------------------------------------
