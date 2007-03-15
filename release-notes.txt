@@ -5,6 +5,7 @@ See also http://www.estrellaproject.org/lkif-core
 Version 1.0.2 - 200703?? - Bugfix Release
 -----------------------------------------
 
+* Fixed duplicate class definitions in expression module (problem with Jena backend).
 * Reduced the number of GCI (General Concept Inclusion) axioms and inverse properties to speed-up reasoner performance.
 	* Rule was inconsistent: both played_by Atom and Composition.
 	* Relaxed the definition of Act_of_Law, Assignment, Decision, Delegation and Mandate.
@@ -18,6 +19,17 @@ Version 1.0.2 - 200703?? - Bugfix Release
 	* Relaxed definition of Part, Whole, Atom and Composition. 
 	* Corrected range/domain of observer/observes properties
 	* Relaxed definition of Propositional_Attitude
+	* Relaxed definition of Document
+	* Strengthened definition of Qualified
+	* Strengthened definition of Mental_Object 
+		(added held_by some Agent to equivalentClass restriction)
+	* Relaxed definition of Proposition
+	* Relaxed definition of Evaluative_Proposition 
+		(moved qualified_by some Evaluative_Attitude to subClassOf restriction)
+	* Relaxed definition of Expression 
+		(moved medium some Medium to subClassOf restriction)
+	* Relaxed definition of Communicated_Attitude 
+		(moved (utterer some action:Agent) and (addressee some action:Agent) to subClassOf restriction)
 
 
 Version 1.0.1 - 20070223 - Bugfix Release

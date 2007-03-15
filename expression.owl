@@ -45,7 +45,7 @@
         </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
-    <owl:equivalentClass>
+    <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="Evaluative_Attitude"/>
@@ -54,7 +54,7 @@
           <owl:ObjectProperty rdf:ID="qualified_by"/>
         </owl:onProperty>
       </owl:Restriction>
-    </owl:equivalentClass>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Proposition"/>
     </rdfs:subClassOf>
@@ -87,47 +87,47 @@
     >Teleological counterpart of cause</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Propositional_Attitude">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A propositional attitude connects a person (the holder of the attitude) to some proposition, in fact it expresses some qualification over the proposition. Distinguishing a proposition from the propositional content expressed by it is necessary when properties relating to the thing expressed and properties of the expression itself must be distinguished. For LKIF the distinction between Belief, Intention, Qualification, and Observation is relevant. The distinction between belief/expectation, intention, and observation is relevant for i.a. establishing mens rea (guilty mind). The distinction between beliefs (expressing the content of the mind of an agent) and statements (expressing the content of an act of communication by an agent) is classical.</rdfs:comment>
-    <rdfs:subClassOf>
-      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object">
-        <rdfs:subClassOf>
-          <owl:Restriction>
-            <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="held_by"/>
-            </owl:onProperty>
-          </owl:Restriction>
-        </rdfs:subClassOf>
-      </rdf:Description>
-    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Proposition"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="towards"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class rdf:about="#Proposition"/>
         </owl:allValuesFrom>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="towards"/>
+          <owl:ObjectProperty rdf:about="#towards"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#held_by"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A propositional attitude connects a person (the holder of the attitude) to some proposition, in fact it expresses some qualification over the proposition. Distinguishing a proposition from the propositional content expressed by it is necessary when properties relating to the thing expressed and properties of the expression itself must be distinguished. For LKIF the distinction between Belief, Intention, Qualification, and Observation is relevant. The distinction between belief/expectation, intention, and observation is relevant for i.a. establishing mens rea (guilty mind). The distinction between beliefs (expressing the content of the mind of an agent) and statements (expressing the content of an act of communication by an agent) is classical.</rdfs:comment>
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#towards"/>
-        </owl:onProperty>
-        <owl:someValuesFrom>
-          <owl:Class rdf:about="#Proposition"/>
-        </owl:someValuesFrom>
-      </owl:Restriction>
+      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object">
+        <owl:equivalentClass>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="held_by"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#held_by"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </rdfs:subClassOf>
+      </rdf:Description>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Lie">
@@ -228,27 +228,6 @@
     >A feeling of wanting</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Proposition">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:ID="Medium"/>
-            </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="medium"/>
-            </owl:onProperty>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#held_by"/>
-            </owl:onProperty>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom rdf:resource="#Propositional_Attitude"/>
@@ -257,6 +236,7 @@
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A (non logical) proposition is a proposition qualified by a propositional attitude. NB: The proposition used here does not correspond to a proposition in proposition logics.</rdfs:comment>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -326,31 +306,31 @@
     >A fact is a proposition (about something) which is (commonly) agreed upon to hold as true: it has some backing in evidence</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Communicated_Attitude">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="addressee"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="utterer"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="utterer"/>
-            </owl:onProperty>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="#Expression"/>
-            </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="states"/>
-            </owl:onProperty>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="addressee"/>
-            </owl:onProperty>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Expression"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="states"/>
+        </owl:onProperty>
+      </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -399,25 +379,23 @@
   </owl:Class>
   <owl:Class rdf:about="#Expression">
     <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="#Communicated_Attitude"/>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="stated_by"/>
-            </owl:onProperty>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="#Medium"/>
-            </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#medium"/>
-            </owl:onProperty>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Communicated_Attitude"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="stated_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Medium"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="medium"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
@@ -526,28 +504,6 @@
     >An expectation is a predictive belief held on purely logical grounds, i.e. not based on direct external evidence, like an observation or a statement by another agent. It is also often characterized as a "belief about the future", but this isn't very helpful since one may also hold expectations about the (yet unknown) past. The theory of evolution is for instance a fertile ground for predictions about the existence of past species, and therefore at the same a predictor of future observations.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Document">
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class rdf:about="#Expression"/>
-              <owl:Restriction>
-                <owl:someValuesFrom>
-                  <owl:Class rdf:ID="Statement_In_Writing"/>
-                </owl:someValuesFrom>
-                <owl:onProperty>
-                  <owl:ObjectProperty rdf:about="#stated_by"/>
-                </owl:onProperty>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#bears"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
@@ -556,7 +512,7 @@
               <owl:Class rdf:about="#Expression"/>
               <owl:Restriction>
                 <owl:someValuesFrom>
-                  <owl:Class rdf:about="#Statement_In_Writing"/>
+                  <owl:Class rdf:ID="Statement_In_Writing"/>
                 </owl:someValuesFrom>
                 <owl:onProperty>
                   <owl:ObjectProperty rdf:about="#stated_by"/>
@@ -587,36 +543,28 @@
   </owl:Class>
   <owl:Class rdf:about="#Statement_In_Writing">
     <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Restriction>
+        <owl:someValuesFrom>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+            <owl:someValuesFrom rdf:resource="#Document"/>
             <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="author"/>
+              <owl:ObjectProperty rdf:about="#medium"/>
             </owl:onProperty>
           </owl:Restriction>
-          <owl:Class rdf:about="#Communicated_Attitude"/>
-          <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                  <owl:Restriction>
-                    <owl:someValuesFrom rdf:resource="#Document"/>
-                    <owl:onProperty>
-                      <owl:ObjectProperty rdf:about="#medium"/>
-                    </owl:onProperty>
-                  </owl:Restriction>
-                  <owl:Class rdf:about="#Expression"/>
-                </owl:intersectionOf>
-              </owl:Class>
-            </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#states"/>
-            </owl:onProperty>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#states"/>
+        </owl:onProperty>
+      </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="author"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="#Communicated_Attitude"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Not to be confused with the actual writing/document itself, which is the medium of the statement.</rdfs:comment>
@@ -665,6 +613,22 @@
     >Searle: the successful performance of a declaration is sufficient to bring about the fit between words and world, to make the propositional content true. In other words, if there is an inconsistency between the declaration and assertions, beliefs, or observations, it is not the declaration that is false. True of definitions and norms, and several other performative statements by legislators.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Qualified">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Qualification"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#qualified_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Qualification"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#qualified_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Something that is qualified by some qualification</rdfs:comment>
