@@ -7,7 +7,6 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:top="http://www.estrellaproject.org/lkif-core/lkif-top.owl#"
-    xmlns:role="http://www.estrellaproject.org/lkif-core/role.owl#"
     xmlns:place="http://www.estrellaproject.org/lkif-core/relative-places.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
   xml:base="http://www.estrellaproject.org/lkif-core/process.owl">
@@ -36,7 +35,6 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
     >
 This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 </owl:versionInfo>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Change">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -64,22 +62,9 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
         <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
       </owl:Restriction>
     </owl:equivalentClass>
- <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/> 
  </owl:Class>
   <owl:Class rdf:ID="Process">
-    <owl:disjointWith>
-      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Agent">
-        <owl:disjointWith rdf:resource="#Process"/>
-        <rdfs:subClassOf>
-          <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="participant_in"/>
-            </owl:onProperty>
-            <owl:allValuesFrom rdf:resource="#Process"/>
-          </owl:Restriction>
-        </rdfs:subClassOf>
-      </rdf:Description>
-    </owl:disjointWith>
+
     <owl:disjointWith>
       <owl:Class rdf:ID="Physical_Object"/>
     </owl:disjointWith>
@@ -93,19 +78,12 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
       </owl:Restriction>
     </owl:equivalentClass>
     <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
-    <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A process is a 'causal' change: any change which can be explained through some known or understood causal structure. Every process has some Time_Period as duration.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Physical_Object">
     <owl:disjointWith rdf:resource="#Process"/>
     <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Physical_Concept"/>
-    <owl:disjointWith>
-      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Role">
-        <owl:disjointWith rdf:resource="#Physical_Object"/>
-        <owl:disjointWith rdf:resource="#Change"/>
-      </rdf:Description>
-    </owl:disjointWith>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A physical object is a physical concept consisting of matter, it has a spatio-temporal extension.</rdfs:comment>
   </owl:Class>
@@ -195,10 +173,6 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A participant is someone or something that participates in a change, i.e. is involved in a change</rdfs:comment>
   </owl:ObjectProperty>
-  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Action">
-    <owl:disjointWith rdf:resource="#Physical_Object"/>
-    <rdfs:subClassOf rdf:resource="#Process"/>
-  </rdf:Description>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->
