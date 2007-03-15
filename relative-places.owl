@@ -43,14 +43,14 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Place"/>
     </rdfs:subClassOf>
-    <owl:equivalentClass>
+    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="spatial_reference"/>
         </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
       </owl:Restriction>
-    </owl:equivalentClass>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A relative place is defined by some reference to some object/thing</rdfs:comment>
   </owl:Class>
@@ -65,6 +65,16 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
   </owl:Class>
   <owl:Class rdf:about="#Location_Complex">
     <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Place"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:InverseFunctionalProperty rdf:ID="location_complex_for"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Class rdf:about="#Place"/>
     </rdfs:subClassOf>
     <owl:equivalentClass>
@@ -73,7 +83,7 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
           <owl:Class rdf:about="#Place"/>
         </owl:someValuesFrom>
         <owl:onProperty>
-          <owl:InverseFunctionalProperty rdf:ID="location_complex_for"/>
+          <owl:InverseFunctionalProperty rdf:about="#location_complex_for"/>
         </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
@@ -91,6 +101,14 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Place">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Location_Complex"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="location_complex"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Spatio_Temporal_Occurrence"/>
     <owl:equivalentClass>
       <owl:Class>
@@ -104,7 +122,7 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Location_Complex"/>
         <owl:onProperty>
-          <owl:FunctionalProperty rdf:ID="location_complex"/>
+          <owl:FunctionalProperty rdf:about="#location_complex"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -262,9 +280,6 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
     <rdfs:range rdf:resource="#Place"/>
     <rdfs:domain rdf:resource="#Location_Complex"/>
   </owl:InverseFunctionalProperty>
-  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#Composition">
-    <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Atom"/>
-  </rdf:Description>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->

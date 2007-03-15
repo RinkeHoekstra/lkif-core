@@ -5,165 +5,181 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-  xml:base="http://www.estrellaproject.org/lkif-core/mereology.owl" > 
-  <rdf:Description rdf:about="#direct_part">
-    <rdfs:subPropertyOf rdf:resource="#part"/>
-    <owl:inverseOf rdf:resource="#direct_part_of"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The non-transitive part relation.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A0">
-    <owl:onProperty rdf:resource="#part"/>
-    <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#versionInfo">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A1">
-    <owl:onProperty rdf:resource="#part"/>
-    <owl:someValuesFrom rdf:resource="#Part"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#Part">
-    <rdfs:subClassOf rdf:nodeID="A2"/>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Abstract_Concept"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A part is a part_of some whole</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:equivalentClass rdf:nodeID="A3"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A4">
-    <owl:onProperty rdf:resource="#part"/>
-    <owl:allValuesFrom rdf:resource="#Part"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Abstract_Concept">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A5">
-    <owl:onProperty rdf:resource="#part"/>
-    <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#component">
-    <rdfs:subPropertyOf rdf:resource="#part"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies that some thing is a (functional) component of some other thing</rdfs:comment>
-    <owl:inverseOf rdf:resource="#component_of"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#direct_part_of">
-    <rdfs:subPropertyOf rdf:resource="#part_of"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The non-transitive part_of relation</rdfs:comment>
-    <owl:inverseOf rdf:resource="#direct_part"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#Whole">
-    <rdfs:subClassOf rdf:nodeID="A4"/>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Abstract_Concept"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A whole as several parts</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:equivalentClass rdf:nodeID="A1"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#comment">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#Composition">
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Abstract_Concept"/>
-    <owl:disjointWith rdf:resource="#Atom"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:equivalentClass rdf:nodeID="A5"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A composition has multiple parts, the components should meet</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="#component_of">
-    <rdfs:subPropertyOf rdf:resource="#part_of"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies that some thing is a (functional) component of some other thing</rdfs:comment>
-    <owl:inverseOf rdf:resource="#component"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#Atom">
-    <owl:disjointWith rdf:resource="#Composition"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:disjointWith rdf:nodeID="A6"/>
-    <owl:disjointWith rdf:nodeID="A7"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An atom has no parts</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="#member_of">
-    <owl:inverseOf rdf:resource="#member"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies membership of a set or group</rdfs:comment>
-    <rdfs:subPropertyOf rdf:resource="#part_of"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#contained_in">
-    <rdfs:subPropertyOf rdf:resource="#part_of"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies that some thing is contained (spatially) within some other thing</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A7">
-    <owl:onProperty rdf:resource="#part"/>
-    <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <owl:disjointWith rdf:resource="#Atom"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#part_of">
-    <owl:inverseOf rdf:resource="#part"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transitive part_of relation</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#Pair">
-    <rdfs:subClassOf rdf:resource="#Composition"/>
-    <rdfs:subClassOf rdf:nodeID="A0"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A composition of exactly two parts</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A6">
-    <owl:onProperty rdf:resource="#part"/>
-    <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#member">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies membership of a set or group</rdfs:comment>
-    <owl:inverseOf rdf:resource="#member_of"/>
-    <rdfs:subPropertyOf rdf:resource="#part"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A3">
-    <owl:onProperty rdf:resource="#part_of"/>
-    <owl:someValuesFrom rdf:resource="#Whole"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#composed_of">
-    <rdfs:subPropertyOf rdf:resource="#part"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies that some thing is composed_of (spatially) within some other thing</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665</owl:versionInfo>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
-
-The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work.</owl:versionInfo>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Partner contributions from the University of Amsterdam (UvA)
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+  xml:base="http://www.estrellaproject.org/lkif-core/mereology.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports>
+      <owl:Ontology rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl"/>
+    </owl:imports>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Partner contributions from the University of Amsterdam (UvA)
 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
 Contributors: Joost Breuker (UvA)</owl:versionInfo>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium</owl:versionInfo>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#part">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work.</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Atom">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Whole"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An atom has no parts</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Whole">
+    <owl:disjointWith rdf:resource="#Atom"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A whole has several parts</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Part"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="part"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Abstract_Concept"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Part"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#part"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Part">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Whole"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="part_of"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A part is a part_of some whole</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Abstract_Concept"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Whole"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#part_of"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Pair">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A composition of exactly two parts</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >2</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#part"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Composition"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Composition">
+    <rdfs:subClassOf rdf:resource="#Whole"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A composition has multiple parts, the components should meet (OWL 1.1)</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="member">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#part"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="member_of"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies membership of a set or group</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="direct_part">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The non-transitive part relation.</rdfs:comment>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="direct_part_of"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#part"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#direct_part_of">
+    <owl:inverseOf rdf:resource="#direct_part"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The non-transitive part_of relation</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#part_of"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="composed_of">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some thing is composed_of (spatially) within some other thing</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#part"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#member_of">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#part_of"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies membership of a set or group</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <owl:inverseOf rdf:resource="#member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="contained_in">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some thing is contained (spatially) within some other thing</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#part_of"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#part_of">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Transitive part_of relation</rdfs:comment>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#part"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#part">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Transitive part relation</rdfs:comment>
     <owl:inverseOf rdf:resource="#part_of"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transitive part relation</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A2">
-    <owl:onProperty rdf:resource="#part_of"/>
-    <owl:allValuesFrom rdf:resource="#Whole"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="component_of">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="component"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some thing is a (functional) component of some other thing</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#part_of"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#component">
+    <owl:inverseOf rdf:resource="#component_of"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some thing is a (functional) component of some other thing</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#part"/>
+  </owl:ObjectProperty>
+  <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionInfo"/>
+  <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment"/>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->
