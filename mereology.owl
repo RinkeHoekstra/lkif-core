@@ -29,6 +29,7 @@ The use of this ontology, and the OWL files through which it is distributed, is 
     <owl:disjointWith>
       <owl:Class rdf:ID="Whole"/>
     </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/top.owl#Abstract_Concept"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An atom has no parts</rdfs:comment>
   </owl:Class>
