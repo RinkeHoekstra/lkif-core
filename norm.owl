@@ -15,7 +15,6 @@
 
 	Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
 	Contributors: Joost Breuker (UvA), Rosella Rubino (UNIBO)</owl:versionInfo>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
 	The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org

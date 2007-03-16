@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:laction="http://www.estrellaproject.org/lkif-core/legal-action.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:role="http://www.estrellaproject.org/lkif-core/role.owl#"
     xmlns="http://www.estrellaproject.org/lkif-core/legal-role.owl#"
   xml:base="http://www.estrellaproject.org/lkif-core/legal-role.owl">
   <owl:Ontology rdf:about="">
@@ -31,7 +31,6 @@ Partner contributions from the University of Amsterdam (UvA).
 Authors:      Rinke Hoekstra (UvA)
 Contributors: Joost Breuker (UvA)
 </owl:versionInfo>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Social_Legal_Role">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"

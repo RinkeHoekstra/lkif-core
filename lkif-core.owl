@@ -2,6 +2,7 @@
 <rdf:RDF
     xmlns:modification="http://www.estrellaproject.org/lkif-core/time-modification.owl#"
     xmlns:norm="http://www.estrellaproject.org/lkif-core/norm.owl#"
+	xmlns:lrole="http://www.estrellaproject.org/lkif-core/legal-role.owl#"
     xmlns:laction="http://www.estrellaproject.org/lkif-core/legal-action.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
@@ -35,7 +36,8 @@ Partner contributions from the University of Amsterdam (UvA), the University of 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
 Contributors: Joost Breuker (UvA), Thomas Gordon (FOKUS), Monica Palmirani (UNIBO), Rosella Rubino (UNIBO)
 </owl:versionInfo>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl"/>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl"/>
+	<owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/legal-role.owl"/>
     <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time-modification.owl"/>
     <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-rules.owl"/>
   </owl:Ontology>
