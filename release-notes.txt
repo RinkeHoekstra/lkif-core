@@ -7,8 +7,11 @@ Version 1.0.2 - 200703?? - Bugfix Release
 
 * Fixed duplicate class definitions in expression module (problem with Jena backend).
 * Swapped domain/range on participant/participant_in (!)
-* Removed redundant imports
+* Redesigned imports between modules.
+	* Introduced a more layered-approach: importing modules add restrictions relevant to the domain they cover to the imported classes. Not the other way around. In previous versions, the Action module imported the Role and Expression modules (and vice versa), and contained restrictions on its classes expressed using the vocabulary of the Role and Expression modules. In this version these restrictions are moved to the modules that add the vocabulary. I.e. if the Role module 'has something to add' to the definition of a class from the Action module, the restriction is defined in the Role module. This strategy improves the diagnosis of inconsistencies etc.
 	* Process module no longer imports Action, Role and Mereology modules
+	* Action module no longer imports Role and Expression modules
+	* 
 * Reduced the number of GCI (General Concept Inclusion) axioms and inverse properties to speed-up reasoner performance.
 	* Rule was inconsistent: both played_by Atom and Composition.
 	* Relaxed the definition of Act_of_Law, Assignment, Decision, Delegation and Mandate.
