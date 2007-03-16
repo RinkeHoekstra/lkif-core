@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <rdf:RDF
     xmlns:process="http://www.estrellaproject.org/lkif-core/process.owl#"
-    xmlns:expression="http://www.estrellaproject.org/lkif-core/expression.owl#"
     xmlns="http://www.estrellaproject.org/lkif-core/action.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
@@ -16,7 +15,6 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
 </owl:versionInfo>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Currently this module does not commit to any particular theory on/framework of thematic roles (i.e. subproperties of participant). This has consequences for the detail in which actions are described in this ontology.</rdfs:comment>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
 The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
@@ -32,7 +30,6 @@ Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (U
 Contributors: Joost Breuker (UvA)
 </owl:versionInfo>
     <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl"/>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
 LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
@@ -75,8 +72,8 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
     >An agent is any owl:Thing which can act, i.e. play the 'actor' role wrt. an action</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#holds"/>
-        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Concept"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#participant_in"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Change"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -89,41 +86,27 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#participant_in"/>
-        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Change"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Organisation">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An organisation is a group of other organisations or persons which acts 'as one'. An organisation can be both formal (i.e. created by law or decree) or informal.</rdfs:comment>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Person"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#Agent"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:allValuesFrom>
           <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                  <owl:Class rdf:about="#Organisation"/>
-                  <owl:Class rdf:about="#Person"/>
-                </owl:unionOf>
-              </owl:Class>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Organisation_Role"/>
-              </owl:Restriction>
-            </owl:intersectionOf>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Organisation"/>
+              <owl:Class rdf:ID="Person"/>
+            </owl:unionOf>
           </owl:Class>
         </owl:allValuesFrom>
         <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#member"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Person"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#Agent"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An organisation is a group of other organisations or persons which acts 'as one'. An organisation can be both formal (i.e. created by law or decree) or informal.</rdfs:comment>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -144,33 +127,6 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
     </owl:disjointWith>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A natural object is an object not created by man.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#Artifact">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Function"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Creation"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#result_of"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A physical object created by some person to fulfill a particular purpose</rdfs:comment>
-    <owl:disjointWith rdf:resource="#Natural_Object"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Person"/>
-    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Action">
     <owl:equivalentClass>
@@ -193,56 +149,34 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Process"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Plan"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An action is a change which is brought about by a single agent, playing a role. The agent is the holder of some indended outcome of the action: an action is always intentional. The intention of the agent has usually corresponds with an expectation the intended outcome to be brought about: the agent believes in some expectation. Note that the intention might not correspond with the *actual* outcome of the action.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#actor"/>
         </owl:onProperty>
-        <owl:allValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class rdf:about="#Agent"/>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
-              </owl:Restriction>
-              <owl:Restriction>
-                <owl:onProperty>
-                  <owl:ObjectProperty rdf:ID="intends"/>
-                </owl:onProperty>
-                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Intention"/>
-              </owl:Restriction>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#believes"/>
-                <owl:someValuesFrom>
-                  <owl:Class>
-                    <owl:intersectionOf rdf:parseType="Collection">
-                      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Belief"/>
-                      <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#towards"/>
-                        <owl:someValuesFrom>
-                          <owl:Restriction>
-                            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-                            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Expectation"/>
-                          </owl:Restriction>
-                        </owl:someValuesFrom>
-                      </owl:Restriction>
-                    </owl:intersectionOf>
-                  </owl:Class>
-                </owl:someValuesFrom>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:allValuesFrom>
+        <owl:allValuesFrom rdf:resource="#Agent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Artifact">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Creation"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#result_of"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >An action is a change which is brought about by a single agent, playing a role. The agent is the holder of some indended outcome of the action: an action is always intentional. The intention of the agent has usually corresponds with an expectation the intended outcome to be brought about: the agent believes in some expectation. Note that the intention might not correspond with the *actual* outcome of the action.</rdfs:comment>
+    >A physical object created by some person to fulfill a particular purpose</rdfs:comment>
+    <owl:disjointWith rdf:resource="#Natural_Object"/>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Plan"/>
+      <owl:Class rdf:about="#Person"/>
     </owl:disjointWith>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >NOTE (OWL 1.1) the action may actually be 'part of' the intention of the agent, that is: intends some (expression:Intention and Self)</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Transaction">
     <rdfs:subClassOf>
@@ -328,55 +262,10 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
   </owl:Class>
   <owl:Class rdf:ID="Reaction">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >NOTE: question remains whether this observation is also a *requirement* of the reaction. Furthermore, the current definition ensures that the observed action becomes a top:Mental_Object (i.e. it is internalised).</rdfs:comment>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A reaction is an action that is (at least) performed by an agent that has observed some other action (this is an intensional view): Action &lt;-&gt; Reaction</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Action"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#actor"/>
-        </owl:onProperty>
-        <owl:allValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class rdf:about="#Agent"/>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#observes"/>
-                <owl:someValuesFrom>
-                  <owl:Class>
-                    <owl:intersectionOf rdf:parseType="Collection">
-                      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Belief"/>
-                      <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#qualifies"/>
-                        <owl:someValuesFrom>
-                          <owl:Restriction>
-                            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-                            <owl:someValuesFrom>
-                              <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#Observation">
-                                    <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Expectation"/>
-                                  </rdf:Description>
-                                  <owl:Restriction>
-                                    <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
-                                    <owl:someValuesFrom rdf:resource="#Action"/>
-                                  </owl:Restriction>
-                                </owl:intersectionOf>
-                              </owl:Class>
-                            </owl:someValuesFrom>
-                          </owl:Restriction>
-                        </owl:someValuesFrom>
-                      </owl:Restriction>
-                    </owl:intersectionOf>
-                  </owl:Class>
-                </owl:someValuesFrom>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:allValuesFrom>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NOTE: question remains whether this observation is also a *requirement* of the reaction. Furthermore, the current definition ensures that the observed action becomes a top:Mental_Object (i.e. it is internalised).</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Collaborative_Plan">
     <rdfs:subClassOf>
@@ -392,17 +281,6 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
     <rdfs:subClassOf rdf:resource="#Transaction"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A trade is an exchange of some things between two agents a and b. Consists of two actions A and B where a is the actor of action A and the recipient of action B, and vice versa. Usually these actions are performed concurrently, but these may also be done consequently. The ownership of the things being traded is the requirement/result pair for each action.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:ID="Speech_Act">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A speech act (or illocutionary act) creates some propositional attitude which qualifies an expression (which by default is mediated through some medium). The actor of the speech act is the utterer of the atitude (NB cannot be expressed in OWL DL).</rdfs:comment>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Communicated_Attitude"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#creation"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Creation"/>
   </owl:Class>
   <owl:Class rdf:about="#Initiation">
     <owl:equivalentClass>
@@ -446,16 +324,6 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
     <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
     <owl:disjointWith rdf:resource="#Action"/>
   </owl:Class>
-  <owl:ObjectProperty rdf:about="#intends">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="intended_by"/>
-    </owl:inverseOf>
-    <rdfs:domain rdf:resource="#Agent"/>
-    <rdfs:range rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Intention"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#holds"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that the agent holds some intention</rdfs:comment>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#actor">
     <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#participant"/>
     <rdfs:range rdf:resource="#Agent"/>
@@ -474,17 +342,6 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that the participant is an actor in some action.</rdfs:comment>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#intended_by">
-    <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#held_by"/>
-    <owl:inverseOf rdf:resource="#intends"/>
-    <rdfs:domain rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Intention"/>
-    <rdfs:range rdf:resource="#Agent"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that some intention is held by some agent</rdfs:comment>
-  </owl:ObjectProperty>
-  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#promised_by">
-    <owl:inverseOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#promises"/>
-  </rdf:Description>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->
