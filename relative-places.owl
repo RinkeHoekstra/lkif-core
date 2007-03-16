@@ -4,7 +4,7 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:top="http://www.estrellaproject.org/lkif-core/lkif-top.owl#"
+    xmlns:mereo="http://www.estrellaproject.org/lkif-core/mereology.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
     xmlns="http://www.estrellaproject.org/lkif-core/relative-places.owl#"
   xml:base="http://www.estrellaproject.org/lkif-core/relative-places.owl">
