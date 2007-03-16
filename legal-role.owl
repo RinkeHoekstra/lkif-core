@@ -8,7 +8,6 @@
     xmlns="http://www.estrellaproject.org/lkif-core/legal-role.owl#"
   xml:base="http://www.estrellaproject.org/lkif-core/legal-role.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl"/>
     <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >

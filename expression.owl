@@ -14,12 +14,7 @@
     xmlns:place="http://www.estrellaproject.org/lkif-core/relative-places.owl#"
   xml:base="http://www.estrellaproject.org/lkif-core/expression.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports>
-      <owl:Ontology rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl"/>
-    </owl:imports>
-    <owl:imports>
-      <owl:Ontology rdf:about="http://www.estrellaproject.org/lkif-core/action.owl"/>
-    </owl:imports>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >This file defines a number of types of what is commonly called a propositional attitude (PA). These relate propositional content to the proposition expressing the content. A subdivision of the propositional attitudes are the mental attitudes (see e.g. Cugola, 1996), types of propositions in the mind. Another category is the PA of an act of communication.</rdfs:comment>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"

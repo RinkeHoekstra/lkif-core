@@ -36,7 +36,6 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
 This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 </owl:versionInfo>
     <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/legal-role.owl"/>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Limited_Company">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"

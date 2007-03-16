@@ -6,12 +6,16 @@ Version 1.0.2 - 200703?? - Bugfix Release
 -----------------------------------------
 
 * Fixed duplicate class definitions in expression module (problem with Jena backend).
+* Swapped domain/range on participant/participant_in (!)
+* Removed redundant imports
+	* Process module no longer imports Action, Role and Mereology modules
 * Reduced the number of GCI (General Concept Inclusion) axioms and inverse properties to speed-up reasoner performance.
 	* Rule was inconsistent: both played_by Atom and Composition.
 	* Relaxed the definition of Act_of_Law, Assignment, Decision, Delegation and Mandate.
 	* Relaxed the definition of Transaction
 	* Asserted disjoint relation between Document and Custom
 	* Asserted disjoint relation between Role and Action, Role and Agent.
+	* Restructured definition of Actor (removed redundant disjoints)
 	* Asserted range for observes property: (Belief and (plays some Observation))
 	* Relaxed definition of Temporal_Occurrence
 	* Added namespace prefix for mereology module to time module
@@ -30,6 +34,12 @@ Version 1.0.2 - 200703?? - Bugfix Release
 		(moved medium some Medium to subClassOf restriction)
 	* Relaxed definition of Communicated_Attitude 
 		(moved (utterer some action:Agent) and (addressee some action:Agent) to subClassOf restriction)
+	* Relaxed definition of Artifact
+	* Relaxed definition of Epistemic_Role, Function, Social_Role
+	* Relaxed definition of Role (someValuesFrom -> min cardinality)
+	* Relaxed definition of Organisation_Role
+* Fixed inconsistent class definitions
+	* Action
 
 
 Version 1.0.1 - 20070223 - Bugfix Release
