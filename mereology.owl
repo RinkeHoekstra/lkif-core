@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <rdf:RDF
     xmlns="http://www.estrellaproject.org/lkif-core/mereology.owl#"
+	xmlns:top="http://www.estrellaproject.org/lkif-core/lkif-top.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -29,7 +30,7 @@ The use of this ontology, and the OWL files through which it is distributed, is 
     <owl:disjointWith>
       <owl:Class rdf:ID="Whole"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/top.owl#Abstract_Concept"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Abstract_Concept"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An atom has no parts</rdfs:comment>
   </owl:Class>
