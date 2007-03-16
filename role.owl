@@ -87,7 +87,23 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
               </rdf:Description>
               <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#member_of"/>
-                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Organisation"/>
+                <owl:someValuesFrom>
+                  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Organisation">
+                    <rdfs:subClassOf>
+                      <owl:Restriction>
+                        <owl:allValuesFrom>
+                          <owl:Restriction>
+                            <owl:someValuesFrom rdf:resource="#Organisation_Role"/>
+                            <owl:onProperty>
+                              <owl:ObjectProperty rdf:about="#plays"/>
+                            </owl:onProperty>
+                          </owl:Restriction>
+                        </owl:allValuesFrom>
+                        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#member"/>
+                      </owl:Restriction>
+                    </rdfs:subClassOf>
+                  </rdf:Description>
+                </owl:someValuesFrom>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
@@ -225,6 +241,27 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that some role is played by some thing</rdfs:comment>
   </owl:ObjectProperty>
+  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Artifact">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Function"/>
+        <owl:onProperty rdf:resource="#plays"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Action">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#actor"/>
+        <owl:allValuesFrom>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#plays"/>
+            <owl:someValuesFrom rdf:resource="#Role"/>
+          </owl:Restriction>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </rdf:Description>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->
