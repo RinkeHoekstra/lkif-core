@@ -113,8 +113,11 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
     >Specifies membership of a set or group</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="direct_part">
-    <rdfs:subPropertyOf>
+    <owl:equivalentProperty>
       <owl:ObjectProperty rdf:about="#strict_part"/>
+    </owl:equivalentProperty>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="part"/>
     </rdfs:subPropertyOf>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="direct_part_of"/>
@@ -122,37 +125,27 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The non-transitive part relation.</rdfs:comment>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="composed_of">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="composes"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:ID="part"/>
-    </rdfs:subPropertyOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that some thing is composed_of (spatially) within some other thing</rdfs:comment>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#direct_part_of">
-    <rdfs:subPropertyOf>
+    <owl:equivalentProperty>
       <owl:ObjectProperty rdf:about="#strict_part_of"/>
+    </owl:equivalentProperty>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="part_of"/>
     </rdfs:subPropertyOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The non-transitive part_of relation</rdfs:comment>
     <owl:inverseOf rdf:resource="#direct_part"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#composes">
-    <owl:inverseOf rdf:resource="#composed_of"/>
-    <rdfs:comment>Specifies that some thing is composed_of (spatially) within some other thing</rdfs:comment>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:ID="part_of"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#strict_part_of">
+    <owl:equivalentProperty rdf:resource="#direct_part_of"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#strict_part"/>
     </owl:inverseOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Non transitive part_of relation</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#part_of"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#member_of">
     <rdfs:subPropertyOf rdf:resource="#strict_part_of"/>
@@ -160,20 +153,21 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
     >Specifies membership of a set or group</rdfs:comment>
     <owl:inverseOf rdf:resource="#member"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="contained_in">
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="contains"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#part_of"/>
-    </rdfs:subPropertyOf>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Specifies that some thing is contained (spatially) within some other thing</rdfs:comment>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#strict_part">
+    <owl:equivalentProperty rdf:resource="#direct_part"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#part"/>
+    </rdfs:subPropertyOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Non transitive part relation</rdfs:comment>
     <owl:inverseOf rdf:resource="#strict_part_of"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#part">
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="#part_of"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:comment>Transitive part relation</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="component_of">
     <rdfs:subPropertyOf rdf:resource="#strict_part_of"/>
@@ -189,25 +183,39 @@ Contributors: Joost Breuker (UvA)</owl:versionInfo>
     >Specifies that some thing is a (functional) component of some other thing</rdfs:comment>
     <owl:inverseOf rdf:resource="#component_of"/>
   </owl:ObjectProperty>
-  <owl:TransitiveProperty rdf:about="#contains">
-    <owl:inverseOf rdf:resource="#contained_in"/>
+  <owl:TransitiveProperty rdf:ID="composed_of">
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="composes"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some thing is composed_of (spatially) within some other thing</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#part"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#composes">
     <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="#part"/>
+      <owl:TransitiveProperty rdf:about="#part_of"/>
     </rdfs:subPropertyOf>
+    <rdfs:comment>Specifies that some thing is composed_of (spatially) within some other thing</rdfs:comment>
+    <owl:inverseOf rdf:resource="#composed_of"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="contains">
+    <rdfs:subPropertyOf rdf:resource="#part"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="contained_in"/>
+    </owl:inverseOf>
     <rdfs:comment>Specifies that some thing is contained (spatially) within some other thing</rdfs:comment>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#part_of">
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:about="#part"/>
-    </owl:inverseOf>
-    <rdfs:comment>Transitive part_of relation</rdfs:comment>
-    <rdfs:subPropertyOf rdf:resource="#strict_part_of"/>
+  <owl:TransitiveProperty rdf:about="#contained_in">
+    <owl:inverseOf rdf:resource="#contains"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies that some thing is contained (spatially) within some other thing</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#part_of"/>
+    </rdfs:subPropertyOf>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#part">
-    <rdfs:comment>Transitive part relation</rdfs:comment>
-    <owl:inverseOf rdf:resource="#part_of"/>
-    <rdfs:subPropertyOf rdf:resource="#strict_part"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  <owl:TransitiveProperty rdf:about="#part_of">
+    <rdfs:comment>Transitive part_of relation</rdfs:comment>
+    <owl:inverseOf rdf:resource="#part"/>
   </owl:TransitiveProperty>
   <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionInfo"/>
   <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment"/>

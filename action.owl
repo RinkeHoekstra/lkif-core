@@ -281,10 +281,17 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
     <rdfs:subClassOf rdf:resource="#Action"/>
   </owl:Class>
   <owl:Class rdf:about="#Plan">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#part"/>
+        <owl:someValuesFrom rdf:resource="#Action"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A plan is a structure of multiple other plans or actions. These can be both sequential or concurrent. Usually a plan is referred to in the context of the intention to act of some agent, however when executed the plan itself comes into effect.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#part"/>
         <owl:allValuesFrom>
           <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
@@ -293,15 +300,8 @@ LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
             </owl:unionOf>
           </owl:Class>
         </owl:allValuesFrom>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#part"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Action"/>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#part"/>
-      </owl:Restriction>
-    </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
   </owl:Class>
   <owl:ObjectProperty rdf:about="#actor_in">

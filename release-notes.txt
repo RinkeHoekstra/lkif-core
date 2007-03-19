@@ -10,6 +10,8 @@ Version 1.0.2 - 200703?? - Bugfix Release
 	* Swapped domain/range on participant/participant_in (!)
 	* evaluatively_comparable is now symmetric
 	* separated 'evaluates' from 'qualifies', evaluates is a subproperty of qualifies which relates an Evaluative Attitude to an Evaluative Proposition. The qualifies property is reserved for Qualification and Qualified.
+	* Member property was mistakenly transitive
+	* Added strict parthood relation. Part and part_of are now truly transitive.
 * Redesigned imports between modules.
 	* Introduced a more layered-approach: importing modules add restrictions relevant to the domain they cover to the imported classes. Not the other way around. In previous versions, the Action module imported the Role and Expression modules (and vice versa), and contained restrictions on its classes expressed using the vocabulary of the Role and Expression modules. In this version these restrictions are moved to the modules that add the vocabulary. I.e. if the Role module 'has something to add' to the definition of a class from the Action module, the restriction is defined in the Role module. This strategy improves the diagnosis of inconsistencies etc.
 	* Process module no longer imports Action, Role and Mereology modules
