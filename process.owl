@@ -85,6 +85,68 @@ This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTREL
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A physical object is a physical concept consisting of matter, it has a spatio-temporal extension.</rdfs:comment>
   </owl:Class>
+
+
+  <owl:Class rdf:about="#Continuation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The continuation of a change, once initiated</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Change"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Change"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#direct_part_of"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#requirement"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Initiation"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Initiation">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#result"/>
+        <owl:someValuesFrom rdf:resource="#Continuation"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Change"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#direct_part_of"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The initation of a change</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Change"/>
+  </owl:Class>
+
+
+  <owl:Class rdf:ID="Termination">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The termination of a change.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Change"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#requirement"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Continuation"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Change"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#direct_part_of"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+
   <owl:ObjectProperty rdf:ID="resource_for">
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:ID="participant_in"/>
