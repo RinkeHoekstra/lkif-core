@@ -2,6 +2,63 @@ Release notes for LKIF-Core
 See also http://www.estrellaproject.org/lkif-core
 
 
+Version 1.0.2 - 20070322 - Major Bugfix Release
+-----------------------------------------
+
+* Fixed duplicate class definitions in expression module (problem with Jena backend).
+* Properties
+	* Swapped domain/range on participant/participant_in (!)
+	* evaluatively_comparable is now symmetric
+	* Separated 'evaluates' from 'qualifies', evaluates is a subproperty of qualifies which relates an Evaluative Attitude to an Evaluative Proposition. The qualifies property is reserved for Qualification and Qualified.
+	* Separated 'qualitatively_comparable' from 'evaluatively_comparable'. The former is a superproperty of the latter. The 'normatively_comparable' is also a subproperty of the former.
+	* Member property was mistakenly transitive
+	* Added strict parthood relation. Part and part_of are now truly transitive.
+* Redesigned imports between modules.
+	* Introduced a more layered-approach: importing modules add restrictions relevant to the domain they cover to the imported classes. Not the other way around. In previous versions, the Action module imported the Role and Expression modules (and vice versa), and contained restrictions on its classes expressed using the vocabulary of the Role and Expression modules. In this version these restrictions are moved to the modules that add the vocabulary. I.e. if the Role module 'has something to add' to the definition of a class from the Action module, the restriction is defined in the Role module. This strategy improves the diagnosis of inconsistencies etc.
+	* Process module no longer imports Action, Role and Mereology modules
+	* Removed Spacetime module
+	* Process module now directly imports Place and Time modules
+	* Place module no longer directly imports Top
+	* Top module no longer imports Mereology, Place and Time modules
+	* Action module no longer imports Role and Expression modules
+
+* Reduced the number of GCI (General Concept Inclusion) axioms and inverse properties to speed-up reasoner performance.
+	* Rule was inconsistent: both played_by Atom and Composition.
+	* Relaxed the definition of Act_of_Law, Assignment, Decision, Delegation and Mandate.
+	* Relaxed the definition of Transaction
+	* Asserted disjoint relation between Document and Custom
+	* Asserted disjoint relation between Role and Action, Role and Agent.
+	* Restructured definition of Actor (removed redundant disjoints)
+	* Asserted range for observes property: (Belief and (plays some Observation))
+	* Relaxed definition of Temporal_Occurrence
+	* Added namespace prefix for mereology module to time module
+	* Relaxed definition of Relative_Place
+	* Relaxed definition of Part, Whole, Atom and Composition. 
+	* Corrected range/domain of observer/observes properties
+	* Relaxed definition of Propositional_Attitude
+	* Relaxed definition of Document
+	* Strengthened definition of Qualified
+	* Strengthened definition of Mental_Object 
+		(added held_by some Agent to equivalentClass restriction)
+	* Relaxed definition of Proposition
+	* Relaxed definition of Evaluative_Proposition 
+		(moved evaluatively_comparable some Evaluative_Proposition to subClassOf restriction)
+	* Relaxed definition of Expression 
+		(moved medium some Medium to subClassOf restriction)
+	* Relaxed definition of Communicated_Attitude 
+		(moved (utterer some action:Agent) and (addressee some action:Agent) to subClassOf restriction)
+	* Relaxed definition of Artifact
+	* Relaxed definition of Epistemic_Role, Function, Social_Role
+	* Relaxed definition of Role (someValuesFrom -> min cardinality)
+	* Relaxed definition of Organisation_Role
+	* Relaxed definition of Qualification/Qualified, added evaluatively_comparable some/all Qualified statements to subClassOf restriction of Qualified.
+	* Relaxed the definition of many Epistemic Roles
+	* Relaxed the definition of Code, Contract, Regulation and Statute
+* Fixed inconsistent class definitions
+	* Action disjointWith Plan caused inconsistencies with Continuation, Termination and Initiation. Moved these to the Process module (subclasses of Change)
+	
+
+
 Version 1.0.1 - 20070223 - Bugfix Release
 -----------------------------------------
 

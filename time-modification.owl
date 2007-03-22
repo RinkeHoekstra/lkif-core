@@ -9,14 +9,13 @@
     xmlns:owl="http://www.w3.org/2002/07/owl#"
   xml:base="http://www.estrellaproject.org/lkif-core/time-modification.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-	This module is part of LKIF-Core, version 1.0, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+	This module is part of LKIF-Core, version 1.0.2, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 	</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-	LKIF-Core, version 1.0, copyright (C) 2007, the ESTRELLA consortium
+	LKIF-Core, version 1.0.2, copyright (C) 2007, the ESTRELLA consortium
 	</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
@@ -33,7 +32,6 @@
 	Contributors: Alexander Boer (UvA)
 	</owl:versionInfo>
     <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl"/>
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/time.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Semantic_Annotation">
     <rdfs:subClassOf>
