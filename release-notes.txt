@@ -56,6 +56,7 @@ Version 1.0.2 - 20070322 - Major Bugfix Release
 	* Relaxed the definition of Code, Contract, Regulation and Statute
 * Fixed inconsistent class definitions
 	* Action disjointWith Plan caused inconsistencies with Continuation, Termination and Initiation. Moved these to the Process module (subclasses of Change)
+	* Fixed inconsistency in rule module (Valid_Rule)
 	
 
 
