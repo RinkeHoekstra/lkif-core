@@ -13,7 +13,6 @@
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
   xml:base="http://www.estrellaproject.org/lkif-core/lkif-core.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
 This module is part of LKIF-Core, version 1.0.2, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
