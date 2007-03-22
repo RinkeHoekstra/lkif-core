@@ -49,14 +49,14 @@
         <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#qualified_by"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <owl:equivalentClass>
+    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Normatively_Qualified"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="normatively_comparable"/>
         </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Normatively_Qualified"/>
       </owl:Restriction>
-    </owl:equivalentClass>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Some thing which is qualified (allowed, disallowed) by a norm, i.e. a norm applies to the thing. Taking the principle of deontic choice to mean that the utterer of a normative statement intends to influence choices made by the addressee of the statement, the qualified thing should is comparable to some alternative. Note that Qualified does not partition into Allowed and Disallowed. Firstly, things can be Allowed by one Norm and Disallowed by another one. Secondly, the logical complement of the thing allowed by a permission is qualified (as worse or equal than the thing allowed), but neither allowed nor disallowed.</rdfs:comment>
   </owl:Class>
@@ -72,7 +72,20 @@
   </owl:Class>
   <owl:Class rdf:ID="Regulation">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#Legal_Document"/>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Norm"/>
+              <owl:Restriction>
+                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legislative_Body"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#utterer"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#bears"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -85,22 +98,9 @@
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#bears"/>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class rdf:about="#Norm"/>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#utterer"/>
-                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legislative_Body"/>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Legal_Document"/>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A regulation bears one or more norms, all of which are uttered by some legislative body. It cannot bear expressions which are not uttered by a legislative body.</rdfs:comment>
   </owl:Class>
@@ -133,12 +133,17 @@
     >A proclamation (Lat. proclamare, to make public by announcement) is an official declaration.</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Legal_Expression">
-    <owl:equivalentClass>
+    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Communicated_Attitude"/>
+        <owl:someValuesFrom>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Public_Act"/>
+            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#created_by"/>
+          </owl:Restriction>
+        </owl:someValuesFrom>
         <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#attitude"/>
       </owl:Restriction>
-    </owl:equivalentClass>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Legal expressions are created by  some legal speech act and qualified by a communicated attitude</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#Expression"/>
@@ -259,15 +264,13 @@
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:equivalentClass>
+    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#bears"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="#Norm"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#utterer"/>
                 <owl:someValuesFrom>
                   <owl:Class>
                     <owl:unionOf rdf:parseType="Collection">
@@ -276,12 +279,14 @@
                     </owl:unionOf>
                   </owl:Class>
                 </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#utterer"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#bears"/>
       </owl:Restriction>
-    </owl:equivalentClass>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A contract bears one or more norms, all of which are uttered by some natural person or legal person. It cannot bear expressions which are uttered by a different kind of agent.</rdfs:comment>
   </owl:Class>
@@ -343,7 +348,20 @@ against using certain kinds of premises for certain purposes, in the interest of
   </owl:Class>
   <owl:Class rdf:ID="Statute">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#Legal_Document"/>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Norm"/>
+              <owl:Restriction>
+                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Person"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#utterer"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#bears"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -356,22 +374,9 @@ against using certain kinds of premises for certain purposes, in the interest of
         </owl:allValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#bears"/>
-        <owl:someValuesFrom>
-          <owl:Class>
-            <owl:intersectionOf rdf:parseType="Collection">
-              <owl:Class rdf:about="#Norm"/>
-              <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#utterer"/>
-                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Person"/>
-              </owl:Restriction>
-            </owl:intersectionOf>
-          </owl:Class>
-        </owl:someValuesFrom>
-      </owl:Restriction>
-    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Legal_Document"/>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A statute bears one or more norms, all of which are uttered by some legal person. It cannot bear expressions which are uttered by a different kind of agent.</rdfs:comment>
   </owl:Class>
@@ -409,22 +414,22 @@ against using certain kinds of premises for certain purposes, in the interest of
     </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A legal code bears one or more norms, all of which are uttered by some legislative body. It cannot bear expressions which are not uttered by a legislative body.</rdfs:comment>
-    <owl:equivalentClass>
+    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#bears"/>
         <owl:someValuesFrom>
           <owl:Class>
             <owl:intersectionOf rdf:parseType="Collection">
               <owl:Class rdf:about="#Norm"/>
               <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#utterer"/>
                 <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legislative_Body"/>
+                <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#utterer"/>
               </owl:Restriction>
             </owl:intersectionOf>
           </owl:Class>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#bears"/>
       </owl:Restriction>
-    </owl:equivalentClass>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#bears"/>
@@ -700,7 +705,7 @@ belong to anybody, then x has the potestative-right to start x’s ownership of 
   <owl:ObjectProperty rdf:about="#normatively_comparable">
     <rdfs:domain rdf:resource="#Normatively_Qualified"/>
     <rdfs:range rdf:resource="#Normatively_Qualified"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#evaluatively_comparable"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl#qualitatively_comparable"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="normatively_equivalent_or_better">
     <owl:inverseOf>
@@ -795,10 +800,6 @@ belong to anybody, then x has the potestative-right to start x’s ownership of 
     <rdfs:subPropertyOf rdf:resource="#normatively_equivalent_or_worse"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
   </owl:TransitiveProperty>
-  <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/expression.owl#observes">
-    <rdfs:range rdf:parseType="Resource">
-    </rdfs:range>
-  </rdf:Description>
 </rdf:RDF>
 
 <!-- Created with TopBraid Composer -->

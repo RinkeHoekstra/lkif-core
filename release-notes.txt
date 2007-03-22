@@ -9,7 +9,8 @@ Version 1.0.2 - 200703?? - Bugfix Release
 * Properties
 	* Swapped domain/range on participant/participant_in (!)
 	* evaluatively_comparable is now symmetric
-	* separated 'evaluates' from 'qualifies', evaluates is a subproperty of qualifies which relates an Evaluative Attitude to an Evaluative Proposition. The qualifies property is reserved for Qualification and Qualified.
+	* Separated 'evaluates' from 'qualifies', evaluates is a subproperty of qualifies which relates an Evaluative Attitude to an Evaluative Proposition. The qualifies property is reserved for Qualification and Qualified.
+	* Separated 'qualitatively_comparable' from 'evaluatively_comparable'. The former is a superproperty of the latter. The 'normatively_comparable' is also a subproperty of the former.
 	* Member property was mistakenly transitive
 	* Added strict parthood relation. Part and part_of are now truly transitive.
 * Redesigned imports between modules.
@@ -51,8 +52,11 @@ Version 1.0.2 - 200703?? - Bugfix Release
 	* Relaxed definition of Role (someValuesFrom -> min cardinality)
 	* Relaxed definition of Organisation_Role
 	* Relaxed definition of Qualification/Qualified, added evaluatively_comparable some/all Qualified statements to subClassOf restriction of Qualified.
+	* Relaxed the definition of many Epistemic Roles
+	* Relaxed the definition of Code, Contract, Regulation and Statute
 * Fixed inconsistent class definitions
 	* Action disjointWith Plan caused inconsistencies with Continuation, Termination and Initiation. Moved these to the Process module (subclasses of Change)
+	
 
 
 Version 1.0.1 - 20070223 - Bugfix Release
