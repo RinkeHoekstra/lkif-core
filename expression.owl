@@ -734,19 +734,7 @@
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#observer">
-    <rdfs:domain>
-      <owl:Restriction>
-        <owl:someValuesFrom>
-          <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="#Observation"/>
-            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
-          </owl:Restriction>
-        </owl:someValuesFrom>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="#towards"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:domain>
+    <rdfs:domain rdf:resource="#Belief"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="observes"/>
     </owl:inverseOf>
@@ -809,6 +797,7 @@
     <rdfs:range rdf:resource="#Medium"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#observes">
+    <rdfs:range rdf:resource="#Belief"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Relates an agent to the thing it beliefs it observes</rdfs:comment>
     <owl:inverseOf rdf:resource="#observer"/>
