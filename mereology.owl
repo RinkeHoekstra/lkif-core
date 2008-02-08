@@ -10,7 +10,7 @@
   xml:base="http://www.estrellaproject.org/lkif-core/mereology.owl">
   <owl:Ontology rdf:about="">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >This module is part of LKIF-Core, version 1.0.2, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665</owl:versionInfo>
+    >This module is part of LKIF-Core, version 1.0.3, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
 
@@ -21,7 +21,7 @@ The use of this ontology, and the OWL files through which it is distributed, is 
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
 Contributors: Joost Breuker (UvA)</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >LKIF-Core, version 1.0.2, copyright (C) 2007, the ESTRELLA consortium</owl:versionInfo>
+    >LKIF-Core, version 1.0.3, copyright (C) 2007, the ESTRELLA consortium</owl:versionInfo>
     <owl:imports>
       <owl:Ontology rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl"/>
     </owl:imports>

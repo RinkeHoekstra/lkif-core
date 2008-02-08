@@ -11,7 +11,7 @@
   <owl:Ontology rdf:about="">
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-LKIF-Core, version 1.0.2, copyright (C) 2007, the ESTRELLA consortium
+LKIF-Core, version 1.0.3, copyright (C) 2007, the ESTRELLA consortium
 </owl:versionInfo>
     <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -32,7 +32,7 @@ The use of this ontology, and the OWL files through which it is distributed, is 
     >Currently this module does not commit to any particular theory on/framework of thematic roles (i.e. subproperties of participant). This has consequences for the detail in which actions are described in this ontology.</rdfs:comment>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-This module is part of LKIF-Core, version 1.0.2, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+This module is part of LKIF-Core, version 1.0.3, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 </owl:versionInfo>
   </owl:Ontology>
   <owl:Class rdf:ID="Creation">

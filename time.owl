@@ -18,11 +18,11 @@ Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (U
 Contributors: Joost Breuker (UvA), Monica Palmirani (UNIBO)</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-This module is part of LKIF-Core, version 1.0.2, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+This module is part of LKIF-Core, version 1.0.3, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 </owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-LKIF-Core, version 1.0.2, copyright (C) 2007, the ESTRELLA consortium
+LKIF-Core, version 1.0.3, copyright (C) 2007, the ESTRELLA consortium
 </owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
@@ -52,13 +52,13 @@ The use of this ontology, and the OWL files through which it is distributed, is 
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="#Temporal_Occurrence"/>
             <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="immediatly_after"/>
+              <owl:ObjectProperty rdf:ID="immediately_after"/>
             </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="#Temporal_Occurrence"/>
             <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="immediatly_before"/>
+              <owl:ObjectProperty rdf:ID="immediately_before"/>
             </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
@@ -85,14 +85,14 @@ The use of this ontology, and the OWL files through which it is distributed, is 
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#Pair"/>
   </owl:Class>
-  <owl:ObjectProperty rdf:about="#immediatly_before">
+  <owl:ObjectProperty rdf:about="#immediately_before">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that a time period occurs immediately before another period, i.e. it ends where the other period starts</rdfs:comment>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="#immediatly_after"/>
+      <owl:ObjectProperty rdf:about="#immediately_after"/>
     </owl:inverseOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >'meet' in Allen's paper is replaced by 'immediatly_before'</rdfs:comment>
+    >'meet' in Allen's paper is replaced by 'immediately_before'</rdfs:comment>
     <rdfs:domain rdf:resource="#Temporal_Occurrence"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >t1 previous t2: interval t1 is before t2, but there is no interval between them, i.e., t1 ends where t2 starts</rdfs:comment>
@@ -100,7 +100,7 @@ The use of this ontology, and the OWL files through which it is distributed, is 
       <owl:ObjectProperty rdf:ID="before"/>
     </rdfs:subPropertyOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Add to OWL 1.1: 'immediatly_before' is serial, 'immediatly_before' is irreflexive</rdfs:comment>
+    >Add to OWL 1.1: 'immediately_before' is serial, 'immediately_before' is irreflexive</rdfs:comment>
     <rdfs:range rdf:resource="#Temporal_Occurrence"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="between">
@@ -146,17 +146,17 @@ The use of this ontology, and the OWL files through which it is distributed, is 
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that a time period finishes another period, i.e. the other period starts before, but ends at the same moment </rdfs:comment>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#immediatly_after">
+  <owl:ObjectProperty rdf:about="#immediately_after">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Specifies that a time period occurs immediately after another period, i.e. it starts where the other period ends</rdfs:comment>
     <rdfs:subPropertyOf>
       <owl:TransitiveProperty rdf:about="#after"/>
     </rdfs:subPropertyOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Add to OWL 1.1: 'immediatly_after' is serial, 'immediatly_after' is irreflexive</rdfs:comment>
-    <owl:inverseOf rdf:resource="#immediatly_before"/>
+    >Add to OWL 1.1: 'immediately_after' is serial, 'immediately_after' is irreflexive</rdfs:comment>
+    <owl:inverseOf rdf:resource="#immediately_before"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >'is_met_by' is renamed to 'immediatly_after'</rdfs:comment>
+    >'is_met_by' is renamed to 'immediately_after'</rdfs:comment>
     <rdfs:range rdf:resource="#Temporal_Occurrence"/>
     <rdfs:domain rdf:resource="#Temporal_Occurrence"/>
   </owl:ObjectProperty>
