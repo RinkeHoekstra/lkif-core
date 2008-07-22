@@ -1,7 +1,7 @@
 Release notes for LKIF-Core
 See also http://www.estrellaproject.org/lkif-core
 
-Version 1.0.3 - 20080208 - Minor Bugfix Release
+Version 1.0.3 - 20080501 - Minor Bugfix Release
 -----------------------------------------
 
 * Moved time-modification.owl and lkif-rules.owl modules to new 'lkif-extended.owl' module due to performance hog. These modules are primarily provided for compatibility reasons with e.g. the Metalex/CEN initiative and the LKIF Rules RDF syntax.
