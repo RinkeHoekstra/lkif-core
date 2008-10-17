@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:time="http://www.estrellaproject.org/lkif-core/time.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.estrellaproject.org/lkif-core/lkif-top.owl#"
+    xmlns:places="http://www.estrellaproject.org/lkif-core/relative-places.owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+  xml:base="http://www.estrellaproject.org/lkif-core/lkif-top.owl">
+  <owl:Ontology rdf:about="">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+Partner contributions from the University of Amsterdam (UvA)
+
+Authors:      Rinke Hoekstra (UvA)
+Contributors: Joost Breuker (UvA)
+</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work. 
+
+</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+LKIF-Core, version 1.0.3, copyright (C) 2007, the ESTRELLA consortium
+</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+This module is part of LKIF-Core, version 1.0.3, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Mental_Object">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Mental_Entity"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Metaphor of physical concepts, i.e. the things we mentally manipulate, either in thought or memory</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Physical_Entity">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The physical world evolves around two main classes: physical objects and processes.
+
+In lkif-core, the physical world evolves around two main classes: physical objects and processes. Objects are pieces of matter, while matter is typed by substances. Objects have mass, extension, viz. form and aggregation state (which limits form). Objects are the specification of the notion that matter, and in particular solid objects, is what makes the physical world relatively stable and observable. We define (physical) situations in the first place by the arrangement of physical objects (entities).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Spatio_Temporal_Occurrence">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Occurrence"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An occurrence in space-time</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Occurrence">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A consequence of our clear separation of ontology from models of situations (occurrences), is well exemplified in the two ways we look at time and space. Things happen against the canvas of space and time. This 3D canvas moving in time (or whatever metaphor) allows us to index instances of objects and processes. Time and space provide positions in time and space for objects. Positions are in general modeled in some mereological framework. However, the objects and processes as classes have time and space properties in a different way. Space occupied by an object is its inherent property of size or extension. This property was for Descartes even the critical one that separated mental (not: abstract) objects from physical ones. Processes occupy (consume) time; they take some duration. This time resource is inversely related to the consumption of energy. This distinction between position and extension is also made in various other ontologies. However, this distinction is easily obscured by the fact that the extension of an object can also be used as a reference for location. An object can be in another object. In fact, any physical object can be used as a spatial and even temporal referent. This does not refute our view that locations are occurrences. To be precise: extension is an inherent, necessary property of a physical object or process; its location is an accidental one.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Mental_Entity">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >We made the assumption that our views of the mental world have been developed in analogy with physical processes. Mental objects like thoughts are made of elementary parts: concepts. The contents (substance) of these objects are representations. The conceptual content of thoughts are intended by propositional attitudes, like belief, desire, norm etc. Mental objects are processed or stored in containers like a mind which has parts like various memories. Mental processes like thinking, memorizing, imaging, etc. are operations on mental objects. The energy equivalent of mental processing are emotions: the forces that make us focus our mental energies. 
+
+There is an important difference between the mental world and the physical. Where physical processes occur causally, mental processes are controlled by an intentional stance. The outcome of mental processes can be the intention to act. The intention to act may consist of a structure of primary actions: a plan. The actions can be aimed at bringing about physical changes, but they may also be aimed at changing the mental state of another agent: these intended actions are communication actions. Like direct actions, communication actions have a physical appearance. They also need some physical medium to transfer the intended mental state. Speech act is the common term for these actions. 
+
+Whether this notion of intended control over mental processes and actions is an illusion or not is besides the point in modeling common-sense. The intentional stance implies a kind of backward, teleological reasoning over causally related processes. A mental object like a  plan consists of a goal state (intention) and is produced by reasoning from goal to means (actions): this is what rational agency behavior is about. 
+
+The mental world is not only a reflective one based in our minds eye. We may observe the stream of conscious mental processes, but the role of the mental conceptualizations is of even more important in understanding and communicating with other people. Mental processes and attitudes (sources of intention) are in the first place the building stones for modeling the minds of other people. The intentional stance means in the first place that we attribute to others and to some extent also to many animals intentions and intention directed mental processing and belief.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Abstract_Entity">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An abstract concept is a concept which does not (necessarily) have a referent in either the physical or the mental world.   
+
+Abstract entities are (proto)mathematical, formal entities, entities which have a purely formal, logical or mathematical meaning.
+
+As all concepts are abstractions, one may argue that a separate abstract world is difficult to see. In common-sense, a circle has more properties and is less abstract than in mathematics. Even mathematicians marvel about the fact their pure abstractions enable us to predict very concrete things. However, we are not directly concerned with these mappings. The most important is that common-sense knows about a (small) number of proto-mathematical concepts, such as collections, sequences and count-numbers (positive integers). We know also about geometric simplifications such as line, circle, square, cube, etc. These common sense notions might even be the real roots of our mathematics. However, these kind of semi-formal abstractions do not play a very central role in law, and therefore LRI-Core is thinly populated with abstract classes.</rdfs:comment>
+  </owl:Class>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer -->

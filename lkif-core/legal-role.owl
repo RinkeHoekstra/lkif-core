@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:role="http://www.estrellaproject.org/lkif-core/role.owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns="http://www.estrellaproject.org/lkif-core/legal-role.owl#"
+  xml:base="http://www.estrellaproject.org/lkif-core/legal-role.owl">
+  <owl:Ontology rdf:about="">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+Partner contributions from the University of Amsterdam (UvA).
+
+Authors:      Rinke Hoekstra (UvA)
+Contributors: Joost Breuker (UvA)
+</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work. 
+
+</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+LKIF-Core, version 1.0.3, copyright (C) 2007, the ESTRELLA consortium
+</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >
+This module is part of LKIF-Core, version 1.0.3, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+</owl:versionInfo>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Social_Legal_Role">
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Social_Role">
+        <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Function"/>
+      </rdf:Description>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Legal_Role"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A social legal role is played by some agent in the context of legal activities.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Legal_Role">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A legal role is a role played in a legal context. Legal role players can be both Agents and other 'things'</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Professional_Legal_Role">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Person"/>
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A professional legal role is a legal profession of some person, examples: lawyer, judge etc.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Social_Legal_Role"/>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Organisation_Role"/>
+  </owl:Class>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer -->
