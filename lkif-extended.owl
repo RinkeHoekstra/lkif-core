@@ -14,6 +14,7 @@
 	    >
 	Partner contributions from the University of Amsterdam (UvA), the University of Bologna (UNIBO) and the Fraunhofer institute (FOKUS)
 
+	Editor:       Rinke Hoekstra (UvA)
 	Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
 	Contributors: Joost Breuker (UvA), Thomas Gordon (FOKUS), Monica Palmirani (UNIBO), Rosella Rubino (UNIBO)
 	</owl:versionInfo>
@@ -26,11 +27,11 @@
 	</owl:versionInfo>
 	    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
 	    >
-	LKIF-Core, version 1.0.3, copyright (C) 2007, the ESTRELLA consortium
+	LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium
 	</owl:versionInfo>
 	    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
 	    >
-	This module is part of LKIF-Core, version 1.0.3, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+	This module is part of LKIF-Core, version 1.1, ESTRELLA, IST-2004-027665
 	</owl:versionInfo>
   </owl:Ontology>
 </rdf:RDF>

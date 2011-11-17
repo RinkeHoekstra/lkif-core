@@ -12,11 +12,11 @@
     <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/expression.owl"/>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-	This module is part of LKIF-Core, version 1.0.3, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+	This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
 	</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
-	LKIF-Core, version 1.0.3, copyright (C) 2007, the ESTRELLA consortium
+	LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium
 	</owl:versionInfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >
@@ -29,6 +29,7 @@
     >
 	Partner contributions from the University of Amsterdam (UvA) and the Fraunhofer institute (FOKUS).
 
+	Editor:       Rinke Hoekstra (UvA)
 	Authors:      Rinke Hoekstra (UvA), Thomas Gordon (FOKUS)
 	</owl:versionInfo>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
