@@ -1,0 +1,17 @@
+[project]
+name = "lkif-core"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Rinke Hoekstra",email = "r.hoekstra@elsevier.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "rdflib (>=7.6.0,<8.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

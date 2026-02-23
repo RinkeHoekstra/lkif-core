@@ -1,0 +1,127 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/time.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix lkif-top: <http://www.estrellaproject.org/lkif-core/lkif-top.owl#> .
+@prefix mereo: <http://www.estrellaproject.org/lkif-core/mereology.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.estrellaproject.org/lkif-core/time.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "An ontology of time based on \"Actions and Events in Interval Logc\" by James F. Allen and George Ferguson, 1994.  This ontology is similar to the W3C best practices OWL-Time ontology draft of 18 May 2006 by Jerry R. Hobbs and Feng Pan (http://www.w3.org/2001/sw/BestPractices/OEP/Time-Ontology).  Meta-physical time concepts are separated from parts dealing with quantitative time.  Relations were strengthened with more axioms."^^xsd:string ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/mereology.owl> ;
+    owl:versionInfo "LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium"^^xsd:string,
+        """Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
+
+Editor:       Rinke Hoekstra (UvA)
+Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
+Contributors: Joost Breuker (UvA), Monica Palmirani (UNIBO)"""^^xsd:string,
+        "This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665"^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Interval a owl:Class ;
+    rdfs:comment "An interval is a composition of multiple periods of time."^^xsd:string ;
+    rdfs:subClassOf mereo:Composition,
+        :Temporal_Occurrence ;
+    owl:disjointWith :Moment .
+
+:between a owl:ObjectProperty ;
+    rdfs:comment "Specifies that a time period occurs between two other periods"^^xsd:string ;
+    rdfs:domain :Temporal_Occurrence ;
+    rdfs:range :Pair_Of_Periods ;
+    rdfs:subPropertyOf :temporal_relation .
+
+:during a owl:ObjectProperty ;
+    rdfs:comment "Specifies that a time period occurs during another period"^^xsd:string ;
+    rdfs:subPropertyOf :temporal_relation .
+
+:finishes a owl:ObjectProperty ;
+    rdfs:comment "Specifies that a time period finishes another period, i.e. the other period starts before, but ends at the same moment"^^xsd:string ;
+    rdfs:subPropertyOf :temporal_relation .
+
+:overlap a owl:ObjectProperty ;
+    rdfs:comment "Specifies that a time period overlaps with another time period (in any way)"^^xsd:string ;
+    rdfs:subPropertyOf :temporal_relation .
+
+:preceeds a owl:ObjectProperty ;
+    rdfs:comment "Specifies that a time period preceeds another period, the periods do not overlap"^^xsd:string ;
+    rdfs:subPropertyOf :temporal_relation .
+
+:starts a owl:ObjectProperty ;
+    rdfs:comment "Specifies that a time period starts another period, i.e. the other period starts at the same time, but ends at a later time."^^xsd:string ;
+    rdfs:subPropertyOf :temporal_relation .
+
+lkif-top:Spatio_Temporal_Occurrence a owl:Class .
+
+mereo:Atom a owl:Class .
+
+mereo:Composition a owl:Class .
+
+mereo:Pair a owl:Class .
+
+mereo:component a owl:ObjectProperty .
+
+:Moment a owl:Class ;
+    rdfs:comment "A moment is an atomic period of time, i.e. it cannot be divided into other parts"^^xsd:string ;
+    rdfs:subClassOf mereo:Atom,
+        :Temporal_Occurrence .
+
+:Pair_Of_Periods a owl:Class ;
+    rdfs:comment "A pair of two time periods"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Temporal_Occurrence ;
+            owl:onProperty mereo:component ],
+        mereo:Pair .
+
+:before a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Specifies that a time period occurs before another period, but might overlap with it."^^xsd:string ;
+    rdfs:domain :Temporal_Occurrence ;
+    rdfs:range :Temporal_Occurrence ;
+    rdfs:subPropertyOf :temporal_relation ;
+    owl:inverseOf :after .
+
+:immediately_before a owl:ObjectProperty ;
+    rdfs:comment "'meet' in Allen's paper is replaced by 'immediately_before'"^^xsd:string,
+        "Add to OWL 1.1: 'immediately_before' is serial, 'immediately_before' is irreflexive"^^xsd:string,
+        "Specifies that a time period occurs immediately before another period, i.e. it ends where the other period starts"^^xsd:string,
+        "t1 previous t2: interval t1 is before t2, but there is no interval between them, i.e., t1 ends where t2 starts"^^xsd:string ;
+    rdfs:domain :Temporal_Occurrence ;
+    rdfs:range :Temporal_Occurrence ;
+    rdfs:subPropertyOf :before ;
+    owl:inverseOf :immediately_after .
+
+:after a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "'after' is the transitive closure of 'next'; this is defined in time-rules.owl."^^xsd:string,
+        "Specifies that a time period occurs after another period, but might overlap with it."^^xsd:string ;
+    rdfs:domain :Temporal_Occurrence ;
+    rdfs:range :Temporal_Occurrence ;
+    rdfs:subPropertyOf :temporal_relation .
+
+:immediately_after a owl:ObjectProperty ;
+    rdfs:comment "'is_met_by' is renamed to 'immediately_after'"^^xsd:string,
+        "Add to OWL 1.1: 'immediately_after' is serial, 'immediately_after' is irreflexive"^^xsd:string,
+        "Specifies that a time period occurs immediately after another period, i.e. it starts where the other period ends"^^xsd:string ;
+    rdfs:domain :Temporal_Occurrence ;
+    rdfs:range :Temporal_Occurrence ;
+    rdfs:subPropertyOf :after .
+
+:temporal_relation a owl:ObjectProperty ;
+    rdfs:comment "A relation between two time periods"^^xsd:string ;
+    rdfs:domain :Temporal_Occurrence ;
+    rdfs:range :Temporal_Occurrence .
+
+:Temporal_Occurrence a owl:Class ;
+    rdfs:comment "A period of time, has a duration"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:intersectionOf ( [ a owl:Restriction ;
+                        owl:onProperty :immediately_after ;
+                        owl:someValuesFrom :Temporal_Occurrence ] [ a owl:Restriction ;
+                        owl:onProperty :immediately_before ;
+                        owl:someValuesFrom :Temporal_Occurrence ] ) ],
+        lkif-top:Spatio_Temporal_Occurrence .
+

@@ -1,0 +1,570 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/expression.owl#> .
+@prefix action: <http://www.estrellaproject.org/lkif-core/action.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix process: <http://www.estrellaproject.org/lkif-core/process.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix role: <http://www.estrellaproject.org/lkif-core/role.owl#> .
+@prefix top: <http://www.estrellaproject.org/lkif-core/lkif-top.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+action:Reaction a owl:Class ;
+    rdfs:comment "NOTE: question remains whether some observation is also a *requirement* of the reaction. Furthermore, the current definition ensures that the observed action becomes a top:Mental_Object (i.e. it is internalised)." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( action:Agent [ a owl:Restriction ;
+                                owl:onProperty :observes ;
+                                owl:someValuesFrom [ a owl:Class ;
+                                        owl:intersectionOf ( :Belief [ a owl:Restriction ;
+                                                    owl:onProperty :qualifies ;
+                                                    owl:someValuesFrom [ a owl:Restriction ;
+                                                            owl:onProperty role:plays ;
+                                                            owl:someValuesFrom [ a owl:Class ;
+                                                                    owl:intersectionOf ( :Observation [ a owl:Restriction ;
+                                                                                owl:onProperty role:played_by ;
+                                                                                owl:someValuesFrom action:Action ] ) ] ] ] ) ] ] ) ] ;
+            owl:onProperty action:actor ] .
+
+<http://www.estrellaproject.org/lkif-core/expression.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "This file defines a number of types of what is commonly called a propositional attitude (PA). These relate propositional content to the proposition expressing the content. A subdivision of the propositional attitudes are the mental attitudes (see e.g. Cugola, 1996), types of propositions in the mind. Another category is the PA of an act of communication."^^xsd:string ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/role.owl> ;
+    owl:versionInfo "LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium"^^xsd:string,
+        """Partner contributions from the University of Amsterdam (UvA), the University of Bologna (UNIBO) and the Fraunhofer institute (FOKUS).
+
+	Editor:       Rinke Hoekstra (UvA)
+	Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
+	Contributors: Joost Breuker (UvA), Rosella Rubino (UNIBO), Thomas Gordon (FOKUS)"""^^xsd:string,
+        "This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665"^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Argument a owl:Class ;
+    rdfs:comment "An argument is a reason that is expressed through some medium"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty role:played_by ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( :Expression [ a owl:Restriction ;
+                                owl:onProperty :attitude ;
+                                owl:someValuesFrom :Belief ] ) ] ],
+        :Reason .
+
+:Assumption a owl:Class ;
+    rdfs:comment "proposes something that usually is the case, although there is no specific evidence that it is true in this particular case"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty role:played_by ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( :Proposition [ a owl:Restriction ;
+                                owl:onProperty :attitude ;
+                                owl:someValuesFrom :Belief ] ) ] ],
+        role:Epistemic_Role .
+
+:Cause a owl:Class ;
+    rdfs:comment "A cause is an epistemic role played by something which is the outcome of a (chain) of processes"^^xsd:string ;
+    rdfs:subClassOf role:Epistemic_Role .
+
+:Desire a owl:Class ;
+    rdfs:comment "A feeling of wanting"^^xsd:string ;
+    rdfs:subClassOf :Propositional_Attitude .
+
+:Evidence a owl:Class ;
+    rdfs:comment "Observation and/or statement, used as a backing for a belief. Evidence is the role of observation which is qualified by some belief."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty role:played_by ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( :Proposition [ a owl:Restriction ;
+                                owl:onProperty :attitude ;
+                                owl:someValuesFrom :Belief ] [ a owl:Restriction ;
+                                owl:onProperty role:plays ;
+                                owl:someValuesFrom :Observation ] ) ] ],
+        role:Epistemic_Role .
+
+:Exception a owl:Class ;
+    rdfs:comment "An exception is something that is excluded from a general statement or does not follow a rule. In LKIF rules, an exception is a rule which has an exception relation to another rule (cf. Deliverable 1.1)"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty role:played_by ;
+            owl:someValuesFrom :Proposition ],
+        role:Epistemic_Role .
+
+:Fact a owl:Class ;
+    rdfs:comment "A fact is a proposition (about something) which is (commonly) agreed upon to hold as true: it has some backing in evidence"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty role:played_by ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( :Proposition [ a owl:Restriction ;
+                                owl:onProperty :attitude ;
+                                owl:someValuesFrom :Belief ] [ a owl:Restriction ;
+                                owl:onProperty role:plays ;
+                                owl:someValuesFrom :Observation ] ) ] ],
+        role:Epistemic_Role .
+
+:Lie a owl:Class ;
+    rdfs:comment "An assertion that is inconsistent with the beliefs of the speaker. It is *intentionally* false."^^xsd:string ;
+    rdfs:subClassOf :Assertion .
+
+:Problem a owl:Class ;
+    rdfs:comment "A problem is an observation that deviates from an Intention."^^xsd:string,
+        "NOTE: This currently cannot be expressed: OWL DL does not support negation of properties. The definition will be further elaborated once OWL 1.1 is supported by development tools."^^xsd:string ;
+    rdfs:subClassOf :Observation .
+
+:Speech_Act a owl:Class ;
+    rdfs:comment "A speech act (or illocutionary act) creates some propositional attitude which qualifies an expression (which by default is mediated through some medium). The actor of the speech act is the utterer of the atitude (NB cannot be expressed in OWL DL)."^^xsd:string ;
+    rdfs:subClassOf action:Creation ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty process:creation ;
+            owl:someValuesFrom :Communicated_Attitude ] .
+
+:Surprise a owl:Class ;
+    rdfs:comment "A surprise is an observation that deviates from an expectation."^^xsd:string,
+        "NOTE: This currently cannot be expressed: OWL DL does not support negation of properties. The definition will be further elaborated once OWL 1.1 is supported by development tools."^^xsd:string ;
+    rdfs:subClassOf :Observation .
+
+action:Action a owl:Class ;
+    rdfs:comment "NOTE (OWL 1.1) the action may actually be 'part of' the intention of the agent, that is: intends some (expression:Intention and Self)" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Restriction ;
+                    owl:onProperty :intends ;
+                    owl:someValuesFrom :Intention ] ;
+            owl:onProperty action:actor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Restriction ;
+                    owl:onProperty :believes ;
+                    owl:someValuesFrom [ a owl:Class ;
+                            owl:intersectionOf ( :Belief [ a owl:Restriction ;
+                                        owl:onProperty :towards ;
+                                        owl:someValuesFrom [ a owl:Restriction ;
+                                                owl:onProperty role:plays ;
+                                                owl:someValuesFrom :Expectation ] ] ) ] ] ;
+            owl:onProperty action:actor ] .
+
+action:Creation a owl:Class .
+
+:Document a owl:Class ;
+    rdfs:comment "A Document bears some (and only) expression(s) stated by some statement in writing."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( :Expression [ a owl:Restriction ;
+                                owl:onProperty :stated_by ;
+                                owl:someValuesFrom :Statement_In_Writing ] ) ] ;
+            owl:onProperty :bears ],
+        :Medium .
+
+:Expectation a owl:Class ;
+    rdfs:comment "An expectation is a predictive belief held on purely logical grounds, i.e. not based on direct external evidence, like an observation or a statement by another agent. It is also often characterized as a \"belief about the future\", but this isn't very helpful since one may also hold expectations about the (yet unknown) past. The theory of evolution is for instance a fertile ground for predictions about the existence of past species, and therefore at the same a predictor of future observations."^^xsd:string,
+        "Is not only not an observation by itself, but also the thing being expected cannot be an observation in any sense" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Restriction ;
+                    owl:allValuesFrom [ a owl:Class ;
+                            owl:complementOf :Observation ] ;
+                    owl:onProperty role:plays ] ;
+            owl:onProperty role:played_by ],
+        [ a owl:Restriction ;
+            owl:onProperty role:played_by ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( :Proposition [ a owl:Restriction ;
+                                owl:onProperty :attitude ;
+                                owl:someValuesFrom :Belief ] ) ] ],
+        role:Epistemic_Role ;
+    owl:disjointWith :Observation .
+
+:Reason a owl:Class ;
+    rdfs:comment "Teleological counterpart of cause"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty role:played_by ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( :Proposition [ a owl:Restriction ;
+                                owl:onProperty :attitude ;
+                                owl:someValuesFrom :Belief ] ) ] ],
+        role:Epistemic_Role .
+
+:Statement_In_Writing a owl:Class ;
+    rdfs:comment "Not to be confused with the actual writing/document itself, which is the medium of the statement."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :author ;
+            owl:someValuesFrom action:Agent ],
+        :Communicated_Attitude ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :states ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( :Expression [ a owl:Restriction ;
+                                owl:onProperty :medium ;
+                                owl:someValuesFrom :Document ] ) ] ] .
+
+:asserted_by a owl:ObjectProperty ;
+    rdfs:comment "Relates an expression being asserted to the assertion"^^xsd:string ;
+    rdfs:domain :Expression ;
+    rdfs:range :Assertion ;
+    rdfs:subPropertyOf :stated_by .
+
+:asserts a owl:ObjectProperty ;
+    rdfs:comment "Relates an assertion to the expression being asserted"^^xsd:string ;
+    rdfs:domain :Assertion ;
+    rdfs:range :Expression ;
+    rdfs:subPropertyOf :states ;
+    owl:inverseOf :asserted_by .
+
+:author a owl:ObjectProperty ;
+    rdfs:comment "Relates an expression to the author of the expression (e.g. for expressions contained in documents)"^^xsd:string ;
+    rdfs:subPropertyOf :utterer .
+
+:declared_by a owl:ObjectProperty ;
+    rdfs:comment "Relates a declared expression to the attitude to the declaration"^^xsd:string ;
+    rdfs:domain :Expression ;
+    rdfs:range :Declaration ;
+    rdfs:subPropertyOf :stated_by .
+
+:declares a owl:ObjectProperty ;
+    rdfs:comment "Relates a declaration to the expression being declared"^^xsd:string ;
+    rdfs:domain :Declaration ;
+    rdfs:range :Expression ;
+    rdfs:subPropertyOf :states ;
+    owl:inverseOf :declared_by .
+
+:evaluated_by a owl:ObjectProperty ;
+    rdfs:domain :Evaluative_Proposition ;
+    rdfs:range :Evaluative_Attitude ;
+    rdfs:subPropertyOf :attitude,
+        :qualified_by ;
+    owl:inverseOf :evaluates .
+
+:intends a owl:ObjectProperty ;
+    rdfs:comment "Specifies that the agent holds some intention"^^xsd:string ;
+    rdfs:domain action:Agent ;
+    rdfs:range :Intention ;
+    rdfs:subPropertyOf :holds ;
+    owl:inverseOf :intended_by .
+
+:observer a owl:ObjectProperty ;
+    rdfs:comment "Relates a believed observation to the agent observing it"^^xsd:string ;
+    rdfs:domain :Belief ;
+    rdfs:range action:Agent ;
+    rdfs:subPropertyOf :believed_by ;
+    owl:inverseOf :observes .
+
+:promised_by a owl:ObjectProperty ;
+    rdfs:comment "Relates an expression to the promise over the expression"^^xsd:string ;
+    rdfs:domain :Expression ;
+    rdfs:range :Promise ;
+    rdfs:subPropertyOf :stated_by .
+
+:promises a owl:ObjectProperty ;
+    rdfs:comment "Relates a promise to the expression being promised"^^xsd:string ;
+    rdfs:domain :Promise ;
+    rdfs:range :Expression ;
+    rdfs:subPropertyOf :states ;
+    owl:inverseOf :promised_by .
+
+:utters a owl:ObjectProperty ;
+    rdfs:comment "Relates an agent to its utterance(s)"^^xsd:string ;
+    rdfs:domain action:Agent ;
+    rdfs:range :Communicated_Attitude ;
+    rdfs:subPropertyOf :holds .
+
+top:Mental_Entity a owl:Class .
+
+process:creation a owl:ObjectProperty .
+
+role:counts_as a owl:ObjectProperty .
+
+role:imposed_on a owl:ObjectProperty .
+
+:Declaration a owl:Class ;
+    rdfs:comment "Searle: the successful performance of a declaration is sufficient to bring about the fit between words and world, to make the propositional content true. In other words, if there is an inconsistency between the declaration and assertions, beliefs, or observations, it is not the declaration that is false. True of definitions and norms, and several other performative statements by legislators."^^xsd:string ;
+    rdfs:subClassOf :Communicated_Attitude ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :declares ;
+            owl:someValuesFrom :Expression ] .
+
+:Promise a owl:Class ;
+    rdfs:comment "A promise is a communicated attitude about some future action or state"^^xsd:string ;
+    rdfs:subClassOf :Communicated_Attitude ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :promises ;
+            owl:someValuesFrom :Expression ] .
+
+:addressee a owl:ObjectProperty ;
+    rdfs:comment "Allows for expressing the relation between a communicated attitude and the Agent to which the communication act is addressed"^^xsd:string ;
+    rdfs:domain :Communicated_Attitude ;
+    rdfs:range action:Agent .
+
+:believes a owl:ObjectProperty ;
+    rdfs:comment "Relates an agent to the belief(s) it holds"^^xsd:string ;
+    rdfs:domain action:Agent ;
+    rdfs:range :Belief ;
+    rdfs:subPropertyOf :holds ;
+    owl:inverseOf :believed_by .
+
+:observes a owl:ObjectProperty ;
+    rdfs:comment "Relates an agent to the thing it beliefs it observes"^^xsd:string ;
+    rdfs:domain action:Agent ;
+    rdfs:range :Belief ;
+    rdfs:subPropertyOf :believes .
+
+:qualified_by a owl:ObjectProperty ;
+    rdfs:comment "Relates something which is qualified to the attitude or qualification qualifying it"^^xsd:string ;
+    rdfs:domain :Qualified ;
+    rdfs:range :Qualification ;
+    owl:inverseOf :qualifies .
+
+:utterer a owl:ObjectProperty ;
+    rdfs:comment "Relates an utterance (communicated propositional attitude) to its utterer"^^xsd:string ;
+    rdfs:domain :Communicated_Attitude ;
+    rdfs:range action:Agent ;
+    rdfs:subPropertyOf :held_by ;
+    owl:inverseOf :utters .
+
+owl:Thing a owl:Class .
+
+action:actor a owl:ObjectProperty .
+
+:Assertion a owl:Class ;
+    rdfs:comment "The assertion is subject to a fit between words and world, in Searle's terms. It's propositional content can be true of false. If it is inconsistent with other assertions, beliefs, observations, it may come to be considered false."^^xsd:string ;
+    rdfs:subClassOf :Communicated_Attitude ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :asserts ;
+            owl:someValuesFrom :Expression ] .
+
+:Evaluative_Attitude a owl:Class ;
+    rdfs:comment "An evaluative attitude expresses e.g. a judgment. The proposition qualified by the evaluative attitude is comparable to something else."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Evaluative_Proposition ;
+            owl:onProperty :evaluates ],
+        :Propositional_Attitude ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :evaluates ;
+            owl:someValuesFrom :Evaluative_Proposition ] .
+
+:Intention a owl:Class ;
+    rdfs:comment "Intention is where the agent expects certain consequences of his or her actions and desires those consequences to occur. This concept must be related to qualification and preference in some way."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom action:Agent ;
+            owl:onProperty :intended_by ],
+        :Propositional_Attitude ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :intended_by ;
+            owl:someValuesFrom action:Agent ] .
+
+:Qualification a owl:Class ;
+    rdfs:comment "A qualification expresses e.g. a judgment. The thing qualified by the qualification is comparable to something else."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Qualified ;
+            owl:onProperty :qualifies ],
+        top:Mental_Object ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :qualifies ;
+            owl:someValuesFrom :Qualified ] .
+
+:evaluates a owl:ObjectProperty ;
+    rdfs:domain :Evaluative_Attitude ;
+    rdfs:range :Evaluative_Proposition ;
+    rdfs:subPropertyOf :qualifies,
+        :towards .
+
+:evaluatively_comparable a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Expresses whether some thing is evaluatively comparable to some other thing."^^xsd:string ;
+    rdfs:domain :Evaluative_Proposition ;
+    rdfs:range :Evaluative_Proposition ;
+    rdfs:subPropertyOf :qualitatively_comparable ;
+    owl:inverseOf :evaluatively_comparable .
+
+:intended_by a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some intention is held by some agent"^^xsd:string ;
+    rdfs:domain :Intention ;
+    rdfs:range action:Agent ;
+    rdfs:subPropertyOf :held_by .
+
+:medium a owl:ObjectProperty ;
+    rdfs:comment "Relates an expression to the medium it is beared in (i.e. for extentional propositions)"^^xsd:string ;
+    rdfs:domain :Expression ;
+    rdfs:range :Medium ;
+    owl:inverseOf :bears .
+
+:bears a owl:ObjectProperty ;
+    rdfs:comment "A Medium 'bears' or carries expressions."^^xsd:string ;
+    rdfs:domain :Medium ;
+    rdfs:range :Expression .
+
+:believed_by a owl:ObjectProperty ;
+    rdfs:comment "Relates a belief to the agent holding the belief"^^xsd:string ;
+    rdfs:domain :Belief ;
+    rdfs:range action:Agent ;
+    rdfs:subPropertyOf :held_by .
+
+:holds a owl:ObjectProperty ;
+    rdfs:comment "Relates an agent to the propositional attitude it holds"^^xsd:string ;
+    rdfs:domain action:Agent ;
+    rdfs:range top:Mental_Object ;
+    owl:inverseOf :held_by .
+
+:qualitatively_comparable a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain :Qualified ;
+    rdfs:range :Qualified ;
+    owl:inverseOf :qualitatively_comparable .
+
+:Medium a owl:Class ;
+    rdfs:comment "A medium is a bearer of expressions, i.e. externalised propositions. Propositions become expressions once they are externalised through some medium."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Expression ;
+            owl:onProperty :bears ],
+        owl:Thing ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :bears ;
+            owl:someValuesFrom :Expression ] .
+
+:qualifies a owl:ObjectProperty ;
+    rdfs:comment "Relates an evaluative attitude or qualification to the proposition or thing being qualified"^^xsd:string ;
+    rdfs:domain :Qualification ;
+    rdfs:range :Qualified .
+
+top:Mental_Object a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom action:Agent ;
+            owl:onProperty :held_by ] ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :held_by ;
+            owl:someValuesFrom action:Agent ] .
+
+role:plays a owl:ObjectProperty .
+
+:held_by a owl:ObjectProperty ;
+    rdfs:comment "Relates a propositional attitude to the agent holding the attitude"^^xsd:string ;
+    rdfs:domain top:Mental_Object ;
+    rdfs:range action:Agent .
+
+:states a owl:ObjectProperty ;
+    rdfs:comment "Relates an author to its statements"^^xsd:string ;
+    rdfs:domain :Communicated_Attitude ;
+    rdfs:subPropertyOf :towards ;
+    owl:inverseOf :stated_by .
+
+:towards a owl:ObjectProperty ;
+    rdfs:comment "A towards relation between a propositional attitude and a proposition expresses that the attitude is held towards that proposition. Qualification of the proposition can be either true or false, i.e. the attitude denotes whether the proposition is either true or false."^^xsd:string ;
+    rdfs:domain :Propositional_Attitude ;
+    rdfs:range :Proposition ;
+    rdfs:subPropertyOf role:imposed_on .
+
+:Observation a owl:Class ;
+    rdfs:comment "An observation is the role played by some proposition believed to be true or false through observation of an agent."^^xsd:string ;
+    rdfs:subClassOf role:Epistemic_Role ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty role:played_by ;
+            owl:someValuesFrom [ a owl:Restriction ;
+                    owl:onProperty :attitude ;
+                    owl:someValuesFrom [ a owl:Restriction ;
+                            owl:onProperty :observer ;
+                            owl:someValuesFrom action:Agent ] ] ] .
+
+:stated_by a owl:ObjectProperty ;
+    rdfs:comment "Relates a statement to its author"^^xsd:string ;
+    rdfs:range :Communicated_Attitude ;
+    rdfs:subPropertyOf :attitude .
+
+:Evaluative_Proposition a owl:Class ;
+    rdfs:comment "Some thing which is evaluatively qualified, i.e. an evaluation applies to the proposition, the proposition is judged. The proposition is comparable to some other proposition."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :evaluatively_comparable ;
+            owl:someValuesFrom :Evaluative_Proposition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom :Evaluative_Proposition ;
+            owl:onProperty :evaluatively_comparable ],
+        :Proposition ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :evaluated_by ;
+            owl:someValuesFrom :Evaluative_Attitude ] .
+
+:Propositional_Attitude a owl:Class ;
+    rdfs:comment "A propositional attitude connects a person (the holder of the attitude) to some proposition, in fact it expresses some qualification over the proposition. Distinguishing a proposition from the propositional content expressed by it is necessary when properties relating to the thing expressed and properties of the expression itself must be distinguished. For LKIF the distinction between Belief, Intention, Qualification, and Observation is relevant. The distinction between belief/expectation, intention, and observation is relevant for i.a. establishing mens rea (guilty mind). The distinction between beliefs (expressing the content of the mind of an agent) and statements (expressing the content of an act of communication by an agent) is classical."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Proposition ;
+            owl:onProperty :towards ],
+        top:Mental_Object ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :towards ;
+            owl:someValuesFrom :Proposition ] .
+
+:Qualified a owl:Class ;
+    rdfs:comment "Something that is qualified by some qualification"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :qualitatively_comparable ;
+            owl:someValuesFrom :Qualified ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom :Qualified ;
+            owl:onProperty :qualitatively_comparable ],
+        owl:Thing ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :qualified_by ;
+            owl:someValuesFrom :Qualification ] .
+
+role:Epistemic_Role a owl:Class .
+
+:attitude a owl:ObjectProperty ;
+    rdfs:comment "Relates a proposition to the attitude held towards it"^^xsd:string ;
+    rdfs:domain :Proposition ;
+    rdfs:range :Propositional_Attitude ;
+    rdfs:subPropertyOf role:counts_as ;
+    owl:inverseOf :towards .
+
+role:played_by a owl:ObjectProperty .
+
+:Belief a owl:Class ;
+    rdfs:comment "Someting an agent 'believes in', i.e. holds as true"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom action:Agent ;
+            owl:onProperty :believed_by ],
+        :Propositional_Attitude ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :believed_by ;
+            owl:someValuesFrom action:Agent ] .
+
+:Communicated_Attitude a owl:Class ;
+    rdfs:comment "A communictated attitude is a propositional attitude involved in an act of communication."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Expression ;
+            owl:onProperty :states ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom action:Agent ;
+            owl:onProperty :addressee ],
+        [ a owl:Restriction ;
+            owl:onProperty :addressee ;
+            owl:someValuesFrom action:Agent ],
+        [ a owl:Restriction ;
+            owl:onProperty :utterer ;
+            owl:someValuesFrom action:Agent ],
+        :Propositional_Attitude ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :states ;
+            owl:someValuesFrom :Expression ] .
+
+:Proposition a owl:Class ;
+    rdfs:comment "A (non logical) proposition is a proposition qualified by a propositional attitude. NB: The proposition used here does not correspond to a proposition in proposition logics."^^xsd:string,
+        "NOTE: In previous versions of this ontology, this class was called 'Qualified'. In lieu of the separation between Proposition and Propositional_Attitude, the intended meaning of that class has been moved to 'Evaluative_Proposition'"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Propositional_Attitude ;
+            owl:onProperty :attitude ],
+        top:Mental_Object .
+
+:Expression a owl:Class ;
+    rdfs:comment "An expression is a proposition beared by some medium, e.g. a document, and is stated by some communicated attitude"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Medium ;
+            owl:onProperty :medium ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom :Communicated_Attitude ;
+            owl:onProperty :stated_by ],
+        [ a owl:Restriction ;
+            owl:onProperty :stated_by ;
+            owl:someValuesFrom :Communicated_Attitude ],
+        :Proposition ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :medium ;
+            owl:someValuesFrom :Medium ] .
+
+action:Agent a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom top:Mental_Entity ;
+            owl:onProperty :holds ] .
+

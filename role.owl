@@ -1,433 +1,237 @@
-<?xml version="1.0"?>
-
-
-<!DOCTYPE rdf:RDF [
-    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY owl2 "http://www.w3.org/2006/12/owl2#" >
-    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY daml "http://www.daml.org/2001/03/daml+oil#" >
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY role "http://www.estrellaproject.org/lkif-core/role.owl#" >
-    <!ENTITY action "http://www.estrellaproject.org/lkif-core/action.owl#" >
-    <!ENTITY process "http://www.estrellaproject.org/lkif-core/process.owl#" >
-    <!ENTITY lkif-top "http://www.estrellaproject.org/lkif-core/lkif-top.owl#" >
-    <!ENTITY mereology "http://www.estrellaproject.org/lkif-core/mereology.owl#" >
-]>
-
-
-<rdf:RDF xmlns="http://www.estrellaproject.org/lkif-core/role.owl#"
-     xml:base="http://www.estrellaproject.org/lkif-core/role.owl"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:lkif-top="http://www.estrellaproject.org/lkif-core/lkif-top.owl#"
-     xmlns:action="http://www.estrellaproject.org/lkif-core/action.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:mereology="http://www.estrellaproject.org/lkif-core/mereology.owl#"
-     xmlns:owl2="http://www.w3.org/2006/12/owl2#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:process="http://www.estrellaproject.org/lkif-core/process.owl#"
-     xmlns:role="http://www.estrellaproject.org/lkif-core/role.owl#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:daml="http://www.daml.org/2001/03/daml+oil#">
-    <owl:Ontology rdf:about="">
-        <owl:versionInfo rdf:datatype="&xsd;string"
-            >LKIF-Core, version 1.0.4, copyright (C) 2008, the ESTRELLA consortium</owl:versionInfo>
-        <owl:versionInfo rdf:datatype="&xsd;string"
-            >Partner contributions from the University of Amsterdam (UvA).
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:dct="http://purl.org/dc/terms/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Action">
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N20652847712141e9b1b84c9e01bee270">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#actor"/>
+        <owl:allValuesFrom>
+          <owl:Restriction rdf:nodeID="N03f0a4261d1046ddac37695d82ba9d9f">
+            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+          </owl:Restriction>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Physical_Entity">
+    <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+  </owl:Class>
+  <owl:Ontology rdf:about="http://www.estrellaproject.org/lkif-core/role.owl">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LKIF-Core, version 1.0.4, copyright (C) 2008, the ESTRELLA consortium</owl:versionInfo>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Partner contributions from the University of Amsterdam (UvA).
 
 Editor:       Rinke Hoekstra (UvA)
 Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA)
 Contributors: Joost Breuker (UvA)</owl:versionInfo>
-        <owl:versionInfo rdf:datatype="&xsd;string"
-            >The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
-
-The use of this ontology, and the OWL files through which it is distributed, is covered by the GNU Lesser General Public License (LGPL), version 2.1 (http://www.gnu.org/copyleft/lesser.html) in as far as the copyright is not covered by additional restrictions of the ESTRELLA consortium agreement (info@estrellaproject.org). The LGPL license places copyright restrictions on the ontology itself but does not apply these restrictions to software that merely links with concepts defined in the ontology library. Please read the license restrictions before using this work.</owl:versionInfo>
-        <owl:versionInfo rdf:datatype="&xsd;string"
-            >This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665</owl:versionInfo>
-        <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl"/>
-    </owl:Ontology>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/action.owl#actor -->
-
-    <owl:ObjectProperty rdf:about="&action;actor"/>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/mereology.owl#member -->
-
-    <owl:ObjectProperty rdf:about="&mereology;member"/>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/mereology.owl#member_of -->
-
-    <owl:ObjectProperty rdf:about="&mereology;member_of"/>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#context -->
-
-    <owl:ObjectProperty rdf:about="#context">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:comment
-            >The context property relates a subjective entity to the context in which the entity holds.</rdfs:comment>
-        <owl:disjointObjectProperties rdf:resource="#imposed_on"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#counts_as -->
-
-    <owl:ObjectProperty rdf:about="#counts_as">
-        <rdfs:comment
-            >The counts-as relation of Searle (1995) is used to express the creation of observer-relative or social facts such as the playing of roles or having a function.</rdfs:comment>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#imposed_on -->
-
-    <owl:ObjectProperty rdf:about="#imposed_on">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:comment
-            >Specifies that some subjective entity is imposed on some thing</rdfs:comment>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#played_by -->
-
-    <owl:ObjectProperty rdf:about="#played_by">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Specifies that some role is played by some thing</rdfs:comment>
-        <rdfs:domain rdf:resource="#Role"/>
-        <rdfs:subPropertyOf rdf:resource="#imposed_on"/>
-        <rdfs:range rdf:resource="&owl;Thing"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#plays -->
-
-    <owl:ObjectProperty rdf:about="#plays">
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >Specifies that some thing plays a role</rdfs:comment>
-        <rdfs:range rdf:resource="#Role"/>
-        <rdfs:subPropertyOf rdf:resource="#counts_as"/>
-        <owl:inverseOf rdf:resource="#played_by"/>
-        <rdfs:domain rdf:resource="&owl;Thing"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/action.owl#Action -->
-
-    <owl:Class rdf:about="&action;Action">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&action;actor"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="#plays"/>
-                        <owl:someValuesFrom rdf:resource="#Role"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/action.owl#Agent -->
-
-    <owl:Class rdf:about="&action;Agent">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#plays"/>
-                <owl:allValuesFrom rdf:resource="#Role"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="#Role"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/action.owl#Artifact -->
-
-    <owl:Class rdf:about="&action;Artifact">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#plays"/>
-                <owl:someValuesFrom rdf:resource="#Function"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/action.owl#Organisation -->
-
-    <owl:Class rdf:about="&action;Organisation">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&mereology;member"/>
-                <owl:allValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="#plays"/>
-                        <owl:someValuesFrom rdf:resource="#Organisation_Role"/>
-                    </owl:Restriction>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/action.owl#Person -->
-
-    <owl:Class rdf:about="&action;Person"/>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Entity -->
-
-    <owl:Class rdf:about="&lkif-top;Mental_Entity"/>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object -->
-
-    <owl:Class rdf:about="&lkif-top;Mental_Object"/>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/lkif-top.owl#Physical_Entity -->
-
-    <owl:Class rdf:about="&lkif-top;Physical_Entity">
-        <owl:disjointWith rdf:resource="#Role"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/process.owl#Mental_Process -->
-
-    <owl:Class rdf:about="&process;Mental_Process"/>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object -->
-
-    <owl:Class rdf:about="&process;Physical_Object"/>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/process.owl#Process -->
-
-    <owl:Class rdf:about="&process;Process">
-        <owl:disjointWith rdf:resource="#Role"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role -->
-
-    <owl:Class rdf:about="#Epistemic_Role">
-        <rdfs:subClassOf rdf:resource="#Role"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:someValuesFrom rdf:resource="&lkif-top;Mental_Object"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#context"/>
-                <owl:someValuesFrom rdf:resource="&process;Mental_Process"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:allValuesFrom rdf:resource="&lkif-top;Mental_Object"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >The role of something used in a (mental) reasoning/inference process</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#Function -->
-
-    <owl:Class rdf:about="#Function">
-        <rdfs:subClassOf rdf:resource="#Role"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&process;Physical_Object"/>
-                            <owl:Class>
-                                <owl:complementOf rdf:resource="&action;Agent"/>
-                            </owl:Class>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:someValuesFrom rdf:resource="&process;Physical_Object"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="#Social_Role"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >The use or purpose of some object as used in some context.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#Organisation_Role -->
-
-    <owl:Class rdf:about="#Organisation_Role">
-        <rdfs:subClassOf rdf:resource="#Social_Role"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&action;Agent"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="&mereology;member_of"/>
-                                <owl:someValuesFrom rdf:resource="&action;Organisation"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >A role which has a meaning in the context of an organisation: i.e. the role defines a &#39;position&#39; within sthe structure of roles within an organisation</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#Person_Role -->
-
-    <owl:Class rdf:about="#Person_Role">
-        <rdfs:subClassOf rdf:resource="#Social_Role"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:someValuesFrom rdf:resource="&action;Person"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:allValuesFrom rdf:resource="&action;Person"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >A role played by some person (i.e. not an organisation)</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#Role -->
-
-    <owl:Class rdf:about="#Role">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:someValuesFrom rdf:resource="&owl;Thing"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="#Subjective_Entity"/>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >A role is a specification of default behavior and accompanying expectations of the thing &#39;playing&#39; the role. Similar to actors in a theater who play roles, but are not the roles. Example: student.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#Social_Role -->
-
-    <owl:Class rdf:about="#Social_Role">
-        <rdfs:subClassOf rdf:resource="#Role"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:allValuesFrom rdf:resource="&action;Agent"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="#played_by"/>
-                <owl:someValuesFrom rdf:resource="&action;Agent"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string"
-            >A social role is played by some agent in the context of social activities. The social role brings with it some expectation of &#39;default&#39; behavior of the role-filler.</rdfs:comment>
-        <rdfs:comment
-            >played_by all (action:Agent and (action:actor_in some (action:Action and (plays some expression:Expectation))))</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.estrellaproject.org/lkif-core/role.owl#Subjective_Entity -->
-
-    <owl:Class rdf:about="#Subjective_Entity">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="#context"/>
-                        <owl:someValuesFrom rdf:resource="&owl;Thing"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="#imposed_on"/>
-                        <owl:someValuesFrom rdf:resource="&owl;Thing"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&lkif-top;Mental_Entity"/>
-        <rdfs:comment
-            >A subjective entity is ontologically subjective, i.e. its existence is relative to an observer, that attributes its properties to some other entity, given a context.  </rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.w3.org/2002/07/owl#Thing -->
-
-    <owl:Class rdf:about="&owl;Thing"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665</owl:versionInfo>
+    <owl:versionInfo xml:lang="en">The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/</owl:versionInfo>
+    <owl:imports rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl"/>
+    <dct:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+  </owl:Ontology>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/process.owl#Process">
+    <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="Nbb969eefb1e54d76bfbffb3fe22d3007">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N511dad9d4f49462eaf91147d9c31c89d">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#context"/>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Mental_Process"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N33d0a09d9e1b42ae9556cf822a38d72d">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The role of something used in a (mental) reasoning/inference process</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Person_Role">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Social_Role"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N6ff3d246b98c4cc5b42e4b51f41207a0">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Person"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="Nf3d62575e66d482e9afd990acb26eb9f">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Person"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A role played by some person (i.e. not an organisation)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Artifact">
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N98be371f13444af49b659771a5676381">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Function"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Social_Role">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N0b0cded4fc8b472e899bf125103736f9">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N1dc1c0fc52c74334989696eb6ac6cda1">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A social role is played by some agent in the context of social activities. The social role brings with it some expectation of 'default' behavior of the role-filler.</rdfs:comment>
+    <rdfs:comment>played_by all (action:Agent and (action:actor_in some (action:Action and (plays some expression:Expectation))))</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Organisation_Role">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Social_Role"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N47b4755c3fac4338999bd4fcecdd47d5">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:nodeID="Nf318c0b10d6f471b8b44763867420644">
+            <owl:intersectionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+              <owl:Restriction rdf:nodeID="Ne278df5416334e79925080c3db5cf4d2">
+                <owl:onProperty>
+                  <owl:ObjectProperty rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#member_of"/>
+                </owl:onProperty>
+                <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Organisation"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A role which has a meaning in the context of an organisation: i.e. the role defines a 'position' within sthe structure of roles within an organisation</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Agent">
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N8a0acdec34e447bc883750f53516e76a">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+        <owl:allValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#played_by">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies that some role is played by some thing</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#imposed_on">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment>Specifies that some subjective entity is imposed on some thing</rdfs:comment>
+      </owl:ObjectProperty>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#plays">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies that some thing plays a role</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#counts_as">
+        <rdfs:comment>The counts-as relation of Searle (1995) is used to express the creation of observer-relative or social facts such as the playing of roles or having a function.</rdfs:comment>
+      </owl:ObjectProperty>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#context">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment>The context property relates a subjective entity to the context in which the entity holds.</rdfs:comment>
+    <owl:disjointObjectProperties rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#imposed_on"/>
+  </owl:ObjectProperty>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Function">
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Role"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N630079fef9a943bdb53214e9e32a26b6">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:nodeID="N1ee2e1c5aeb84189b060adadafa5e291">
+            <owl:intersectionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
+              <owl:Class rdf:nodeID="N213c3cb110124a76b170c40a9b196718">
+                <owl:complementOf rdf:resource="http://www.estrellaproject.org/lkif-core/action.owl#Agent"/>
+              </owl:Class>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N4dbc8525ae04493ba103a91bcfcfd3eb">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Social_Role"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The use or purpose of some object as used in some context.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Role">
+    <owl:equivalentClass>
+      <owl:Restriction rdf:nodeID="Nd6e3158a48114411af5be3d7908ffafd">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#played_by"/>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Subjective_Entity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A role is a specification of default behavior and accompanying expectations of the thing 'playing' the role. Similar to actors in a theater who play roles, but are not the roles. Example: student.</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.estrellaproject.org/lkif-core/mereology.owl#member"/>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Person"/>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Entity"/>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/process.owl#Mental_Process"/>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#Organisation">
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N13dd630dbc144e04b94b5666585592df">
+        <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/mereology.owl#member"/>
+        <owl:allValuesFrom>
+          <owl:Restriction rdf:nodeID="N130f56558fbc497b91cbdc519b9fa4d9">
+            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#plays"/>
+            <owl:someValuesFrom rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#Organisation_Role"/>
+          </owl:Restriction>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Object"/>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/role.owl#Subjective_Entity">
+    <owl:equivalentClass>
+      <owl:Class rdf:nodeID="N2c5e982dcea346d387672fa45ca994cb">
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction rdf:nodeID="N28a5c101eff94d16a12b3452bffb105d">
+            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#context"/>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+          </owl:Restriction>
+          <owl:Restriction rdf:nodeID="N4048d8de1a0143719eabe39f8ed4c647">
+            <owl:onProperty rdf:resource="http://www.estrellaproject.org/lkif-core/role.owl#imposed_on"/>
+            <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.estrellaproject.org/lkif-core/lkif-top.owl#Mental_Entity"/>
+    <rdfs:comment>A subjective entity is ontologically subjective, i.e. its existence is relative to an observer, that attributes its properties to some other entity, given a context.  </rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.estrellaproject.org/lkif-core/action.owl#actor"/>
+  <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+  <owl:Class rdf:about="http://www.estrellaproject.org/lkif-core/process.owl#Physical_Object"/>
 </rdf:RDF>

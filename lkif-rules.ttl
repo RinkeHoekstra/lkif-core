@@ -1,0 +1,120 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/lkif-rules.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix expression: <http://www.estrellaproject.org/lkif-core/expression.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.estrellaproject.org/lkif-core/lkif-rules.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment """
+	This ontology describes the classes and properties used in the LKIF rules language, as specified in Deliverable 1.1. Please note that the definition of SWRL rules is not imported into this ontology. This extension will be realised through an argumentation rules framework.
+	"""^^xsd:string ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/expression.owl> ;
+    owl:versionInfo """
+	LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium
+	"""^^xsd:string,
+        """
+	Partner contributions from the University of Amsterdam (UvA) and the Fraunhofer institute (FOKUS).
+
+	Editor:       Rinke Hoekstra (UvA)
+	Authors:      Rinke Hoekstra (UvA), Thomas Gordon (FOKUS)
+	"""^^xsd:string,
+        """
+	This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+	"""^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Argument a owl:Class ;
+    rdfs:comment "An argument is some rule used in argumentation (cf. Deliverable 1.1)"^^xsd:string ;
+    rdfs:subClassOf expression:Argument,
+        :Rule .
+
+:Assumption a owl:Class ;
+    rdfs:comment "An assumption is some atom held to be true, without proof, in the head of a rule (defeasibly), cf. Deliverable 1.1"^^xsd:string ;
+    rdfs:subClassOf expression:Assumption,
+        :Atom .
+
+:Exception a owl:Class ;
+    rdfs:comment "An exception states an exception to the head of the rule (defeasibly), cf. Deliverable 1.1"^^xsd:string ;
+    rdfs:subClassOf expression:Exception,
+        :Atom .
+
+:Negated_Atom a owl:Class ;
+    rdfs:comment "A negated atom is the negation of some other atom (cf. Deliverable 1.1)"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <http://www.estrellaproject.org/lkif-core/mereology.owl#Atom> ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#played_by> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#played_by> ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( expression:Expression <http://www.estrellaproject.org/lkif-core/mereology.owl#Atom> ) ] ],
+        <http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role> .
+
+:Valid_Rule a owl:Class ;
+    rdfs:comment "A valid LKIF rule"^^xsd:string ;
+    rdfs:subClassOf :Rule .
+
+:applies a owl:ObjectProperty ;
+    rdfs:comment "Specifies whether some rule applies to some atom"^^xsd:string ;
+    rdfs:range [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#plays> ;
+            owl:someValuesFrom :Atom ] ;
+    rdfs:subPropertyOf :rule_predicate .
+
+:excluded a owl:ObjectProperty ;
+    rdfs:comment "Specifies an exclusion relation between a rule and an atom"^^xsd:string ;
+    rdfs:range [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#plays> ;
+            owl:someValuesFrom :Atom ] ;
+    rdfs:subPropertyOf :rule_predicate .
+
+:prior a owl:ObjectProperty ;
+    rdfs:comment "Specifies a prior relation between two rules"^^xsd:string ;
+    rdfs:range [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#plays> ;
+            owl:someValuesFrom :Rule ] ;
+    rdfs:subPropertyOf :rule_predicate .
+
+:rebuts a owl:ObjectProperty ;
+    rdfs:comment "Specifies whether some rule abuts another rule"^^xsd:string ;
+    rdfs:range [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#plays> ;
+            owl:someValuesFrom :Rule ] ;
+    rdfs:subPropertyOf :rule_predicate .
+
+:rule_predicate a owl:ObjectProperty ;
+    rdfs:comment "Some predicate in or over some rule"^^xsd:string ;
+    rdfs:domain [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#plays> ;
+            owl:someValuesFrom :Rule ] ;
+    rdfs:range [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#plays> ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:unionOf ( :Atom :Rule ) ] ] .
+
+:Atom a owl:Class ;
+    rdfs:comment "An atom is the most basic (undivisible) part of an LKIF rule (cf. Deliverable 1.1)"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <http://www.estrellaproject.org/lkif-core/mereology.owl#Atom> ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#played_by> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#played_by> ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( expression:Expression <http://www.estrellaproject.org/lkif-core/mereology.owl#Atom> ) ] ],
+        <http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role> .
+
+:Rule a owl:Class ;
+    rdfs:comment "An LKIF rule, based on swrl:Impl"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <http://www.estrellaproject.org/lkif-core/mereology.owl#Composition> ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#played_by> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/role.owl#played_by> ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( expression:Expression <http://www.estrellaproject.org/lkif-core/mereology.owl#Composition> ) ] ],
+        <http://www.estrellaproject.org/lkif-core/role.owl#Epistemic_Role> .
+

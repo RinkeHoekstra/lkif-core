@@ -1,0 +1,202 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/relative-places.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix lkif-top: <http://www.estrellaproject.org/lkif-core/lkif-top.owl#> .
+@prefix mereo: <http://www.estrellaproject.org/lkif-core/mereology.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mereo:Atom a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onProperty mereo:part ] .
+
+mereo:Composition a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "2"^^xsd:nonNegativeInteger ;
+            owl:onClass mereo:Part ;
+            owl:onProperty mereo:strict_part ] .
+
+<http://www.estrellaproject.org/lkif-core/relative-places.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/mereology.owl> ;
+    owl:versionInfo "LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium"^^xsd:string,
+        """Partner contributions from the University of Amsterdam (UvA)
+
+Editor:       Rinke Hoekstra (UvA)
+Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
+Contributors: Joost Breuker (UvA)"""^^xsd:string,
+        "This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665"^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Comprehensive_Place a owl:Class ;
+    rdfs:comment "A place is comprehensive if it always covers every place (and thus also every location-complex) and every object."^^xsd:string,
+        "NOTE: definition requires OWL 1.1 semantics"^^xsd:string ;
+    rdfs:subClassOf :Location_Complex .
+
+:covered_by a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Specifies that two places cover eachother. To add in OWL 1.1: 'covered-by' is reflexive, 'covered-by' is transitive"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :meet,
+        :partially_coincide ;
+    owl:inverseOf :cover .
+
+:externally_connect a owl:ObjectProperty ;
+    rdfs:comment "Two places are externally connected if they are relatively fixed and abut, but do not overlap (OWL 1.1)"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :abut,
+        :connect .
+
+:in a owl:ObjectProperty ;
+    rdfs:comment "The 'in' property is used to express that one place is located (i.e. contained) within another place. It is therefore a mereological relation as well."^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf mereo:contained_in,
+        :spatial_relation .
+
+:overlap a owl:ObjectProperty ;
+    rdfs:comment "Two places overlap if they are relatively fixed and partially coincide"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :partially_coincide,
+        :relatively_fixed .
+
+lkif-top:Spatio_Temporal_Occurrence a owl:Class .
+
+mereo:Part a owl:Class .
+
+mereo:contained_in a owl:ObjectProperty .
+
+mereo:part a owl:ObjectProperty .
+
+mereo:strict_part a owl:ObjectProperty .
+
+:Absolute_Place a owl:Class ;
+    rdfs:comment "An absolute place is defined without reference to other places."^^xsd:string ;
+    rdfs:subClassOf :Place ;
+    owl:disjointWith :Relative_Place .
+
+:connect a owl:ObjectProperty ;
+    rdfs:comment "Two places are connected if they are both relatively fixed and when they meet"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :meet,
+        :relatively_fixed .
+
+:cover a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Definition cover:  cover(a, b) iff forall x:( meet(x, b) implies meet(x, a) )"^^xsd:string,
+        "Specifies that two places cover eachother. Note: this cover-relation is the inverse of the COV relation described by Donnelly (2005)"^^xsd:string,
+        "To add in OWL 1.1: 'cover' is reflexive, 'cover' is transitive"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :meet .
+
+:exactly_coincide a owl:ObjectProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Definition exactly-coincide: exactly-coincide(a, b) iff forall x:( meet(x, a) iff meet(x, b) )"^^xsd:string,
+        "To add in OWL 1.1: 'exactly-coincide' is reflexive, 'exactly-coincide' is symetric, 'exactly-coincide' is transitive"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :meet ;
+    owl:inverseOf :exactly_coincide .
+
+:spatial_reference a owl:ObjectProperty ;
+    rdfs:comment "The reference to an object determines the relative place."^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :spatial_relation .
+
+:Relative_Place a owl:Class ;
+    rdfs:comment "A relative place is defined by some reference to some object/thing"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :spatial_reference ;
+            owl:someValuesFrom owl:Thing ],
+        :Place .
+
+:abut a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Two places abut if they meet but do not partially coincide. NOTE: OWL 1.1: 'abut' is irreflexive and disjoint with 'partially-coincide'"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :meet ;
+    owl:inverseOf :abut .
+
+:location_complex a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Location_Complex ;
+    rdfs:subPropertyOf :spatial_relation ;
+    owl:inverseOf :location_complex_for .
+
+owl:Thing a owl:Class .
+
+:location_complex_for a owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain :Location_Complex ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :spatial_relation .
+
+:partially_coincide a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Definition partially-coincide: partially-coincide(a, b) iff exists x :( cover(a, x) and cover(b, x) )"^^xsd:string,
+        "To add in OWL 1.1: 'partially-coincide' is reflexive, 'partially-coincide' is disjoint with 'abut'"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :meet ;
+    owl:inverseOf :partially_coincide .
+
+:relatively_fixed a owl:ObjectProperty,
+        owl:SymmetricProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "NOTE: This cannot currently be expressed using OWL DL"^^xsd:string,
+        "Two places are relatively fixed if and only if either x and y have a common reference object or neither x nor y has a reference object"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :spatial_relation ;
+    owl:inverseOf :relatively_fixed .
+
+:Location_Complex a owl:Class ;
+    rdfs:comment "A location complex is a relatively stable complex of places referred to as one: it is the maximal collection of places with the same reference object."^^xsd:string,
+        "A location complex only overlaps its own parts (OWL 1.1)"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Place ;
+            owl:onProperty :location_complex_for ],
+        :Place ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :location_complex_for ;
+            owl:someValuesFrom :Place ] .
+
+:spatial_relation a owl:ObjectProperty ;
+    rdfs:comment "A spatial relation is a relation between two places"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place .
+
+:meet a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:comment "Specifies that two places meet, but need not overlap or cover (reflexive)"^^xsd:string,
+        "To add in OWL 1.1: 'meet' is equivalent with ('abut' union 'partially-coincide')"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Place ;
+    rdfs:subPropertyOf :spatial_relation ;
+    owl:inverseOf :meet .
+
+:Place a owl:Class ;
+    rdfs:comment "A place is a spatio-temporal-occurrence"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :location_complex ;
+            owl:someValuesFrom :Location_Complex ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom :Location_Complex ;
+            owl:onProperty :location_complex ],
+        lkif-top:Spatio_Temporal_Occurrence ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:unionOf ( :Absolute_Place :Relative_Place ) ] .
+
