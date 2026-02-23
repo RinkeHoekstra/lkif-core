@@ -1,0 +1,183 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/legal-action.owl#> .
+@prefix action: <http://www.estrellaproject.org/lkif-core/action.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix expression: <http://www.estrellaproject.org/lkif-core/expression.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.estrellaproject.org/lkif-core/legal-action.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/expression.owl> ;
+    owl:versionInfo """
+LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium
+"""^^xsd:string,
+        """
+Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
+
+Editor:       Rinke Hoekstra (UvA)
+Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA)
+Contributors: Joost Breuker (UvA), Rosella Rubino (UNIBO)
+"""^^xsd:string,
+        """
+This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+"""^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Act_of_Law a owl:Class ;
+    rdfs:comment "Act of law: a public act by a legislative body which creates an expression with legal status; the legal status depends on the jurisdiction of the legislative body."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty action:actor ;
+            owl:someValuesFrom :Legislative_Body ],
+        :Legal_Speech_Act,
+        :Public_Act .
+
+:Assignment a owl:Class ;
+    rdfs:comment "A public act that attributes a power to perform a public act to a public body."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty action:actor ;
+            owl:someValuesFrom :Public_Body ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/mereology.owl#strict_part_of> ;
+            owl:someValuesFrom action:Transaction ],
+        :Legal_Speech_Act,
+        :Public_Act .
+
+:Co-operative a owl:Class ;
+    rdfs:comment "An autonomous association of persons united voluntarily to meet their common economic, social, and cultural needs and aspirations through a jointly-owned and democratically-controlled enterprise."^^xsd:string ;
+    rdfs:subClassOf :Society .
+
+:Decision a owl:Class ;
+    rdfs:comment "Decision: A (written) decision of a public body to perform a public act using a public power assigned by law."^^xsd:string,
+        "NOTE: Cannot express that the 'promised' act corresponds to the act qualified by the statement in writing"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/process.owl#creation> ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( expression:Promise [ a owl:Restriction ;
+                                owl:onProperty expression:towards ;
+                                owl:someValuesFrom :Public_Act ] ) ] ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/process.owl#creation> ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( expression:Statement_In_Writing [ a owl:Restriction ;
+                                owl:onProperty expression:towards ;
+                                owl:someValuesFrom :Public_Act ] ) ] ],
+        [ a owl:Restriction ;
+            owl:onProperty action:actor ;
+            owl:someValuesFrom :Public_Body ],
+        :Legal_Speech_Act .
+
+:Delegation a owl:Class ;
+    rdfs:comment "Delegate: entrust a task or responsibility to some other person"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/mereology.owl#strict_part_of> ;
+            owl:someValuesFrom action:Transaction ],
+        [ a owl:Restriction ;
+            owl:onProperty action:actor ;
+            owl:someValuesFrom :Public_Body ],
+        :Legal_Speech_Act,
+        :Public_Act .
+
+:Mandate a owl:Class ;
+    rdfs:comment "Mandate: give (someone) authority to act in a certain way"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.estrellaproject.org/lkif-core/mereology.owl#strict_part_of> ;
+            owl:someValuesFrom action:Transaction ],
+        [ a owl:Restriction ;
+            owl:onProperty action:actor ;
+            owl:someValuesFrom :Public_Body ],
+        :Public_Act .
+
+:Association a owl:Class ;
+    rdfs:comment "A voluntary association (also sometimes called an unincorporated association, or just an association) is a group of individuals who voluntarily enter into an agreement to form a body (or organization) to accomplish a purpose."^^xsd:string ;
+    rdfs:subClassOf :Private_Legal_Person ;
+    owl:equivalentClass :Society .
+
+:Legislative_Body a owl:Class ;
+    rdfs:label "Legislative Body"^^xsd:string,
+        "Legislature"^^xsd:string ;
+    rdfs:comment "A legislature is a type of (representative) deliberative assembly with the power to adopt laws."^^xsd:string ;
+    rdfs:subClassOf :Public_Body .
+
+:Natural_Person a owl:Class ;
+    rdfs:comment "A natural person is a human being perceptible through the senses and subject to physical laws, as opposed to an artificial person, i.e., an organization that the law treats for some purposes as if it were a person distinct from its members or owner."^^xsd:string ;
+    rdfs:subClassOf action:Person ;
+    owl:equivalentClass action:Person .
+
+action:Person owl:equivalentClass :Natural_Person .
+
+:Company a owl:Class ;
+    rdfs:comment "A company refers to a legal entity formed which has a separate legal identity from its members, and is ordinarily incorporated to undertake commercial business. Although some jurisdictions refer to unincorporated entities as companies, in most jurisdictions the term refers only to incorporated entities. "^^xsd:string ;
+    rdfs:subClassOf :Private_Legal_Person ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:unionOf ( :Limited_Company :Public_Limited_Company ) ] .
+
+:Legal_Person a owl:Class ;
+    rdfs:comment """A legal entity is a natural person or a legal construct through which the law allows a group of natural persons to act as if it were a single composite individual for certain purposes. The most common purposes are lawsuits, property ownership, and contracts. Sometimes referred to as corporate personhood or legal personality, this concept allows for easy conduct of business by having ownership, lawsuits, and agreements under the name of the legal entity instead of the several names of the people making up the entity.
+
+A legal entity is not necessarily distinct from the natural persons of which it is composed. Most legal entities are simply amalgamations of the persons that make it up for convenience's sake. A legal entity that does have a separate existence from its members is called a company or corporation. This distinction gives the corporation its unique perpetual succession privilege and is usually also the source of the limited liability of corporate members. Some other legal entities also enjoy limited liability of members, but not on account of separate existence (Source: Wikipedia.org)"""^^xsd:string ;
+    rdfs:subClassOf action:Organisation .
+
+:Limited_Company a owl:Class ;
+    rdfs:comment "A limited company is a corporation whose liability is limited by law"^^xsd:string ;
+    rdfs:subClassOf :Company ;
+    owl:equivalentClass :Unincorporated .
+
+:Public_Limited_Company a owl:Class ;
+    rdfs:label "PLC"^^xsd:string ;
+    rdfs:comment "Similar to the US corporation, offers several advantages over trading as sole trader."^^xsd:string ;
+    rdfs:subClassOf :Company ;
+    owl:equivalentClass :Incorporated .
+
+:Society a owl:Class ;
+    rdfs:comment "An organized group of people associated together for religious, benevolent, cultural, scientific, political, patriotic, or other purposes."^^xsd:string ;
+    rdfs:subClassOf :Private_Legal_Person ;
+    owl:equivalentClass :Association .
+
+:Corporation a owl:Class ;
+    rdfs:comment "A corporation is a legal entity which, while being composed of natural persons, exists completely separately from them. This separation gives the corporation unique powers which other legal entities lack. "^^xsd:string ;
+    rdfs:subClassOf :Private_Legal_Person ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:unionOf ( :Unincorporated :Foundation :Incorporated ) ] .
+
+:Foundation a owl:Class ;
+    rdfs:comment "A kind of (philanthropic) organization, set up as a legal entity either by individuals or institutions, with the purpose of distributing grants to support causes in line with the goals of the foundation"^^xsd:string ;
+    rdfs:subClassOf :Corporation ;
+    owl:disjointWith :Incorporated,
+        :Unincorporated .
+
+:Incorporated a owl:Class ;
+    rdfs:comment "An organisation formed into a legal corporation"^^xsd:string ;
+    rdfs:subClassOf :Corporation ;
+    owl:disjointWith :Foundation,
+        :Unincorporated ;
+    owl:equivalentClass :Public_Limited_Company .
+
+:Legal_Speech_Act a owl:Class ;
+    rdfs:comment "A legal speech act creates some propositional attitude towards a legal expression."^^xsd:string ;
+    rdfs:subClassOf expression:Speech_Act .
+
+:Unincorporated a owl:Class ;
+    rdfs:subClassOf :Corporation ;
+    owl:disjointWith :Foundation,
+        :Incorporated ;
+    owl:equivalentClass :Limited_Company .
+
+:Private_Legal_Person a owl:Class ;
+    rdfs:label "Legal Person (Private Law)"^^xsd:string ;
+    rdfs:comment "A legal person as defined in private law"^^xsd:string ;
+    rdfs:subClassOf :Legal_Person ;
+    owl:disjointWith :Public_Body .
+
+:Public_Act a owl:Class ;
+    rdfs:comment "A public act is an act by some Person or Organisation which creates (at least) a communicated attitude (and thereby an expression)"^^xsd:string ;
+    rdfs:subClassOf action:Action .
+
+:Public_Body a owl:Class ;
+    rdfs:comment "A public body or body created by an act of law to serve a public interest"^^xsd:string ;
+    rdfs:subClassOf :Legal_Person ;
+    owl:disjointWith :Private_Legal_Person .
+

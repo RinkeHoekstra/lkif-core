@@ -1,0 +1,147 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/process.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mereology: <http://www.estrellaproject.org/lkif-core/mereology.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time1: <http://www.estrellaproject.org/lkif-core/time.owl#> .
+@prefix top: <http://www.estrellaproject.org/lkif-core/lkif-top.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.estrellaproject.org/lkif-core/process.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/relative-places.owl>,
+        <http://www.estrellaproject.org/lkif-core/time.owl> ;
+    owl:versionInfo "LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium"^^xsd:string,
+        """Partner contributions from the University of Amsterdam (UvA).
+
+Editor:       Rinke Hoekstra (UvA)
+Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
+Contributors: Joost Breuker (UvA)"""^^xsd:string,
+        "This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665"^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Mental_Process a owl:Class ;
+    rdfs:comment "A mental, i.e. non-physical, process that has no physical effects. Examples are (human) thought and reasoning." ;
+    rdfs:subClassOf top:Mental_Entity,
+        :Process .
+
+:Physical_Process a owl:Class ;
+    rdfs:subClassOf top:Physical_Entity,
+        :Process .
+
+:Termination a owl:Class ;
+    rdfs:comment "The termination of a change."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty mereology:direct_part_of ;
+            owl:someValuesFrom :Change ],
+        :Change ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :requirement ;
+            owl:someValuesFrom :Continuation ] .
+
+:creation a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some thing is created (i.e. a result of) by a process, and exists because of the process taking place."^^xsd:string ;
+    rdfs:subPropertyOf :result ;
+    owl:inverseOf :created_by .
+
+:resource_for a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some participant is a resource for a process"^^xsd:string ;
+    rdfs:subPropertyOf :participant_in ;
+    owl:inverseOf :resource .
+
+top:Mental_Entity a owl:Class .
+
+mereology:part a owl:ObjectProperty .
+
+:Initiation a owl:Class ;
+    rdfs:comment "The initation of a change"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty mereology:direct_part_of ;
+            owl:someValuesFrom :Change ],
+        :Change ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :result ;
+            owl:someValuesFrom :Continuation ] .
+
+:Physical_Object a owl:Class ;
+    rdfs:comment "A physical object is a physical entity consisting of matter, it has a spatio-temporal extension."^^xsd:string ;
+    rdfs:subClassOf top:Physical_Entity .
+
+:created_by a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some thing is created (i.e. a result of) by a process, and exists because of the process taking place."^^xsd:string ;
+    rdfs:subPropertyOf :result_of .
+
+:requirement_of a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some participant is a requirement for a process"^^xsd:string ;
+    rdfs:subPropertyOf :participant_in .
+
+:result_of a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some participant is the result of a process, it might have existed before the process took place, but is in some way altered (an 'inanimate' goal of an act)"^^xsd:string ;
+    rdfs:subPropertyOf :participant_in ;
+    owl:inverseOf :result .
+
+time1:Temporal_Occurrence a owl:Class .
+
+top:Physical_Entity a owl:Class .
+
+:Continuation a owl:Class ;
+    rdfs:comment "The continuation of a change, once initiated"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty mereology:direct_part_of ;
+            owl:someValuesFrom :Change ],
+        :Change ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :requirement ;
+            owl:someValuesFrom :Initiation ] .
+
+:Process a owl:Class ;
+    rdfs:comment "A process is a 'causal' change: any change which can be explained through some known or understood causal structure. Every process has some Time_Period as duration."^^xsd:string ;
+    rdfs:subClassOf :Change ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :resource ;
+            owl:someValuesFrom time1:Temporal_Occurrence ] .
+
+:resource a owl:ObjectProperty ;
+    rdfs:comment "A resource is some quantity of something used to perform the action: i.e. time, energy"^^xsd:string ;
+    rdfs:subPropertyOf :participant .
+
+mereology:direct_part_of a owl:ObjectProperty .
+
+:participant_in a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some thing participates in a process"^^xsd:string ;
+    rdfs:domain owl:Thing ;
+    rdfs:range :Change ;
+    owl:inverseOf :participant .
+
+:requirement a owl:ObjectProperty ;
+    rdfs:comment "A requirement relation relates the process with a prerequisite for that process: without it the process cannot occur"^^xsd:string ;
+    rdfs:subPropertyOf :participant ;
+    owl:inverseOf :requirement_of .
+
+:participant a owl:ObjectProperty ;
+    rdfs:comment "A participant is someone or something that participates in a change, i.e. is involved in a change"^^xsd:string ;
+    rdfs:domain :Change ;
+    rdfs:range owl:Thing .
+
+:result a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some participant is the result of the process, it might have existed before the process took place, but is in some way altered"^^xsd:string ;
+    rdfs:subPropertyOf :participant .
+
+owl:Thing a owl:Class .
+
+:Change a owl:Class ;
+    rdfs:comment "A change is a difference between the situation before and after the change occurs (the event of the change). A change can be instantaneous"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Change ;
+            owl:onProperty mereology:part ],
+        owl:Thing ;
+    owl:disjointWith :Physical_Object ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :result ;
+            owl:someValuesFrom owl:Thing ],
+        [ a owl:Restriction ;
+            owl:onProperty :requirement ;
+            owl:someValuesFrom owl:Thing ] .
+

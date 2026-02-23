@@ -1,0 +1,173 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/role.owl#> .
+@prefix action: <http://www.estrellaproject.org/lkif-core/action.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix lkif-top: <http://www.estrellaproject.org/lkif-core/lkif-top.owl#> .
+@prefix mereology: <http://www.estrellaproject.org/lkif-core/mereology.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix process: <http://www.estrellaproject.org/lkif-core/process.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+action:Action a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Restriction ;
+                    owl:onProperty :plays ;
+                    owl:someValuesFrom :Role ] ;
+            owl:onProperty action:actor ] .
+
+action:Artifact a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :plays ;
+            owl:someValuesFrom :Function ] .
+
+lkif-top:Physical_Entity a owl:Class ;
+    owl:disjointWith :Role .
+
+process:Process a owl:Class ;
+    owl:disjointWith :Role .
+
+<http://www.estrellaproject.org/lkif-core/role.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/action.owl> ;
+    owl:versionInfo "LKIF-Core, version 1.0.4, copyright (C) 2008, the ESTRELLA consortium"^^xsd:string,
+        """Partner contributions from the University of Amsterdam (UvA).
+
+Editor:       Rinke Hoekstra (UvA)
+Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA)
+Contributors: Joost Breuker (UvA)"""^^xsd:string,
+        "This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665"^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Epistemic_Role a owl:Class ;
+    rdfs:comment "The role of something used in a (mental) reasoning/inference process"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom lkif-top:Mental_Object ;
+            owl:onProperty :played_by ],
+        [ a owl:Restriction ;
+            owl:onProperty :context ;
+            owl:someValuesFrom process:Mental_Process ],
+        [ a owl:Restriction ;
+            owl:onProperty :played_by ;
+            owl:someValuesFrom lkif-top:Mental_Object ],
+        :Role .
+
+:Person_Role a owl:Class ;
+    rdfs:comment "A role played by some person (i.e. not an organisation)"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :played_by ;
+            owl:someValuesFrom action:Person ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom action:Person ;
+            owl:onProperty :played_by ],
+        :Social_Role .
+
+action:Organisation a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Restriction ;
+                    owl:onProperty :plays ;
+                    owl:someValuesFrom :Organisation_Role ] ;
+            owl:onProperty mereology:member ] .
+
+action:actor a owl:ObjectProperty .
+
+lkif-top:Mental_Entity a owl:Class .
+
+mereology:member a owl:ObjectProperty .
+
+mereology:member_of a owl:ObjectProperty .
+
+process:Mental_Process a owl:Class .
+
+:Function a owl:Class ;
+    rdfs:comment "The use or purpose of some object as used in some context."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :played_by ;
+            owl:someValuesFrom process:Physical_Object ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( process:Physical_Object [ a owl:Class ;
+                                owl:complementOf action:Agent ] ) ] ;
+            owl:onProperty :played_by ],
+        :Role ;
+    owl:disjointWith :Social_Role .
+
+:Organisation_Role a owl:Class ;
+    rdfs:comment "A role which has a meaning in the context of an organisation: i.e. the role defines a 'position' within sthe structure of roles within an organisation"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:intersectionOf ( action:Agent [ a owl:Restriction ;
+                                owl:onProperty mereology:member_of ;
+                                owl:someValuesFrom action:Organisation ] ) ] ;
+            owl:onProperty :played_by ],
+        :Social_Role .
+
+:Subjective_Entity a owl:Class ;
+    rdfs:comment "A subjective entity is ontologically subjective, i.e. its existence is relative to an observer, that attributes its properties to some other entity, given a context.  " ;
+    rdfs:subClassOf lkif-top:Mental_Entity ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( [ a owl:Restriction ;
+                        owl:onProperty :context ;
+                        owl:someValuesFrom owl:Thing ] [ a owl:Restriction ;
+                        owl:onProperty :imposed_on ;
+                        owl:someValuesFrom owl:Thing ] ) ] .
+
+:counts_as a owl:ObjectProperty ;
+    rdfs:comment "The counts-as relation of Searle (1995) is used to express the creation of observer-relative or social facts such as the playing of roles or having a function." .
+
+action:Person a owl:Class .
+
+lkif-top:Mental_Object a owl:Class .
+
+process:Physical_Object a owl:Class .
+
+:context a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "The context property relates a subjective entity to the context in which the entity holds." ;
+    owl:disjointObjectProperties :imposed_on .
+
+:Social_Role a owl:Class ;
+    rdfs:comment "A social role is played by some agent in the context of social activities. The social role brings with it some expectation of 'default' behavior of the role-filler."^^xsd:string,
+        "played_by all (action:Agent and (action:actor_in some (action:Action and (plays some expression:Expectation))))" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom action:Agent ;
+            owl:onProperty :played_by ],
+        [ a owl:Restriction ;
+            owl:onProperty :played_by ;
+            owl:someValuesFrom action:Agent ],
+        :Role .
+
+:imposed_on a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:comment "Specifies that some subjective entity is imposed on some thing" .
+
+action:Agent a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Role ;
+            owl:onProperty :plays ] ;
+    owl:disjointWith :Role .
+
+:plays a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some thing plays a role"^^xsd:string ;
+    rdfs:domain owl:Thing ;
+    rdfs:range :Role ;
+    rdfs:subPropertyOf :counts_as ;
+    owl:inverseOf :played_by .
+
+owl:Thing a owl:Class .
+
+:Role a owl:Class ;
+    rdfs:comment "A role is a specification of default behavior and accompanying expectations of the thing 'playing' the role. Similar to actors in a theater who play roles, but are not the roles. Example: student."^^xsd:string ;
+    rdfs:subClassOf :Subjective_Entity ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :played_by ;
+            owl:someValuesFrom owl:Thing ] .
+
+:played_by a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some role is played by some thing"^^xsd:string ;
+    rdfs:domain :Role ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf :imposed_on .
+

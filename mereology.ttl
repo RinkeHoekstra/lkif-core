@@ -1,0 +1,133 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/mereology.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix top: <http://www.estrellaproject.org/lkif-core/lkif-top.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.estrellaproject.org/lkif-core/mereology.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/lkif-top.owl> ;
+    owl:versionInfo "LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium"^^xsd:string,
+        """Partner contributions from the University of Amsterdam (UvA)
+
+Editor:       Rinke Hoekstra (UvA)
+Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
+Contributors: Joost Breuker (UvA)"""^^xsd:string,
+        "This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665"^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Atom a owl:Class ;
+    rdfs:comment "An atom has no parts"^^xsd:string ;
+    rdfs:subClassOf top:Abstract_Entity ;
+    owl:disjointWith :Whole .
+
+:Pair a owl:Class ;
+    rdfs:comment "A composition of exactly two parts"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "2"^^xsd:nonNegativeInteger ;
+            owl:onClass :Part ;
+            owl:onProperty :strict_part ],
+        :Composition .
+
+:component_of a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some thing is a (functional) component of some other thing"^^xsd:string ;
+    rdfs:subPropertyOf :strict_part_of ;
+    owl:inverseOf :component .
+
+:composed_of a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Specifies that some thing is composed_of (spatially) within some other thing"^^xsd:string ;
+    rdfs:subPropertyOf :part ;
+    owl:inverseOf :composes .
+
+:contains a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Specifies that some thing is contained (spatially) within some other thing" ;
+    rdfs:subPropertyOf :part ;
+    owl:inverseOf :contained_in .
+
+:direct_part a owl:ObjectProperty ;
+    rdfs:comment "The non-transitive part relation."^^xsd:string ;
+    rdfs:subPropertyOf :part ;
+    owl:equivalentProperty :strict_part ;
+    owl:inverseOf :direct_part_of .
+
+:member a owl:ObjectProperty ;
+    rdfs:comment "Specifies membership of a set or group"^^xsd:string ;
+    rdfs:subPropertyOf :strict_part ;
+    owl:inverseOf :member_of .
+
+rdfs:comment a owl:AnnotationProperty .
+
+owl:versionInfo a owl:AnnotationProperty .
+
+:Composition a owl:Class ;
+    rdfs:comment "A composition has multiple parts, the components should meet"^^xsd:string ;
+    rdfs:subClassOf :Whole .
+
+:component a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some thing is a (functional) component of some other thing"^^xsd:string ;
+    rdfs:subPropertyOf :strict_part .
+
+:composes a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Specifies that some thing is composed_of (spatially) within some other thing" ;
+    rdfs:subPropertyOf :part_of .
+
+:contained_in a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Specifies that some thing is contained (spatially) within some other thing"^^xsd:string ;
+    rdfs:subPropertyOf :part_of .
+
+:direct_part_of a owl:ObjectProperty ;
+    rdfs:comment "The non-transitive part_of relation"^^xsd:string ;
+    rdfs:subPropertyOf :part_of ;
+    owl:equivalentProperty :strict_part_of .
+
+:member_of a owl:ObjectProperty ;
+    rdfs:comment "Specifies membership of a set or group"^^xsd:string ;
+    rdfs:subPropertyOf :strict_part_of .
+
+top:Abstract_Entity a owl:Class .
+
+:Part a owl:Class ;
+    rdfs:comment "A part is a part_of some whole"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Whole ;
+            owl:onProperty :strict_part_of ],
+        top:Abstract_Entity ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :strict_part_of ;
+            owl:someValuesFrom :Whole ] .
+
+:Whole a owl:Class ;
+    rdfs:comment "A whole has at least some part"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Part ;
+            owl:onProperty :strict_part ],
+        top:Abstract_Entity ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :strict_part ;
+            owl:someValuesFrom :Part ] .
+
+:part_of a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Transitive part_of relation" ;
+    owl:inverseOf :part .
+
+:part a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment "Transitive part relation" .
+
+:strict_part_of a owl:ObjectProperty ;
+    rdfs:comment "Non transitive part_of relation"^^xsd:string ;
+    rdfs:subPropertyOf :part_of ;
+    owl:inverseOf :strict_part .
+
+:strict_part a owl:ObjectProperty ;
+    rdfs:comment "Non transitive part relation"^^xsd:string ;
+    rdfs:subPropertyOf :part .
+

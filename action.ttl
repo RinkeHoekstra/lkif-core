@@ -1,0 +1,165 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/action.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix lkif-top: <http://www.estrellaproject.org/lkif-core/lkif-top.owl#> .
+@prefix mereology: <http://www.estrellaproject.org/lkif-core/mereology.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix process: <http://www.estrellaproject.org/lkif-core/process.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.estrellaproject.org/lkif-core/action.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Currently this module does not commit to any particular theory on/framework of thematic roles (i.e. subproperties of participant). This has consequences for the detail in which actions are described in this ontology."^^xsd:string ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/process.owl> ;
+    owl:versionInfo "LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium"^^xsd:string,
+        """Partner contributions from the University of Amsterdam (UvA).
+
+Editor:       Rinke Hoekstra (UvA)
+Authors:      Rinke Hoekstra (UvA), Alexander Boer (UvA), Kasper van den Berg (UvA)
+Contributors: Joost Breuker (UvA)"""^^xsd:string,
+        "This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665"^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Artifact a owl:Class ;
+    rdfs:comment "A physical object created by some person to fulfill a particular purpose"^^xsd:string ;
+    rdfs:subClassOf process:Physical_Object ;
+    owl:disjointWith :Natural_Object,
+        :Person ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty process:result_of ;
+            owl:someValuesFrom :Creation ] .
+
+:Reaction a owl:Class ;
+    rdfs:comment "A reaction is an action that is (at least) performed by an agent that has observed some other action (this is an intensional view): Action <-> Reaction"^^xsd:string ;
+    rdfs:subClassOf :Action .
+
+:Trade a owl:Class ;
+    rdfs:comment "A trade is an exchange of some things between two agents a and b. Consists of two actions A and B where a is the actor of action A and the recipient of action B, and vice versa. Usually these actions are performed concurrently, but these may also be done consequently. The ownership of the things being traded is the requirement/result pair for each action."^^xsd:string ;
+    rdfs:subClassOf :Transaction .
+
+:Collaborative_Plan a owl:Class ;
+    rdfs:comment "A collaborative plan is a plan which is shared (and executed) between at least two agents a and b."^^xsd:string,
+        "NOTE: this definition cannot currently be expressed in OWL"^^xsd:string ;
+    rdfs:subClassOf :Plan ;
+    owl:disjointWith :Personal_Plan .
+
+:Creation a owl:Class ;
+    rdfs:comment "An act which results in the creation of some entity/individual"^^xsd:string ;
+    rdfs:subClassOf :Action ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty process:creation ] .
+
+:Organisation a owl:Class ;
+    rdfs:comment "An organisation is a group of other organisations or persons which acts 'as one'. An organisation can be both formal (i.e. created by law or decree) or informal."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf ( :Organisation :Person ) ] ;
+            owl:onProperty mereology:member ],
+        :Agent ;
+    owl:disjointWith :Person ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty mereology:member ;
+            owl:someValuesFrom :Person ] .
+
+:Personal_Plan a owl:Class ;
+    rdfs:comment "A personal plan is a plan which is held (and can be executed) by at most one agent."^^xsd:string ;
+    rdfs:subClassOf :Plan .
+
+:Transaction a owl:Class ;
+    rdfs:comment "A transaction is an exchange or interaction between at least two agents a and b. Consists of two actions A and B where a is the actor of action A and the recipient of action B, and vice versa. Usually these actions are performed concurrently, but these may also be done consequently."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Action ;
+            owl:onProperty mereology:direct_part ],
+        [ a owl:Restriction ;
+            owl:cardinality "2"^^xsd:nonNegativeInteger ;
+            owl:onProperty mereology:direct_part ],
+        :Collaborative_Plan .
+
+lkif-top:Mental_Object a owl:Class .
+
+process:Process a owl:Class .
+
+process:creation a owl:ObjectProperty .
+
+process:participant a owl:ObjectProperty .
+
+process:result_of a owl:ObjectProperty .
+
+owl:Thing a owl:Class .
+
+:Natural_Object a owl:Class ;
+    rdfs:comment "A natural object is an object not created by man."^^xsd:string ;
+    rdfs:subClassOf process:Physical_Object .
+
+:actor_in a owl:ObjectProperty ;
+    rdfs:comment "Specifies that the participant is an actor in some action."^^xsd:string ;
+    rdfs:domain :Agent ;
+    rdfs:range :Action ;
+    rdfs:subPropertyOf process:participant_in ;
+    owl:inverseOf :actor .
+
+mereology:direct_part a owl:ObjectProperty .
+
+mereology:member a owl:ObjectProperty .
+
+mereology:part a owl:ObjectProperty .
+
+process:Change a owl:Class ;
+    owl:disjointWith process:Physical_Object .
+
+process:participant_in a owl:ObjectProperty .
+
+:actor a owl:ObjectProperty ;
+    rdfs:comment "Specifies that some participant is an actor in the action."^^xsd:string ;
+    rdfs:domain :Action ;
+    rdfs:range :Agent ;
+    rdfs:subPropertyOf process:participant .
+
+process:Physical_Object a owl:Class .
+
+:Person a owl:Class ;
+    rdfs:comment "A person is an individual agent. Usually associated with 'human being'."^^xsd:string ;
+    rdfs:subClassOf :Agent,
+        :Natural_Object .
+
+:Plan a owl:Class ;
+    rdfs:comment "A plan is a structure of multiple other plans or actions. These can be both sequential or concurrent. Usually a plan is referred to in the context of the intention to act of some agent, however when executed the plan itself comes into effect."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf ( :Action :Plan ) ] ;
+            owl:onProperty mereology:part ],
+        lkif-top:Mental_Object ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty mereology:part ;
+            owl:someValuesFrom :Action ] .
+
+:Agent a owl:Class ;
+    rdfs:comment "An agent is any owl:Thing which can act, i.e. play the 'actor' role wrt. an action"^^xsd:string,
+        "It is a holder for propositional attitudes"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom process:Change ;
+            owl:onProperty process:participant_in ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom :Action ;
+            owl:onProperty :actor_in ],
+        owl:Thing ;
+    owl:disjointWith process:Change ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty :actor_in ;
+            owl:someValuesFrom :Action ] .
+
+:Action a owl:Class ;
+    rdfs:comment "An action is a change which is brought about by a single agent, playing a role. The agent is the holder of some indended outcome of the action: an action is always intentional. The intention of the agent has usually corresponds with an expectation the intended outcome to be brought about: the agent believes in some expectation. Note that the intention might not correspond with the *actual* outcome of the action."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom :Agent ;
+            owl:onProperty :actor ],
+        process:Process ;
+    owl:disjointWith :Plan ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty :actor ] .
+

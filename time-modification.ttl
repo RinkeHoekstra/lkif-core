@@ -1,0 +1,266 @@
+@prefix : <http://www.estrellaproject.org/lkif-core/time-modification.owl#> .
+@prefix action: <http://www.estrellaproject.org/lkif-core/legal-action.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time1: <http://www.estrellaproject.org/lkif-core/time.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.estrellaproject.org/lkif-core/time-modification.owl> a owl:Ontology ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:imports <http://www.estrellaproject.org/lkif-core/legal-action.owl> ;
+    owl:versionInfo """
+	LKIF Core, version 1.1, copyright (C) 2008, the ESTRELLA consortium
+	"""^^xsd:string,
+        """
+	Partner contributions from the University of Amsterdam (UvA) and the University of Bologna (UNIBO).
+
+	Editor:       Rinke Hoekstra (UvA)
+	Authors:      Rinke Hoekstra (UvA), Monica Palmirani (UNIBO)
+	Contributors: Alexander Boer (UvA)
+	"""^^xsd:string,
+        """
+	This module is part of LKIF-Core, version 1.1, part of Deliverable 1.4 of ESTRELLA, IST-2004-027665
+	"""^^xsd:string,
+        """The LKIF-Core ontology, version 1.0, is part of Deliverable 1.4 of the European project for Standardised Transparent Representations in order to Extend Legal Accessibility (ESTRELLA, IST-2004-027665), http://www.estrellaproject.org
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/"""@en .
+
+:Application a owl:Class ;
+    rdfs:comment "When a local act applies in the local legal system normative supra-ordered such as when a region applies an EU directive or a decree it applies the normative contant in some act"^^xsd:string ;
+    rdfs:subClassOf :Modification_of_System .
+
+:Application_Interval a owl:Class ;
+    rdfs:comment "This is the interval during which a normative document, or fragment, produces the consequences that the normative provision establishes."^^xsd:string ;
+    rdfs:subClassOf :Dynamic_Temporal_Entity,
+        time1:Interval .
+
+:Delivery_Date a owl:Class ;
+    rdfs:comment "The date when the competent authorities finalise the document by affixing their signatures to it (e.g. promulgation by the president, signature by the queen etc.) This is the date shown on the document itself: it is an objective element and clearly identifyable."^^xsd:string ;
+    rdfs:subClassOf :Static_Temporal_Entity,
+        time1:Moment .
+
+:Deregulation a owl:Class ;
+    rdfs:comment "When a part of some primary legislative source is delegated to some secondary legislative source (e.g. from act to regulation). "^^xsd:string ;
+    rdfs:subClassOf :Modification_of_System .
+
+:End_efficacy a owl:Class ;
+    rdfs:subClassOf :Efficacy_Modification .
+
+:Enter_in_Force_Date a owl:Class ;
+    rdfs:comment "The date when a dnormative document becomes law and enters the legal system for the first time. This is the moment in the doucment's history starting from which the document can be amended, its applicability assessed, and its manner of producing an effect determined."^^xsd:string ;
+    rdfs:subClassOf :Static_Temporal_Entity,
+        time1:Moment .
+
+:Exception a owl:Class ;
+    rdfs:comment "Restricts the scope of normative content to some particular jurisdiction"^^xsd:string ;
+    rdfs:subClassOf :Modification_of_Scope .
+
+:Existence_Date a owl:Class ;
+    rdfs:comment "The date when the formal act by which a legislative body freezes the document into its final form, it is the time when the document can be said to have begun its existence."^^xsd:string ;
+    rdfs:subClassOf time1:Moment .
+
+:Extension a owl:Class ;
+    rdfs:comment "Extends the scope of normative content to some particular jurisdiction"^^xsd:string ;
+    rdfs:subClassOf :Modification_of_Scope .
+
+:Interpretation a owl:Class ;
+    rdfs:comment "Modification of the interpretation of normative content by the author or some superior actor"^^xsd:string ;
+    rdfs:subClassOf :Modification_of_Meaning .
+
+:Modification_of_Term a owl:Class ;
+    rdfs:comment "Modification of the term specified by some procedural deadline."^^xsd:string ;
+    rdfs:subClassOf :Modification_of_Meaning .
+
+:Prorogation_Efficacy a owl:Class ;
+    rdfs:comment "Prorogation of entry into force, but applied to the efficacy of some norm"^^xsd:string ;
+    rdfs:subClassOf :Efficacy_Modification .
+
+:Prorogation_in_Force a owl:Class ;
+    rdfs:comment "Prorogation of the date of enactment of some normative content. The 'life' of the act is lengthened with respect to some previous end of enactment modification."^^xsd:string ;
+    rdfs:subClassOf :In_Force_Modification .
+
+:Publication_Date a owl:Class ;
+    rdfs:comment "The date when the normative document is published in the official journal designated as the source for making all such documents public and legal."^^xsd:string ;
+    rdfs:subClassOf :Static_Temporal_Entity,
+        time1:Moment .
+
+:Ratification a owl:Class ;
+    rdfs:comment "When an international treaty is ratified by local parliament in order to include it in the local legal system. The same thing happens when each local parliament ratifies bilateral or multilateral agreements."^^xsd:string ;
+    rdfs:subClassOf :Modification_of_System .
+
+:Relocation a owl:Class ;
+    rdfs:comment "Moving some part of the text to some other place within the same document"^^xsd:string ;
+    rdfs:subClassOf :Textual_Modification .
+
+:Remaking a owl:Class ;
+    rdfs:comment "When an act is completely rewritten in a new way but the topic remains the same."^^xsd:string ;
+    rdfs:subClassOf :Modification_of_System .
+
+:Retroactivity a owl:Class ;
+    rdfs:comment "When the efficacy or a partial efficacy starts before the entry into force of the document"^^xsd:string ;
+    rdfs:subClassOf :Efficacy_Modification .
+
+:Start_Efficacy a owl:Class ;
+    rdfs:subClassOf :Efficacy_Modification .
+
+:Start_in_Force a owl:Class ;
+    rdfs:subClassOf :In_Force_Modification .
+
+:Transposition a owl:Class ;
+    rdfs:comment "Interpretation in context of the European Union"^^xsd:string ;
+    rdfs:subClassOf :Modification_of_System .
+
+:Ultractivity a owl:Class ;
+    rdfs:subClassOf :Efficacy_Modification .
+
+:Variation a owl:Class ;
+    rdfs:comment "Modification by paraphrasing"^^xsd:string ;
+    rdfs:subClassOf :Modification_of_Meaning .
+
+:application a owl:ObjectProperty ;
+    rdfs:domain :Modification ;
+    rdfs:range :Application_Date .
+
+:date a owl:DatatypeProperty ;
+    rdfs:domain time1:Moment ;
+    rdfs:range xsd:dateTime .
+
+:duration a owl:ObjectProperty ;
+    rdfs:domain :Suspension ;
+    rdfs:range time1:Interval .
+
+:efficacy a owl:ObjectProperty ;
+    rdfs:domain :Modification ;
+    rdfs:range :Efficacy_Interval .
+
+:in_force a owl:ObjectProperty ;
+    rdfs:domain :Modification ;
+    rdfs:range :In_Force_Interval .
+
+:produce_efficacy_modification a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( :Repeal :Integration :Substitution ) ] .
+
+:produce_inforce_modification a owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( :Repeal :Integration :Substitution ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( :Renewal :Annulment ) ] .
+
+:produce_textual_modification a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( :Annulment :Renewal ) ] ;
+    rdfs:range :End_in_Force .
+
+:Application_Date a owl:Class ;
+    rdfs:comment "The date when a modification is applied to the destination legislative document. The date can be instantaneous, in the future or in the past. Normally this date coincides with the date of efficacy of the text in which the modification takes place."^^xsd:string ;
+    rdfs:subClassOf :Dynamic_Temporal_Entity,
+        time1:Moment .
+
+:Efficacy_Interval a owl:Class ;
+    rdfs:comment "The period during which a normative fragment may be either operative or inoperative, by explicit provision of the document itself. The document is said to be in a period of operation, or enforceability or efficacy, when it may or must be applied or enforced."^^xsd:string ;
+    rdfs:subClassOf :Dynamic_Temporal_Entity,
+        time1:Interval .
+
+:End_in_Force a owl:Class ;
+    rdfs:comment "When an act states the end of the period of enactment, and includes an implicit repealing of the text."^^xsd:string ;
+    rdfs:subClassOf :In_Force_Modification .
+
+:In_Force_Interval a owl:Class ;
+    rdfs:comment "The period during which a normative fragment belongs to the normative system. The period of force for each fragment may change over time as a function of the modifications the document goes through."^^xsd:string ;
+    rdfs:subClassOf :Dynamic_Temporal_Entity,
+        time1:Interval .
+
+:Suspension a owl:Class ;
+    rdfs:comment "When a part of an act or some provisions are suspended in coming to be operative for a period or indefinately"^^xsd:string ;
+    rdfs:subClassOf :Efficacy_Modification .
+
+:final_date a owl:ObjectProperty ;
+    rdfs:domain time1:Interval ;
+    rdfs:range time1:Moment ;
+    rdfs:subPropertyOf time1:temporal_relation ;
+    owl:inverseOf :final_date_of .
+
+:final_date_of a owl:ObjectProperty ;
+    rdfs:domain time1:Moment ;
+    rdfs:range time1:Interval ;
+    rdfs:subPropertyOf time1:finishes ;
+    owl:inverseOf :final_date .
+
+:initial_date a owl:ObjectProperty ;
+    rdfs:domain time1:Interval ;
+    rdfs:range time1:Moment ;
+    rdfs:subPropertyOf time1:temporal_relation ;
+    owl:inverseOf :initial_date_of .
+
+:initial_date_of a owl:ObjectProperty ;
+    rdfs:domain time1:Moment ;
+    rdfs:range time1:Interval ;
+    rdfs:subPropertyOf time1:starts ;
+    owl:inverseOf :initial_date .
+
+:Annulment a owl:Class ;
+    rdfs:subClassOf :In_Force_Modification .
+
+:Integration a owl:Class ;
+    rdfs:subClassOf :Textual_Modification .
+
+:Modification_of_Scope a owl:Class ;
+    rdfs:comment "See ESTRELLA deliverable 3.2"^^xsd:string ;
+    rdfs:subClassOf :Semantic_Annotation .
+
+:Renewal a owl:Class ;
+    rdfs:subClassOf :In_Force_Modification .
+
+:Repeal a owl:Class ;
+    rdfs:comment "Removal of some part of text or the entire act from the legal system."^^xsd:string ;
+    rdfs:subClassOf :Textual_Modification .
+
+:Substitution a owl:Class ;
+    rdfs:comment "Substitution of a part or entire act or annex"^^xsd:string ;
+    rdfs:subClassOf :Textual_Modification .
+
+:Temporal_Modification a owl:Class ;
+    rdfs:comment "Modifies the efficacy or being in force of some norm"^^xsd:string ;
+    rdfs:subClassOf :Modification .
+
+:Modification_of_Meaning a owl:Class ;
+    rdfs:comment "A modification that changes the meaning of some provision without changing its literal text"^^xsd:string ;
+    rdfs:subClassOf :Semantic_Annotation .
+
+:Semantic_Annotation a owl:Class ;
+    rdfs:comment "See ESTRELLA deliverable 3.2"^^xsd:string ;
+    rdfs:subClassOf :Modification .
+
+:Static_Temporal_Entity a owl:Class ;
+    rdfs:comment "A static temporal entity captures a single moment in the norm's life that is fixed over time."^^xsd:string ;
+    rdfs:subClassOf time1:Temporal_Occurrence .
+
+:Dynamic_Temporal_Entity a owl:Class ;
+    rdfs:comment "A dynamic temporal entity represents the norm in its evolution over time."^^xsd:string ;
+    rdfs:subClassOf time1:Temporal_Occurrence .
+
+:Textual_Modification a owl:Class ;
+    rdfs:comment "See ESTRELLA deliverable 3.2"^^xsd:string ;
+    rdfs:subClassOf :Modification .
+
+:In_Force_Modification a owl:Class ;
+    rdfs:comment "Modifies the period of being in force of some norm"^^xsd:string ;
+    rdfs:subClassOf :Temporal_Modification .
+
+:Modification_of_System a owl:Class ;
+    rdfs:comment "See ESTRELLA deliverable 3.2"^^xsd:string ;
+    rdfs:subClassOf :Semantic_Annotation .
+
+:Efficacy_Modification a owl:Class ;
+    rdfs:comment "Modifies the efficacy period of some norm"^^xsd:string ;
+    rdfs:subClassOf :Temporal_Modification .
+
+:Modification a owl:Class ;
+    rdfs:comment "See ESTRELLA deliverable 3.2"^^xsd:string ;
+    rdfs:subClassOf action:Public_Act .
+
