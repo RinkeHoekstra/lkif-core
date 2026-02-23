@@ -50,6 +50,11 @@ The two framework modules are accessible through the <strong>LKIF Extended</stro
 
 ## Release notes
 
+### 20260223 - Updated License to CC BY 4.0
+* Changed license text in ontology files
+* Generated Turtle versions of ontologies (as RDF/XML is deprecated)
+* Added LICENSE file
+
 ### Version 1.1 - 20080722 - Major Changes Release
 
 * Added Subjective_Entity class, and accompanying functional counts_as and imposed_on properties.
